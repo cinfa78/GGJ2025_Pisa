@@ -12,6 +12,8 @@ public class EnemySpawnerController : MonoBehaviour {
 	public GameObject[] devils;
 	public Transform[] sideSpawnPoints;
 	public Transform[] bottomSpawnPoints;
+	public DevilBoss boss;
+	public Transform bossSpawnPoint;
 
 	public void SpawnEnemy(int enemyType = -1) {
 		if (enemyType == -1)
@@ -23,5 +25,9 @@ public class EnemySpawnerController : MonoBehaviour {
 			case 1: Instantiate(devils[1], sideSpawnPoints[Random.Range(0, sideSpawnPoints.Length)].position, Quaternion.identity); break;
 			case 2: Instantiate(devils[2], bottomSpawnPoints[Random.Range(0, bottomSpawnPoints.Length)].position, Quaternion.identity); break;
 		}
+	}
+
+	public void SpawnBoss() {
+		var newBoss = Instantiate(boss, bossSpawnPoint.position, Quaternion.identity);
 	}
 }

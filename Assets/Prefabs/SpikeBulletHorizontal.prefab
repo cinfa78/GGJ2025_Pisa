@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3751911705695220474}
   - component: {fileID: 2429082975808906203}
   m_Layer: 3
-  m_Name: SpikeBullet
+  m_Name: SpikeBulletHorizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,6 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 260f2a52d3e81fd49971fb6820f28ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 1, z: 0}
-  _shotSpeed: 5
+  direction: {x: -1, y: 0, z: 0}
+  _shotSpeed: 3
   _shotSfx: {fileID: 8300000, guid: 0ef17d52b93de24459fb61a336731ae3, type: 3}

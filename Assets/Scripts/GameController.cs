@@ -35,6 +35,7 @@ public class GameController : MonoBehaviour {
 	public CanvasGroup victoryCanvasGroup;
 	public CanvasGroup deferatCanvasGroup;
 	public static event Action OnGameOver;
+	private bool _bossOut;
 
 	private void Awake() {
 		if (Instance == null) {
@@ -61,6 +62,11 @@ public class GameController : MonoBehaviour {
 
 		DevilBottomController.DevilSpawned += OnDevilSpawned;
 		DevilBottomController.DevilKilled += OnDevilKilled;
+
+		DevilBoss.DevilSpawned += OnDevilSpawned;
+		DevilBoss.DevilKilled += OnDevilKilled;
+		DevilBoss.OnBossDeath += Victory;
+
 		BubbleController.OnPlayerdeath += OnPlayerDeath;
 	}
 
@@ -76,6 +82,10 @@ public class GameController : MonoBehaviour {
 		IntroController.OnIntroOver -= OnIntroOver;
 		DevilController.DevilSpawned -= OnDevilSpawned;
 		DevilController.DevilKilled -= OnDevilKilled;
+
+		DevilBoss.DevilSpawned -= OnDevilSpawned;
+		DevilBoss.DevilKilled -= OnDevilKilled;
+		DevilBoss.OnBossDeath -= Victory;
 	}
 
 	[Button("Lose Now")]
@@ -91,6 +101,7 @@ public class GameController : MonoBehaviour {
 
 	[Button("Win Now")]
 	private void Victory() {
+		gameState = GameState.VICTORY;
 		BubbleController.OnPlayerdeath -= OnPlayerDeath;
 		Destroy(_spawnerController.gameObject);
 		for (int i = _devils.Count - 1; i >= 0; i--) {
@@ -122,15 +133,18 @@ public class GameController : MonoBehaviour {
 			case GameState.IDLE:
 				break;
 			case GameState.INGAME:
-
 				_enemyTimer += Time.deltaTime;
-				if (_enemyTimer > _enemyFrequency) {
+				if (_enemyTimer > _enemyFrequency && !_bossOut) {
 					_enemyTimer = 0;
 					_spawnerController.SpawnEnemy();
 					_enemyFrequency -= _enemyFrequencyIncrement;
 					if (_enemyFrequency < 1) _enemyFrequency = 1f;
 				}
 				_gameTimer += Time.deltaTime;
+				if (_gameTimer > totalGameTime) {
+					_spawnerController.SpawnBoss();
+					_bossOut = true;
+				}
 				break;
 			case GameState.GAMEOVER:
 				break;

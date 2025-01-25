@@ -36,7 +36,12 @@ PrefabInstance:
     - target: {fileID: 5538565850253417702, guid: 21b00e3f8b62647489fa5435e5715dc4,
         type: 3}
       propertyPath: _shotInterval
-      value: 4
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538565850253417702, guid: 21b00e3f8b62647489fa5435e5715dc4,
+        type: 3}
+      propertyPath: _movementSpeed
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

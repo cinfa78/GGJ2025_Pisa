@@ -5,8 +5,14 @@ using UnityEngine.Serialization;
 public class ShotController : MonoBehaviour {
 	[FormerlySerializedAs("_direction")] public Vector3 direction = Vector3.zero;
 	[SerializeField] private float _shotSpeed;
+	[SerializeField] private AudioClip _shotSfx;
+
 	private void Awake() {
 		Destroy(gameObject, 5);
+	}
+
+	private void OnEnable() {
+		AudioManager.Instance.PlaySfx(_shotSfx);
 	}
 
 	private void Update() {
