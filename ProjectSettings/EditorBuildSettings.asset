@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 219819ce6518e87499b233bac4f5ac3a
+  - enabled: 1
     path: Assets/Scenes/PapalBull.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects: {}

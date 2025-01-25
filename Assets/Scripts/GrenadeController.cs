@@ -5,6 +5,7 @@ public class GrenadeController : MonoBehaviour {
 	[SerializeField] private Vector3 _intitialDirection = Vector3.right;
 	[SerializeField] private float _initialVelocity;
 	[SerializeField] private GameObject _splashVfx;
+	[SerializeField] private AudioClip _launchSfx;
 	[SerializeField] private AudioClip _splashSfx;
 	Rigidbody _rigidbody;
 
@@ -17,6 +18,7 @@ public class GrenadeController : MonoBehaviour {
 	public void ApplyDirection(Vector3 startDirection) {
 		_intitialDirection = startDirection.normalized;
 		_rigidbody.velocity = _intitialDirection * _initialVelocity;
+		AudioManager.Instance.PlaySfx(_launchSfx);
 	}
 
 	private void OnCollisionEnter(Collision other) {

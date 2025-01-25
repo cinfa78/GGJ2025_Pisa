@@ -171,12 +171,13 @@ MonoBehaviour:
   _minMaxAngle: {x: -45, y: 45}
   _maxSize: 5
   _incrementPerGrenade: 0.1
+  _incrementPerShot: 0.5
   _bubble: {fileID: 8737633634301579032}
   _crossHairContainer: {fileID: 1043792693773859120}
-  _angleIncrement: 80
+  _angleIncrement: 60
   _bubbleSound: {fileID: 8300000, guid: be9f8ba9848ccb149bccd28d4d0dd050, type: 3}
-  _shootSound: {fileID: 8300000, guid: a3249a386b4d2e2489c3f025971a95b7, type: 3}
-  _deathSound: {fileID: 8300000, guid: 28024397bfef7bf468b972459de31a3d, type: 3}
+  _deathSound: {fileID: 8300000, guid: 25637c5f0ffd7824584bf03ae518f14e, type: 3}
+  _chargeSound: {fileID: 8300000, guid: 28024397bfef7bf468b972459de31a3d, type: 3}
 --- !u!54 &3158773045956625982
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -214,6 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1034903997755679600}
   - component: {fileID: 2354737730362444254}
+  - component: {fileID: 3222362437062083639}
   m_Layer: 0
   m_Name: pope Sprite
   m_TagString: Untagged
@@ -288,6 +290,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3222362437062083639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7045176974295840384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc183a49d1b608143876d175708747c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8737633634301579032
 GameObject:
   m_ObjectHideFlags: 0

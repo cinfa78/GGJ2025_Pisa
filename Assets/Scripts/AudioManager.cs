@@ -64,10 +64,11 @@ public class AudioManager : MonoBehaviour {
 		StartCoroutine(CrossFading(nextChannel));
 	}
 
-	public void PlaySfx(AudioClip clip) {
+	public AudioSource PlaySfx(AudioClip clip) {
 		_currentSfxChannel = (_currentSfxChannel + 1) % _sfxChannels;
 		_sfxAudioSources[_currentSfxChannel].clip = clip;
 		_sfxAudioSources[_currentSfxChannel].Play();
+		return (_sfxAudioSources[_currentSfxChannel]);
 	}
 
 	private IEnumerator CrossFading(int nextChannel) {

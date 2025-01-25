@@ -29,7 +29,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2442524697139522479}
+  - {fileID: 6619842285485645622}
   m_Father: {fileID: 1391585791511238176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6282986447447012036
@@ -97,7 +99,7 @@ GameObject:
   - component: {fileID: 3703696463820202699}
   - component: {fileID: 5538565850253417702}
   m_Layer: 8
-  m_Name: devil
+  m_Name: DevilFork
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,9 +118,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6619842285485645622}
   - {fileID: 5919175444341942580}
-  - {fileID: 2442524697139522479}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &5825058790982044539
@@ -183,7 +183,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movementSpeed: 20
   _spriteContainer: {fileID: 1259783203150840996}
+  _spikeCollider: {fileID: 6622425501153179750}
   _deadDevilSprite: {fileID: 21300000, guid: 5d7f7817dd112454aa46a7ba2778997b, type: 3}
+  _canShoot: 0
+  _shotInterval: 1
+  _bubbleShotPrefab: {fileID: 5579407339651145848, guid: 4459c321793e57b46b9f0c2b566b2bd7,
+    type: 3}
+  _shootingDevilSprite: {fileID: 21300000, guid: 3a8aa099a3a217d40a4be96b0a9045dc,
+    type: 3}
+  _deathSfx: {fileID: 8300000, guid: f2427bd3a0e36cc41a180cc644d665eb, type: 3}
+  _shotSfx: {fileID: 8300000, guid: 9bdb244a3ff6c5e439401ab66fc2f753, type: 3}
 --- !u!1 &4191239452147334236
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,11 +220,11 @@ Transform:
   m_GameObject: {fileID: 4191239452147334236}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.166, y: 0.207, z: 0}
+  m_LocalPosition: {x: 0.16599989, y: 0.207, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1391585791511238176}
+  m_Father: {fileID: 5919175444341942580}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6848177420968358005
 SpriteRenderer:
@@ -300,7 +309,7 @@ GameObject:
   - component: {fileID: 556559487518976382}
   - component: {fileID: 9108223641539106821}
   m_Layer: 3
-  m_Name: Weapon
+  m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314,12 +323,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6622425501153179750}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.359, y: -0.208, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.35899997, y: -0.20799997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1391585791511238176}
+  m_Father: {fileID: 5919175444341942580}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &556559487518976382
 SphereCollider:
