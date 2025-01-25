@@ -78,7 +78,7 @@ MonoBehaviour:
   _sfxAudioSources: []
   _sfxMixerGroup: {fileID: -2895304808826128557, guid: 583f4f1aebe521c43a2aa33e239e4ae0,
     type: 2}
-  _sfxChannels: 5
+  _sfxChannels: 8
 --- !u!1 &8304517063843710821
 GameObject:
   m_ObjectHideFlags: 0

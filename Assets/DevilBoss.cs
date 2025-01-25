@@ -83,6 +83,7 @@ public class DevilBoss : MonoBehaviour, IKillable {
 			if (other.gameObject.layer == LayerMask.NameToLayer("Grenade")) {
 				_health--;
 				if (_health <= 0) {
+					_isAlive = false;
 					DoDeath();
 				}
 				else {
@@ -100,11 +101,11 @@ public class DevilBoss : MonoBehaviour, IKillable {
 		foreach (Collider c in _colliders) {
 			c.enabled = false;
 		}
-		_isAlive = false;
 	}
 
 	[Button("Kill")]
 	public void Kill() {
+		_isAlive = false;
 		DoDeath();
 	}
 }

@@ -63,8 +63,7 @@ public class GameController : MonoBehaviour {
 		DevilBottomController.DevilSpawned += OnDevilSpawned;
 		DevilBottomController.DevilKilled += OnDevilKilled;
 
-		DevilBoss.DevilSpawned += OnDevilSpawned;
-		DevilBoss.DevilKilled += OnDevilKilled;
+
 		DevilBoss.OnBossDeath += Victory;
 
 		BubbleController.OnPlayerdeath += OnPlayerDeath;
@@ -85,8 +84,7 @@ public class GameController : MonoBehaviour {
 		DevilController.DevilSpawned -= OnDevilSpawned;
 		DevilController.DevilKilled -= OnDevilKilled;
 
-		DevilBoss.DevilSpawned -= OnDevilSpawned;
-		DevilBoss.DevilKilled -= OnDevilKilled;
+
 		DevilBoss.OnBossDeath -= Victory;
 	}
 
@@ -108,11 +106,7 @@ public class GameController : MonoBehaviour {
 		gameState = GameState.VICTORY;
 		BubbleController.OnPlayerdeath -= OnPlayerDeath;
 		Destroy(_spawnerController.gameObject);
-		for (int i = _devils.Count - 1; i >= 0; i--) {
-			IKillable killable = _devils[i];
-			killable.Kill();
-		}
-
+		_bubbleController._godMode = true;
 		_bubbleController.SetMovement(false);
 		victoryCanvasGroup.DOFade(1, 5);
 		victoryCanvasGroup.interactable = true;
@@ -123,11 +117,11 @@ public class GameController : MonoBehaviour {
 
 	private void OnIntroOver() {
 		IntroController.OnIntroOver -= OnIntroOver;
-		if(_bubbleController.IsAlive){
-		gameState = GameState.INGAME;
+		if (_bubbleController.IsAlive) {
+			gameState = GameState.INGAME;
 
-		_spawnerController.SpawnEnemy((int)EnemyType.Spike);
-		AudioManager.Instance.PlayMusic(music);
+			_spawnerController.SpawnEnemy((int)EnemyType.Spike);
+			AudioManager.Instance.PlayMusic(music);
 		}
 	}
 
@@ -145,10 +139,10 @@ public class GameController : MonoBehaviour {
 					_enemyTimer = 0;
 					_spawnerController.SpawnEnemy();
 					_enemyFrequency -= _enemyFrequencyIncrement;
-					if (_enemyFrequency < 1) _enemyFrequency = 1f;
+					if (_enemyFrequency < 1f) _enemyFrequency = 1f;
 				}
 				_gameTimer += Time.deltaTime;
-				if (_gameTimer > totalGameTime) {
+				if (_gameTimer > totalGameTime && !_bossOut) {
 					_spawnerController.SpawnBoss();
 					_bossOut = true;
 				}

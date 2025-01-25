@@ -34,6 +34,7 @@ public class BubbleController : MonoBehaviour {
 	private float _shootAngle = -45f;
 	public static event Action OnPlayerdeath;
 	public bool IsAlive => _canMove;
+	public bool _godMode;
 
 	private void Awake() {
 		_rigidbody = GetComponent<Rigidbody>();
@@ -62,6 +63,11 @@ public class BubbleController : MonoBehaviour {
 				FireGrenade();
 			}
 		}
+		else {
+			if (_godMode) {
+				transform.position = Vector3.Lerp(transform.position, Vector3.zero, .1f * Time.deltaTime);
+			}
+		}
 		if (_bubble.transform.localScale.x > 1)
 			_bubble.transform.localScale -= Vector3.one * (_decrementPerSecond * Time.deltaTime);
 	}
@@ -82,8 +88,10 @@ public class BubbleController : MonoBehaviour {
 
 	private void OnCollisionEnter(Collision other) {
 		if (_canMove) {
-			if (other.gameObject.layer == LayerMask.NameToLayer("Spikes")) {
-				PopBubble();
+			if (!_godMode) {
+				if (other.gameObject.layer == LayerMask.NameToLayer("Spikes")) {
+					PopBubble();
+				}
 			}
 			if (other.gameObject.layer == LayerMask.NameToLayer("Pope")) {
 				//gonfio la bolla
