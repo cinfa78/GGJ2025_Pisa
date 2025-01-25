@@ -15,6 +15,12 @@ public class GrenadeController : MonoBehaviour {
 	}
 
 	private void Start() {
+		_rigidbody.useGravity = false;
+	}
+
+	public void ApplyDirection(Vector3 startDirection) {
+		_intitialDirection = startDirection.normalized;
+		_rigidbody.useGravity = true;
 		_rigidbody.velocity = _intitialDirection * _initialVelocity;
 	}
 

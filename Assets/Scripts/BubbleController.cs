@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class BubbleController : MonoBehaviour {
@@ -16,26 +17,47 @@ public class BubbleController : MonoBehaviour {
 	[SerializeField] private float _incrementPerGrenade = .1f;
 	[SerializeField] private GameObject _bubble;
 	private float _decrementPerSecond = .1f;
+	[SerializeField] private GameObject _crossHairContainer;
+	[SerializeField] private float _angleIncrement = 2;
 	[Header("Sfx")] [SerializeField] private AudioClip _bubbleSound;
 	[SerializeField] private AudioClip _shootSound;
+	[SerializeField] private Vector2 _minMaxAngle;
+
+	private float _shootAngle = -45f;
 
 	private void Awake() {
 		_rigidbody = GetComponent<Rigidbody>();
+		_crossHairContainer.SetActive(false);
 	}
 
 	private void Update() {
 		_targetHorizontal = Input.GetAxis("Horizontal");
 		_targetVertical = Input.GetAxis("Vertical");
 		if (Input.GetButtonDown("Fire1")) {
-			AudioManager.Instance.PlaySfx(_shootSound);
-			var newGrenade = Instantiate(_holyHandGrenade, transform.position, Quaternion.identity);
-			newGrenade.name = "Grenade";
-			if (_bubble.transform.localScale.x < _maxSize)
-				_bubble.transform.localScale += Vector3.one * _incrementPerGrenade;
+			_crossHairContainer.SetActive(true);
 		}
-
+		if (Input.GetButton("Fire1")) {
+			_shootAngle += Time.deltaTime * _angleIncrement;
+			if (_shootAngle > _minMaxAngle.y) _shootAngle = _minMaxAngle.y;
+			_crossHairContainer.transform.localRotation = quaternion.Euler(0, 0, _shootAngle);
+		}
+		if (Input.GetButtonUp("Fire1")) {
+			_crossHairContainer.SetActive(false);
+			FireGrenade();
+		}
 		if (_bubble.transform.localScale.x > 1)
 			_bubble.transform.localScale -= Vector3.one * (_decrementPerSecond * Time.deltaTime);
+	}
+
+	private void FireGrenade() {
+		Debug.Log(_shootAngle);
+		AudioManager.Instance.PlaySfx(_shootSound);
+		var newGrenade = Instantiate(_holyHandGrenade, transform.position, Quaternion.identity);
+		newGrenade.name = "Grenade";
+		newGrenade.GetComponent<GrenadeController>().ApplyDirection(Quaternion.Euler(0, 0, z: _shootAngle) * Vector3.right);
+		if (_bubble.transform.localScale.x < _maxSize)
+			_bubble.transform.localScale += Vector3.one * _incrementPerGrenade;
+		_shootAngle = _minMaxAngle.x;
 	}
 
 	private void FixedUpdate() {
