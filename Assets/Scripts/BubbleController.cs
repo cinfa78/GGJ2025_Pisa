@@ -16,6 +16,8 @@ public class BubbleController : MonoBehaviour {
 	[SerializeField] private float _incrementPerGrenade = .1f;
 	[SerializeField] private GameObject _bubble;
 	private float _decrementPerSecond = .1f;
+	[Header("Sfx")] [SerializeField] private AudioClip _bubbleSound;
+	[SerializeField] private AudioClip _shootSound;
 
 	private void Awake() {
 		_rigidbody = GetComponent<Rigidbody>();
@@ -25,6 +27,7 @@ public class BubbleController : MonoBehaviour {
 		_targetHorizontal = Input.GetAxis("Horizontal");
 		_targetVertical = Input.GetAxis("Vertical");
 		if (Input.GetButtonDown("Fire1")) {
+			AudioManager.Instance.PlaySfx(_shootSound);
 			var newGrenade = Instantiate(_holyHandGrenade, transform.position, Quaternion.identity);
 			newGrenade.name = "Grenade";
 			if (_bubble.transform.localScale.x < _maxSize)
