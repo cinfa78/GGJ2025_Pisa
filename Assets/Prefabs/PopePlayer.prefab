@@ -168,6 +168,7 @@ MonoBehaviour:
   _bubbleRadius: 1
   _holyHandGrenade: {fileID: 3942193990401294565, guid: 2c3a3607b1d346b4b8c5c8f66ae288d0,
     type: 3}
+  _minMaxAngle: {x: -45, y: 45}
   _maxSize: 5
   _incrementPerGrenade: 0.1
   _bubble: {fileID: 8737633634301579032}
@@ -175,7 +176,7 @@ MonoBehaviour:
   _angleIncrement: 80
   _bubbleSound: {fileID: 8300000, guid: be9f8ba9848ccb149bccd28d4d0dd050, type: 3}
   _shootSound: {fileID: 8300000, guid: a3249a386b4d2e2489c3f025971a95b7, type: 3}
-  _minMaxAngle: {x: -45, y: 45}
+  _deathSound: {fileID: 8300000, guid: 28024397bfef7bf468b972459de31a3d, type: 3}
 --- !u!54 &3158773045956625982
 Rigidbody:
   m_ObjectHideFlags: 0

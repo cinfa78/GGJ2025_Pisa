@@ -8,10 +8,11 @@ public class BubbleController : MonoBehaviour {
 	[SerializeField] private float _movementSpeed;
 	private float _targetHorizontal;
 	private float _targetVertical;
-	private bool _canMove;
+	private bool _canMove = true;
 
 	[SerializeField] private float _bubbleRadius;
 	[SerializeField] private GameObject _holyHandGrenade;
+	[SerializeField] private Vector2 _minMaxAngle;
 	private Rigidbody _rigidbody;
 	[SerializeField] private float _maxSize = 5;
 	[SerializeField] private float _incrementPerGrenade = .1f;
@@ -21,7 +22,7 @@ public class BubbleController : MonoBehaviour {
 	[SerializeField] private float _angleIncrement = 2;
 	[Header("Sfx")] [SerializeField] private AudioClip _bubbleSound;
 	[SerializeField] private AudioClip _shootSound;
-	[SerializeField] private Vector2 _minMaxAngle;
+	[SerializeField] private AudioClip _deathSound;
 
 	private float _shootAngle = -45f;
 
@@ -39,7 +40,8 @@ public class BubbleController : MonoBehaviour {
 		if (Input.GetButton("Fire1")) {
 			_shootAngle += Time.deltaTime * _angleIncrement;
 			if (_shootAngle > _minMaxAngle.y) _shootAngle = _minMaxAngle.y;
-			_crossHairContainer.transform.localRotation = quaternion.Euler(0, 0, _shootAngle);
+			_crossHairContainer.transform.localRotation = Quaternion.Euler(0, 0, _shootAngle);
+			_crossHairContainer.transform.localRotation = Quaternion.Euler(0, 0, _shootAngle);
 		}
 		if (Input.GetButtonUp("Fire1")) {
 			_crossHairContainer.SetActive(false);
@@ -61,6 +63,26 @@ public class BubbleController : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-		_rigidbody.MovePosition(transform.position + Vector3.up * (_targetVertical * _movementSpeed * Time.fixedDeltaTime) + Vector3.right * (_targetHorizontal * Time.fixedDeltaTime * _movementSpeed));
+		if (_canMove)
+			_rigidbody.MovePosition(transform.position + Vector3.up * (_targetVertical * _movementSpeed * Time.fixedDeltaTime) + Vector3.right * (_targetHorizontal * Time.fixedDeltaTime * _movementSpeed));
+	}
+
+	private void OnCollisionEnter(Collision other) {
+		if (other.gameObject.layer == LayerMask.NameToLayer("Spikes")) {
+			PopBubble();
+		}
+	}
+
+	private void PopBubble() {
+		AudioManager.Instance.PlaySfx(_bubbleSound);
+		_bubble.SetActive(false);
+		_canMove = false;
+		_rigidbody.useGravity = true;
+		StartCoroutine(Dying());
+	}
+
+	private IEnumerator Dying() {
+		yield return new WaitForSeconds(.5f);
+		AudioManager.Instance.PlaySfx(_deathSound);
 	}
 }
