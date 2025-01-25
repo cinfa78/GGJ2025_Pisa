@@ -68,6 +68,8 @@ public class GameController : MonoBehaviour {
 		DevilBoss.OnBossDeath += Victory;
 
 		BubbleController.OnPlayerdeath += OnPlayerDeath;
+
+		Cursor.visible = false;
 	}
 
 	private void OnDevilKilled(IKillable killable) {
@@ -90,8 +92,9 @@ public class GameController : MonoBehaviour {
 
 	[Button("Lose Now")]
 	private void OnPlayerDeath() {
+		Cursor.visible = true;
 		BubbleController.OnPlayerdeath -= OnPlayerDeath;
-		Destroy(_spawnerController);
+		Destroy(_spawnerController.gameObject);
 		gameState = GameState.GAMEOVER;
 		deferatCanvasGroup.DOFade(1, 5);
 		deferatCanvasGroup.interactable = true;
@@ -101,6 +104,7 @@ public class GameController : MonoBehaviour {
 
 	[Button("Win Now")]
 	private void Victory() {
+		Cursor.visible = true;
 		gameState = GameState.VICTORY;
 		BubbleController.OnPlayerdeath -= OnPlayerDeath;
 		Destroy(_spawnerController.gameObject);
@@ -119,9 +123,12 @@ public class GameController : MonoBehaviour {
 
 	private void OnIntroOver() {
 		IntroController.OnIntroOver -= OnIntroOver;
+		if(_bubbleController.IsAlive){
 		gameState = GameState.INGAME;
+
 		_spawnerController.SpawnEnemy((int)EnemyType.Spike);
 		AudioManager.Instance.PlayMusic(music);
+		}
 	}
 
 	public Transform GetPlayerTransform() {

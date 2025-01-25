@@ -10,7 +10,9 @@ public class BubbleController : MonoBehaviour {
 	private float _targetHorizontal;
 	private float _targetVertical;
 	private bool _canMove = true;
-
+	[SerializeField] private SpriteRenderer _popeSpriterenderer;
+	[SerializeField] private Sprite _fallingPopeSprite;
+	[SerializeField] private GameObject _popeHat;
 	[SerializeField] private float _bubbleRadius;
 	[SerializeField] private GameObject _holyHandGrenade;
 	[SerializeField] private Vector2 _minMaxAngle;
@@ -30,7 +32,9 @@ public class BubbleController : MonoBehaviour {
 
 	private AudioSource _chargeAudioSource;
 	private float _shootAngle = -45f;
-public static event Action OnPlayerdeath;
+	public static event Action OnPlayerdeath;
+	public bool IsAlive => _canMove;
+
 	private void Awake() {
 		_rigidbody = GetComponent<Rigidbody>();
 		_crossHairContainer.SetActive(false);
@@ -92,11 +96,16 @@ public static event Action OnPlayerdeath;
 	public void SetMovement(bool canMove) {
 		_canMove = canMove;
 	}
+
 	private void PopBubble() {
 		AudioManager.Instance.PlaySfx(_bubbleSound);
 		_bubble.SetActive(false);
 		_canMove = false;
 		_rigidbody.useGravity = true;
+		_popeSpriterenderer.sprite = _fallingPopeSprite;
+		_popeHat.transform.SetParent(null);
+		_popeHat.SetActive(true);
+		_popeHat.GetComponent<Rigidbody>().AddForce(Vector3.up * 5, ForceMode.Impulse);
 		StartCoroutine(Dying());
 	}
 
