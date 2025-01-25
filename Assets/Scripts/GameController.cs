@@ -1,18 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState {
 	IDLE = 0,
 	INGAME = 1,
 	GAMEOVER = 2,
+	VICTORY = 3,
 }
 
 public class GameController : MonoBehaviour {
 	public static GameController Instance;
 	public GameState gameState = GameState.IDLE;
 	public AudioClip music;
+	public AudioClip _victoryMusic;
 	private BubbleController _bubbleController;
 	private EnemySpawnerController _spawnerController;
 	[SerializeField] private float _enemyFrequency = 1;
@@ -20,11 +25,16 @@ public class GameController : MonoBehaviour {
 	private float _enemyTimer;
 	[SerializeField] private float _introDelay = 4;
 	[SerializeField] private float _deathPause = 2;
+	[SerializeField] private GameObject _environment;
 	public static event Action OnGameStart;
-	public static event Action OnPlayerDeath;
 	public float totalGameTime;
 	private float _gameTimer;
-	private List<DevilController> _devils = new List<DevilController>();
+	private List<IKillable> _devils = new List<IKillable>();
+
+	public static event Action OnVictory;
+	public CanvasGroup victoryCanvasGroup;
+	public CanvasGroup deferatCanvasGroup;
+	public static event Action OnGameOver;
 
 	private void Awake() {
 		if (Instance == null) {
@@ -33,6 +43,12 @@ public class GameController : MonoBehaviour {
 		else {
 			Destroy(gameObject);
 		}
+		victoryCanvasGroup.alpha = 0;
+		victoryCanvasGroup.blocksRaycasts = false;
+		victoryCanvasGroup.interactable = false;
+		deferatCanvasGroup.alpha = 0;
+		deferatCanvasGroup.blocksRaycasts = false;
+		deferatCanvasGroup.interactable = false;
 	}
 
 	private void Start() {
@@ -42,20 +58,52 @@ public class GameController : MonoBehaviour {
 		IntroController.OnIntroOver += OnIntroOver;
 		DevilController.DevilSpawned += OnDevilSpawned;
 		DevilController.DevilKilled += OnDevilKilled;
+
+		DevilBottomController.DevilSpawned += OnDevilSpawned;
+		DevilBottomController.DevilKilled += OnDevilKilled;
+		BubbleController.OnPlayerdeath += OnPlayerDeath;
 	}
 
-	private void OnDevilKilled(DevilController oldDevilController) {
-		_devils.Remove(oldDevilController);
+	private void OnDevilKilled(IKillable killable) {
+		_devils.Remove(killable);
 	}
 
-	private void OnDevilSpawned(DevilController newDevilContoller) {
-		_devils.Add(newDevilContoller);
+	private void OnDevilSpawned(IKillable killable) {
+		_devils.Add(killable);
 	}
 
 	private void OnDestroy() {
 		IntroController.OnIntroOver -= OnIntroOver;
 		DevilController.DevilSpawned -= OnDevilSpawned;
 		DevilController.DevilKilled -= OnDevilKilled;
+	}
+
+	[Button("Lose Now")]
+	private void OnPlayerDeath() {
+		BubbleController.OnPlayerdeath -= OnPlayerDeath;
+		Destroy(_spawnerController);
+		gameState = GameState.GAMEOVER;
+		deferatCanvasGroup.DOFade(1, 5);
+		deferatCanvasGroup.interactable = true;
+		deferatCanvasGroup.blocksRaycasts = true;
+		OnGameOver?.Invoke();
+	}
+
+	[Button("Win Now")]
+	private void Victory() {
+		BubbleController.OnPlayerdeath -= OnPlayerDeath;
+		Destroy(_spawnerController.gameObject);
+		for (int i = _devils.Count - 1; i >= 0; i--) {
+			IKillable killable = _devils[i];
+			killable.Kill();
+		}
+
+		_bubbleController.SetMovement(false);
+		victoryCanvasGroup.DOFade(1, 5);
+		victoryCanvasGroup.interactable = true;
+		victoryCanvasGroup.blocksRaycasts = true;
+		_environment.transform.DOMoveY(-15, 5).SetEase(Ease.InOutCubic).OnComplete(() => { OnVictory?.Invoke(); });
+		AudioManager.Instance.PlayMusic(_victoryMusic);
 	}
 
 	private void OnIntroOver() {
@@ -80,14 +128,20 @@ public class GameController : MonoBehaviour {
 					_enemyTimer = 0;
 					_spawnerController.SpawnEnemy();
 					_enemyFrequency -= _enemyFrequencyIncrement;
-					if (_enemyFrequency < .3) _enemyFrequency = .3f;
+					if (_enemyFrequency < 1) _enemyFrequency = 1f;
 				}
 				_gameTimer += Time.deltaTime;
 				break;
 			case GameState.GAMEOVER:
 				break;
+			case GameState.VICTORY:
+				break;
 			default:
 				throw new ArgumentOutOfRangeException();
 		}
+	}
+
+	public void RestartGame() {
+		SceneManager.LoadScene(0);
 	}
 }

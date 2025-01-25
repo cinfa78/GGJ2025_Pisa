@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class DevilController : MonoBehaviour {
+public class DevilController : MonoBehaviour, IKillable {
 	[SerializeField] private float _movementSpeed;
 	[SerializeField] private GameObject _spriteContainer;
 	[SerializeField] private GameObject _spikeCollider;
@@ -19,8 +19,8 @@ public class DevilController : MonoBehaviour {
 	[SerializeField] private AudioClip _shotSfx;
 	private bool _hasTarget;
 	private float _shotTimer;
-	public static event Action<DevilController> DevilSpawned;
-	public static event Action<DevilController> DevilKilled;
+	public static event Action<IKillable> DevilSpawned;
+	public static event Action<IKillable> DevilKilled;
 
 	private void Awake() {
 		_rigidbody = GetComponent<Rigidbody>();
@@ -67,11 +67,21 @@ public class DevilController : MonoBehaviour {
 	private void OnCollisionEnter(Collision other) {
 		if (_isAlive) {
 			if (other.gameObject.layer == LayerMask.NameToLayer("Grenade")) {
-				_isAlive = false;
-				_spriteRenderer.sprite = _deadDevilSprite;
-				_rigidbody.useGravity = true;
-				AudioManager.Instance.PlaySfx(_deathSfx);
+				DoDeath();
 			}
 		}
+	}
+
+	private void DoDeath() {
+		_isAlive = false;
+		_spriteRenderer.sprite = _deadDevilSprite;
+		_rigidbody.useGravity = true;
+		GetComponent<Collider>().enabled = false;
+		AudioManager.Instance.PlaySfx(_deathSfx);
+		Destroy(gameObject, 3f);
+	}
+
+	public void Kill() {
+		DoDeath();
 	}
 }

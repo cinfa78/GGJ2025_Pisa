@@ -30,7 +30,7 @@ public class BubbleController : MonoBehaviour {
 
 	private AudioSource _chargeAudioSource;
 	private float _shootAngle = -45f;
-
+public static event Action OnPlayerdeath;
 	private void Awake() {
 		_rigidbody = GetComponent<Rigidbody>();
 		_crossHairContainer.SetActive(false);
@@ -89,6 +89,9 @@ public class BubbleController : MonoBehaviour {
 		}
 	}
 
+	public void SetMovement(bool canMove) {
+		_canMove = canMove;
+	}
 	private void PopBubble() {
 		AudioManager.Instance.PlaySfx(_bubbleSound);
 		_bubble.SetActive(false);
@@ -100,5 +103,6 @@ public class BubbleController : MonoBehaviour {
 	private IEnumerator Dying() {
 		yield return new WaitForSeconds(.5f);
 		AudioManager.Instance.PlaySfx(_deathSound);
+		OnPlayerdeath?.Invoke();
 	}
 }
