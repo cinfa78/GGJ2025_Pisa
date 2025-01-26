@@ -108,6 +108,10 @@ public class GameController : MonoBehaviour {
 		Destroy(_spawnerController.gameObject);
 		_bubbleController._godMode = true;
 		_bubbleController.SetMovement(false);
+		for (int i = _devils.Count - 1; i >= 0; i--) {
+			IKillable k = _devils[i];
+			k.Kill();
+		}
 		victoryCanvasGroup.DOFade(1, 5);
 		victoryCanvasGroup.interactable = true;
 		victoryCanvasGroup.blocksRaycasts = true;

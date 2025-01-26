@@ -64,11 +64,15 @@ public class DevilBottomController : MonoBehaviour, IKillable {
 	}
 
 	private void DoDeath() {
+		
 		_isAlive = false;
-		_spriteRenderer.sprite = _deadDevilSprite;
-		_rigidbody.useGravity = true;
+		if (_spriteRenderer)
+			_spriteRenderer.sprite = _deadDevilSprite;
+		if (_rigidbody)
+			_rigidbody.useGravity = true;
 		GetComponent<Collider>().enabled = false;
 		AudioManager.Instance.PlaySfx(_deathSfx);
+		DevilKilled?.Invoke(this);
 		Destroy(gameObject, 3f);
 	}
 
