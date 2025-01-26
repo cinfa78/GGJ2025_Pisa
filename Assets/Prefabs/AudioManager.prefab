@@ -52,29 +52,7 @@ MonoBehaviour:
   _ostMixerGroup: {fileID: -1644374999384046252, guid: 583f4f1aebe521c43a2aa33e239e4ae0,
     type: 2}
   _fadeTime: 1
-  _canzoni:
-  - {fileID: 8300000, guid: 81c1e95c4228b134abc7851c597a6730, type: 3}
-  - {fileID: 8300000, guid: ae74ffbcc798d084f821c13d0105099c, type: 3}
-  - {fileID: 8300000, guid: 9e9b94c9430bc2f49b02a63e4eb90b5b, type: 3}
-  - {fileID: 8300000, guid: 28ba6f717e4b99a429c6faa8fc5c2551, type: 3}
-  - {fileID: 8300000, guid: 8931beee4a9873f49824138ee6b658de, type: 3}
-  - {fileID: 8300000, guid: 0ff5258091f24064cab69d7e4617a96d, type: 3}
-  - {fileID: 8300000, guid: 7ed930dcde5527644963805d3dce12ce, type: 3}
-  - {fileID: 8300000, guid: 1af8aab3b417090448fe8d93ab7d6dff, type: 3}
-  - {fileID: 8300000, guid: 5e47c4a702f0ac6408baabe904484589, type: 3}
-  - {fileID: 8300000, guid: e1e2ea23efd03134da7ac0a10c62fe2f, type: 3}
-  - {fileID: 8300000, guid: aaf771e8fc482cc4e82f913de33df3f4, type: 3}
-  - {fileID: 8300000, guid: 2b86d7f70e440864bb24737e51defef8, type: 3}
-  - {fileID: 8300000, guid: 7fa37cdc297c6c54c9923f17fc203274, type: 3}
-  - {fileID: 8300000, guid: 98d9a5331e3f3dc4683bd8e98fc0efee, type: 3}
-  - {fileID: 8300000, guid: 60715d27b7e56fd488193a3b42c7203c, type: 3}
-  - {fileID: 8300000, guid: 11130967ad3e26646883a8240ccabef6, type: 3}
-  - {fileID: 8300000, guid: fdc92e11eedb3524099cbc76db94ab85, type: 3}
-  - {fileID: 8300000, guid: 41c65e9481fe4e248be8f90f4d9606fa, type: 3}
-  - {fileID: 8300000, guid: b7fcc9e87968dc947ad79891cb5070de, type: 3}
-  - {fileID: 8300000, guid: 25cab5ae3af38144ca3d2986f1c2e2c4, type: 3}
-  - {fileID: 8300000, guid: c31a1606c47fcaa4c9b9d37bc7d0454f, type: 3}
-  - {fileID: 8300000, guid: 8777cf51a24dadc4bbbb3f9f96351d4c, type: 3}
+  _canzoni: []
   _sfxAudioSources: []
   _sfxMixerGroup: {fileID: -2895304808826128557, guid: 583f4f1aebe521c43a2aa33e239e4ae0,
     type: 2}
@@ -127,7 +105,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -224,7 +202,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
