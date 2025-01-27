@@ -172,6 +172,11 @@ public class GameController : MonoBehaviour{
     public void RestartGame(){
         SceneManager.LoadScene(0);
     }
+
+    public void QuitGame(){
+        Application.Quit();
+    }
+
     public void ElectPope(){
         SceneManager.LoadScene(2);
     }

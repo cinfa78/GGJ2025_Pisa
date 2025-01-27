@@ -34,4 +34,10 @@ public class ElectionManager : MonoBehaviour{
         sequence.AppendCallback(() => { SceneManager.LoadScene(1); });
         sequence.Play();
     }
+
+    private void Update(){
+        if (Input.GetButtonDown("Cancel")){
+            PlayAgain();
+        }
+    }
 }
