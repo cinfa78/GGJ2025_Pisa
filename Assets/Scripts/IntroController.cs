@@ -14,6 +14,10 @@ public class IntroController : MonoBehaviour{
         }
     }
 
+    private void OnDestroy(){
+        _sequence.Rewind();
+    }
+
     private void Start(){
         _sequence = DOTween.Sequence();
         for (int i = 0; i < slides.Length; i++){

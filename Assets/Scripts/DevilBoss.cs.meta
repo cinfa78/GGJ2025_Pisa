@@ -3,7 +3,11 @@ guid: 354a3edce8f7fca4ab8b6b98738b988b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _spikeBulletPrefab: {instanceID: 0}
+  - _bubbleBulletPrefab: {instanceID: 0}
+  - _bossHurtSfx: {fileID: 8300000, guid: 844bb90ff7ef7c8468676dad03cecfa1, type: 3}
+  - _bossdeathSfx: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

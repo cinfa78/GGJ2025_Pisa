@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SinMovement : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class SinMovement : MonoBehaviour{
+    [SerializeField] private Vector3 _direction;
+    [SerializeField] private float _amplitude;
+    [SerializeField] private float _frequency;
+    private float _offset;
+    private Vector3 _defaultPosition;
+
+    void Start(){
+        _direction.Normalize();
+        _defaultPosition = transform.localPosition;
+        _offset = Random.Range(-1.0f, 1.0f);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Update(){
+        transform.localPosition = _defaultPosition + _direction * (_amplitude * Mathf.Sin((Time.time + _offset)* _frequency) );
     }
 }

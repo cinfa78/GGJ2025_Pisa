@@ -3,7 +3,14 @@ guid: ad3d5bbf01212064b97aec712c8f7af6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _spriteContainer: {instanceID: 0}
+  - _spikeCollider: {instanceID: 0}
+  - _deadDevilSprite: {fileID: 21300000, guid: 5d7f7817dd112454aa46a7ba2778997b, type: 3}
+  - _bubbleShotPrefab: {instanceID: 0}
+  - _shootingDevilSprite: {fileID: 21300000, guid: 3a8aa099a3a217d40a4be96b0a9045dc,
+      type: 3}
+  - _deathSfx: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

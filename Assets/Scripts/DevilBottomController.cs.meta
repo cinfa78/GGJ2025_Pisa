@@ -3,7 +3,11 @@ guid: ae79b62fe0d710a4c8752fbcd73986d0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _spikePrefab: {instanceID: 0}
+  - _spriteRenderer: {instanceID: 0}
+  - _deadDevilSprite: {fileID: 21300000, guid: 5d7f7817dd112454aa46a7ba2778997b, type: 3}
+  - _deathSfx: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

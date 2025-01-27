@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7963389984771542935}
   - component: {fileID: 5606499082972354344}
   m_Layer: 6
-  m_Name: Holy_HandGrenade
+  m_Name: HolyHandGrenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,9 @@ MonoBehaviour:
   _intitialDirection: {x: 1, y: 0, z: 0}
   _initialVelocity: 7
   _splashVfx: {fileID: 6286608514288227229}
+  _launchSfx: {fileID: 8300000, guid: b9547614bfd5a7f4187c9a3e3793c0da, type: 3}
   _splashSfx: {fileID: 8300000, guid: 543709555fe16634899d606f0c11cfb6, type: 3}
+  _spikeHitSfx: {fileID: 8300000, guid: 4e2b1bfd799ac0b47b5f7f9459775288, type: 3}
 --- !u!1 &4696747542520192366
 GameObject:
   m_ObjectHideFlags: 0

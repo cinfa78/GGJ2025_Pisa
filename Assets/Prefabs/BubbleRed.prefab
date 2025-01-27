@@ -121,6 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: -1, y: 0, z: 0}
   _shotSpeed: 5
+  _shotSfx: {fileID: 8300000, guid: 9bdb244a3ff6c5e439401ab66fc2f753, type: 3}
 --- !u!54 &3729127507410946376
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -170,5 +171,8 @@ public class GameController : MonoBehaviour{
 
     public void RestartGame(){
         SceneManager.LoadScene(0);
+    }
+    public void ElectPope(){
+        SceneManager.LoadScene(2);
     }
 }

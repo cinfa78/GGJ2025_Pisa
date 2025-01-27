@@ -51,7 +51,9 @@ Material:
     - _Speed: 0.04
     - _UVJitter: 0.001
     m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Direction: {r: 1, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &480155609733061406
 MonoBehaviour:

@@ -16,7 +16,7 @@ public class DevilController : MonoBehaviour, IKillable {
 	private Transform _playerTransform;
 	private bool _isAlive;
 	[Header("Sfx")] [SerializeField] private AudioClip _deathSfx;
-	[SerializeField] private AudioClip _shotSfx;
+	
 	private bool _hasTarget;
 	private float _shotTimer;
 	public static event Action<IKillable> DevilSpawned;
@@ -58,7 +58,6 @@ public class DevilController : MonoBehaviour, IKillable {
 	}
 
 	private void Shoot() {
-		AudioManager.Instance.PlaySfx(_shotSfx);
 		var newShot = Instantiate(_bubbleShotPrefab, transform.position, Quaternion.identity);
 		newShot.GetComponent<ShotController>().direction =
 			(_playerTransform.position.x > transform.position.x) ? Vector3.right : Vector3.left;

@@ -3,7 +3,17 @@ guid: 6431695937c942746b50d0b98261c252
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _popeSpriterenderer: {instanceID: 0}
+  - _fallingPopeSprite: {fileID: 21300000, guid: 45af5d0442e27f14d870dd13a3734143,
+      type: 3}
+  - _popeHat: {instanceID: 0}
+  - _bubble: {instanceID: 0}
+  - _holyHandGrenade: {instanceID: 0}
+  - _crossHairContainer: {instanceID: 0}
+  - _bubblePopSound: {instanceID: 0}
+  - _deathSound: {instanceID: 0}
+  - _chargeShotSound: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
