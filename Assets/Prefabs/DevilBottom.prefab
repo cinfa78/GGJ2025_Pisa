@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5919175444341942580}
   - component: {fileID: 6282986447447012036}
+  - component: {fileID: 1101753191021107744}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -86,6 +87,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1101753191021107744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259783203150840996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abbdb6febbf5eba4bb5de96e7b3c8929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 6282986447447012036}
+  frames:
+  - {fileID: 1036943972, guid: 63a7ba46b42b6a8439a000d3092a865a, type: 3}
+  - {fileID: 1291450579, guid: 63a7ba46b42b6a8439a000d3092a865a, type: 3}
+  fps: 4
 --- !u!1 &2503832364937522073
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,8 +158,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.6
-  m_Center: {x: 0.22, y: 0.15, z: 0}
+  m_Radius: 0.5
+  m_Center: {x: -0.1, y: 0.09, z: 0}
 --- !u!54 &3703696463820202699
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -319,7 +337,7 @@ Transform:
   m_GameObject: {fileID: 6622425501153179750}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.35899997, y: -0.20799997, z: 0}
+  m_LocalPosition: {x: 0.068, y: 0.373, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

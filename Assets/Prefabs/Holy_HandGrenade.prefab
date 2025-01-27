@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7963389984771542935}
   - component: {fileID: 5606499082972354344}
   m_Layer: 6
-  m_Name: holyhandgrenade
+  m_Name: Holy_HandGrenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
