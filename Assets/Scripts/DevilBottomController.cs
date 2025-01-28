@@ -18,12 +18,15 @@ public class DevilBottomController : MonoBehaviour, IKillable{
     private bool _isAlive;
     private float _shotTimer;
 
+    private float _defaultYPosition;
+
     public static event Action<IKillable> DevilSpawned;
     public static event Action<IKillable> DevilKilled;
 
     private void Awake(){
         _rigidbody = GetComponent<Rigidbody>();
         _isAlive = true;
+        _defaultYPosition = transform.position.y;
     }
 
     private void OnEnable(){
@@ -52,6 +55,10 @@ public class DevilBottomController : MonoBehaviour, IKillable{
             }
             else if (transform.position.x > _playerTransform.position.x){
                 transform.position += Vector3.left * (_movementSpeed * Time.deltaTime);
+            }
+
+            if (transform.position.y < _defaultYPosition){
+                transform.position += Vector3.up * (_movementSpeed * Time.deltaTime);
             }
         }
     }

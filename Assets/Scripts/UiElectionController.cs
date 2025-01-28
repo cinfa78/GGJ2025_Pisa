@@ -1,12 +1,9 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class UiElectionController : MonoBehaviour{
     [SerializeField] private TMP_Text _titleLabel;

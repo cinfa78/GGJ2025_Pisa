@@ -1,6 +1,4 @@
 using System;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using NaughtyAttributes;
@@ -38,6 +36,7 @@ public class GameController : MonoBehaviour{
     public static event Action OnGameOver;
     private bool _bossOut;
     private IntroController _introController;
+    private bool _isLoading;
 
     private void Awake(){
         if (Instance == null){
@@ -66,7 +65,6 @@ public class GameController : MonoBehaviour{
 
         DevilBottomController.DevilSpawned += OnDevilSpawned;
         DevilBottomController.DevilKilled += OnDevilKilled;
-
 
         DevilBoss.OnBossDeath += Victory;
 
@@ -161,8 +159,16 @@ public class GameController : MonoBehaviour{
 
                 break;
             case GameState.GAMEOVER:
+                if (Input.GetButtonDown("Cancel")){
+                    ElectPope();
+                }
+
                 break;
             case GameState.VICTORY:
+                if (Input.GetButtonDown("Cancel")){
+                    RestartGame();
+                }
+
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -170,14 +176,20 @@ public class GameController : MonoBehaviour{
     }
 
     public void RestartGame(){
-        SceneManager.LoadScene(0);
+        if (!_isLoading){
+            _isLoading = true;
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    public void ElectPope(){
+        if (!_isLoading){
+            _isLoading = true;
+            SceneManager.LoadScene(2);
+        }
     }
 
     public void QuitGame(){
         Application.Quit();
-    }
-
-    public void ElectPope(){
-        SceneManager.LoadScene(2);
     }
 }
