@@ -1,5 +1,113 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &321907756935533665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8615099358299165040}
+  - component: {fileID: 395136991598818578}
+  - component: {fileID: 1516125013920665066}
+  m_Layer: 0
+  m_Name: tail_anim
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8615099358299165040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321907756935533665}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.112, y: -0.103, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5919175444341942580}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &395136991598818578
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321907756935533665}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9857f18fe48ad994f92a2471a5e15631, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -1368901667, guid: 3f4a8db7ffc84ff40abced642bbb4a92, type: 3}
+  m_Color: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
+  m_FlipX: 1
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.5, y: 0.5}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &1516125013920665066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321907756935533665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abbdb6febbf5eba4bb5de96e7b3c8929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 395136991598818578}
+  frames:
+  - {fileID: -1368901667, guid: 3f4a8db7ffc84ff40abced642bbb4a92, type: 3}
+  - {fileID: -96366282, guid: 3f4a8db7ffc84ff40abced642bbb4a92, type: 3}
+  - {fileID: -1943468662, guid: 3f4a8db7ffc84ff40abced642bbb4a92, type: 3}
+  - {fileID: 239243734, guid: 3f4a8db7ffc84ff40abced642bbb4a92, type: 3}
+  - {fileID: -823797163, guid: 3f4a8db7ffc84ff40abced642bbb4a92, type: 3}
+  - {fileID: 239243734, guid: 3f4a8db7ffc84ff40abced642bbb4a92, type: 3}
+  - {fileID: -1943468662, guid: 3f4a8db7ffc84ff40abced642bbb4a92, type: 3}
+  - {fileID: -96366282, guid: 3f4a8db7ffc84ff40abced642bbb4a92, type: 3}
+  fps: 5
 --- !u!1 &1259783203150840996
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,6 +141,7 @@ Transform:
   m_Children:
   - {fileID: 2442524697139522479}
   - {fileID: 6619842285485645622}
+  - {fileID: 8615099358299165040}
   m_Father: {fileID: 1391585791511238176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6282986447447012036
@@ -199,13 +308,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae79b62fe0d710a4c8752fbcd73986d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 0.8
+  _movementSpeed: 1
+  _colliders:
+  - {fileID: 5825058790982044539}
+  - {fileID: 556559487518976382}
+  _deathSfx: {fileID: 8300000, guid: f2427bd3a0e36cc41a180cc644d665eb, type: 3}
   _spikePrefab: {fileID: 6726415047860165837, guid: 221db1fc9999b0a4cb9a8078d92d4be2,
     type: 3}
-  _shotFrequency: 2
+  _shotFrequency: 2.5
   _spriteRenderer: {fileID: 6282986447447012036}
   _deadDevilSprite: {fileID: 21300000, guid: 5d7f7817dd112454aa46a7ba2778997b, type: 3}
-  _deathSfx: {fileID: 8300000, guid: f2427bd3a0e36cc41a180cc644d665eb, type: 3}
 --- !u!1 &4191239452147334236
 GameObject:
   m_ObjectHideFlags: 0

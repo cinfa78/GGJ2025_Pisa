@@ -21,9 +21,11 @@ public class GameController : MonoBehaviour{
     private EnemySpawnerController _spawnerController;
     [SerializeField] private float _enemyFrequency = 1;
     [SerializeField] private float _enemyFrequencyIncrement;
+
     private float _enemyTimer;
-    [SerializeField] private float _introDelay = 4;
-    [SerializeField] private float _deathPause = 2;
+
+    //[SerializeField] private float _introDelay = 4;
+    //[SerializeField] private float _deathPause = 2;
     [SerializeField] private GameObject _environment;
     public static event Action OnGameStart;
     public float totalGameTime;
@@ -112,7 +114,7 @@ public class GameController : MonoBehaviour{
         _bubbleController.SetMovement(false);
         for (int i = _devils.Count - 1; i >= 0; i--){
             IKillable k = _devils[i];
-            k.Kill();
+            k.InstantKill();
         }
 
         victoryCanvasGroup.DOFade(1, 5);
@@ -126,7 +128,7 @@ public class GameController : MonoBehaviour{
         IntroController.OnIntroOver -= OnIntroOver;
         if (_bubbleController.IsAlive){
             gameState = GameState.INGAME;
-
+            OnGameStart?.Invoke();
             _spawnerController.SpawnEnemy((int)EnemyType.Spike);
             AudioManager.Instance.PlayMusic(music);
         }

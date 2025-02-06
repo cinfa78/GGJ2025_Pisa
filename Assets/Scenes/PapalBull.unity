@@ -348,7 +348,7 @@ Transform:
   m_GameObject: {fileID: 172236986}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.54, z: 40}
+  m_LocalPosition: {x: 0, y: 1.59, z: 40}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -7738,7 +7738,7 @@ Transform:
   m_GameObject: {fileID: 1402378796}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13, y: -1.43, z: 0}
+  m_LocalPosition: {x: -13, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8205,7 +8205,7 @@ Transform:
   m_GameObject: {fileID: 1471805993}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.45, y: -1.43, z: 0}
+  m_LocalPosition: {x: -0.45, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9069,8 +9069,6 @@ MonoBehaviour:
   _victoryMusic: {fileID: 8300000, guid: 3a907b895fa6eb64695518b772296c69, type: 3}
   _enemyFrequency: 2
   _enemyFrequencyIncrement: 0.1
-  _introDelay: 4
-  _deathPause: 2
   _environment: {fileID: 2010862891}
   totalGameTime: 20
   victoryCanvasGroup: {fileID: 1899261397}

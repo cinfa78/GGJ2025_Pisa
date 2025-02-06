@@ -302,7 +302,7 @@ MonoBehaviour:
   _holyHandGrenade: {fileID: 3942193990401294565, guid: 2c3a3607b1d346b4b8c5c8f66ae288d0,
     type: 3}
   _crossHairContainer: {fileID: 1043792693773859120}
-  _minMaxAngle: {x: -45, y: 45}
+  _minMaxAngle: {x: -45, y: 90}
   _angleIncrement: 60
   _bubblePopSound: {fileID: 8300000, guid: be9f8ba9848ccb149bccd28d4d0dd050, type: 3}
   _deathSound: {fileID: 8300000, guid: 9e3650af2508ede45b2826cd7dcc99e2, type: 3}
@@ -433,6 +433,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc183a49d1b608143876d175708747c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _direction: {x: 0, y: 0, z: 0}
+  _amplitude: 0
+  _frequency: 0
 --- !u!1 &8737633634301579032
 GameObject:
   m_ObjectHideFlags: 0

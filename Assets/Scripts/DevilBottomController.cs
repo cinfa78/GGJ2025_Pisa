@@ -1,40 +1,21 @@
 using System;
 using UnityEngine;
 
-public interface IKillable{
-    public void Kill();
-}
 
-public class DevilBottomController : MonoBehaviour, IKillable{
-    [SerializeField] private float _movementSpeed = 10;
+public class DevilBottomController : DevilEnemyController{
+    //[SerializeField] private float _movementSpeed = 10;
     [SerializeField] private GameObject _spikePrefab;
     [SerializeField] private float _shotFrequency;
     [Header("Graphics")] [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Sprite _deadDevilSprite;
-    [Header("Sfx")] [SerializeField] private AudioClip _deathSfx;
-    private Rigidbody _rigidbody;
-    private Transform _playerTransform;
-    private bool _hasPlayerTransform;
-    private bool _isAlive;
-    private float _shotTimer;
 
+    private bool _hasPlayerTransform;
+    private float _shotTimer;
     private float _defaultYPosition;
 
-    public static event Action<IKillable> DevilSpawned;
-    public static event Action<IKillable> DevilKilled;
-
-    private void Awake(){
-        _rigidbody = GetComponent<Rigidbody>();
-        _isAlive = true;
+    protected override void Awake(){
+        base.Awake();
         _defaultYPosition = transform.position.y;
-    }
-
-    private void OnEnable(){
-        DevilSpawned?.Invoke(this);
-    }
-
-    private void OnDestroy(){
-        DevilKilled?.Invoke(this);
     }
 
     private void Update(){
@@ -60,6 +41,9 @@ public class DevilBottomController : MonoBehaviour, IKillable{
             if (transform.position.y < _defaultYPosition){
                 transform.position += Vector3.up * (_movementSpeed * Time.deltaTime);
             }
+            else{
+                transform.position += Vector3.down * (_movementSpeed * Time.deltaTime);
+            }
         }
     }
 
@@ -69,22 +53,22 @@ public class DevilBottomController : MonoBehaviour, IKillable{
 
     private void OnCollisionEnter(Collision other){
         if (_isAlive){
-            if (other.gameObject.layer == LayerMask.NameToLayer("Grenade")){
+            if (other.gameObject.layer == _grenadeLayer){
+                _isAlive = false;
                 DoDeath();
             }
         }
     }
 
     private void DoDeath(){
-        _isAlive = false;
-        AudioManager.Instance.PlaySfx(_deathSfx);
         _spriteRenderer.sprite = _deadDevilSprite;
-        _rigidbody.useGravity = true;
-        GetComponent<Collider>().enabled = false;
+        DeathPhysics();
+        AudioManager.Instance.PlaySfx(_deathSfx);
         Destroy(gameObject, 3f);
     }
 
-    public void Kill(){
+    public override void InstantKill(){
+        base.InstantKill();
         DoDeath();
     }
 }

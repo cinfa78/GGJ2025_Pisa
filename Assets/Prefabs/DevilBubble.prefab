@@ -43,8 +43,35 @@ PrefabInstance:
       propertyPath: _movementSpeed
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 5538565850253417702, guid: 21b00e3f8b62647489fa5435e5715dc4,
+        type: 3}
+      propertyPath: _colliders.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5538565850253417702, guid: 21b00e3f8b62647489fa5435e5715dc4,
+        type: 3}
+      propertyPath: _colliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 6943773154838737522}
+    - target: {fileID: 5538565850253417702, guid: 21b00e3f8b62647489fa5435e5715dc4,
+        type: 3}
+      propertyPath: _colliders.Array.data[1]
+      value: 
+      objectReference: {fileID: 3977438341191635063}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21b00e3f8b62647489fa5435e5715dc4, type: 3}
+--- !u!135 &3977438341191635063 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 556559487518976382, guid: 21b00e3f8b62647489fa5435e5715dc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 3498163308195625225}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &6943773154838737522 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 5825058790982044539, guid: 21b00e3f8b62647489fa5435e5715dc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 3498163308195625225}
+  m_PrefabAsset: {fileID: 0}

@@ -25,6 +25,10 @@ public class ElectionManager : MonoBehaviour{
         _camera.transform.DOMoveY(_cameraTargetY, _panDuration).SetEase(Ease.InOutQuad).OnComplete(() => { _onPanComplete.Invoke(); });
     }
 
+    private void OnDestroy(){
+        SaveManager.IncrementPope();
+    }
+
     public void PlayAgain(){
         if (_loading) return;
         _loading = true;
