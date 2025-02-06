@@ -1,8 +1,18 @@
+using System;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [CreateAssetMenu(menuName = "Demon Names", fileName = "DemonNames")]
 public class DemonListSo : ScriptableObject{
+    [Serializable]
+    public struct DemonData{
+        public string name;
+        [ShowAssetPreview]public Sprite sprite;
+        public Color wingsColor;
+    }
+    public List<DemonData> data;
     public List<string> names;
     private List<string> tempNames;
     
