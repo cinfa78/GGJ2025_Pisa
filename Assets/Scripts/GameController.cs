@@ -4,6 +4,7 @@ using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public enum GameState{
     IDLE = 0,
@@ -21,21 +22,20 @@ public class GameController : MonoBehaviour{
     private EnemySpawnerController _spawnerController;
     [SerializeField] private float _enemyFrequency = 1;
     [SerializeField] private float _enemyFrequencyIncrement;
+    [SerializeField] private GameObject _environment;
+    //public float victoryAnimationTime = 5f;
+    public float totalGameTime;
+    public static int devilsKilled;
+    // public CanvasGroup victoryCanvasGroup;
+    // [FormerlySerializedAs("deferatCanvasGroup")] public CanvasGroup defeatCanvasGroup;
+
+    public static event Action OnGameStart;
+    public static event Action OnGameOver;
+    public static event Action OnVictory;
 
     private float _enemyTimer;
-
-    //[SerializeField] private float _introDelay = 4;
-    //[SerializeField] private float _deathPause = 2;
-    [SerializeField] private GameObject _environment;
-    public static event Action OnGameStart;
-    public float totalGameTime;
     private float _gameTimer;
     private List<IKillable> _devils = new List<IKillable>();
-
-    public static event Action OnVictory;
-    public CanvasGroup victoryCanvasGroup;
-    public CanvasGroup deferatCanvasGroup;
-    public static event Action OnGameOver;
     private bool _bossOut;
     private IntroController _introController;
     private bool _isLoading;
@@ -48,12 +48,7 @@ public class GameController : MonoBehaviour{
             Destroy(gameObject);
         }
 
-        victoryCanvasGroup.alpha = 0;
-        victoryCanvasGroup.blocksRaycasts = false;
-        victoryCanvasGroup.interactable = false;
-        deferatCanvasGroup.alpha = 0;
-        deferatCanvasGroup.blocksRaycasts = false;
-        deferatCanvasGroup.interactable = false;
+        devilsKilled = 0;
     }
 
     private void Start(){
@@ -62,12 +57,9 @@ public class GameController : MonoBehaviour{
 
         IntroController.OnIntroOver += OnIntroOver;
         _introController = FindObjectOfType<IntroController>();
-        DevilController.DevilSpawned += OnDevilSpawned;
-        DevilController.DevilKilled += OnDevilKilled;
 
-        DevilBottomController.DevilSpawned += OnDevilSpawned;
-        DevilBottomController.DevilKilled += OnDevilKilled;
-
+        DevilEnemyController.DevilSpawned += OnDevilSpawned;
+        DevilEnemyController.DevilKilled += OnDevilKilled;
         DevilBoss.OnBossDeath += Victory;
 
         BubbleController.OnPlayerdeath += OnPlayerDeath;
@@ -77,6 +69,7 @@ public class GameController : MonoBehaviour{
 
     private void OnDevilKilled(IKillable killable){
         _devils.Remove(killable);
+        devilsKilled++;
     }
 
     private void OnDevilSpawned(IKillable killable){
@@ -85,11 +78,12 @@ public class GameController : MonoBehaviour{
 
     private void OnDestroy(){
         IntroController.OnIntroOver -= OnIntroOver;
-        DevilController.DevilSpawned -= OnDevilSpawned;
-        DevilController.DevilKilled -= OnDevilKilled;
 
-
+        DevilEnemyController.DevilSpawned -= OnDevilSpawned;
+        DevilEnemyController.DevilKilled -= OnDevilKilled;
         DevilBoss.OnBossDeath -= Victory;
+
+        BubbleController.OnPlayerdeath -= OnPlayerDeath;
     }
 
     [Button("Lose Now")]
@@ -98,15 +92,14 @@ public class GameController : MonoBehaviour{
         BubbleController.OnPlayerdeath -= OnPlayerDeath;
         Destroy(_spawnerController.gameObject);
         gameState = GameState.GAMEOVER;
-        deferatCanvasGroup.DOFade(1, 5);
-        deferatCanvasGroup.interactable = true;
-        deferatCanvasGroup.blocksRaycasts = true;
+        
         OnGameOver?.Invoke();
     }
 
     [Button("Win Now")]
     private void Victory(){
         Cursor.visible = true;
+        OnVictory?.Invoke();
         gameState = GameState.VICTORY;
         BubbleController.OnPlayerdeath -= OnPlayerDeath;
         Destroy(_spawnerController.gameObject);
@@ -117,11 +110,10 @@ public class GameController : MonoBehaviour{
             k.InstantKill();
         }
 
-        victoryCanvasGroup.DOFade(1, 5);
-        victoryCanvasGroup.interactable = true;
-        victoryCanvasGroup.blocksRaycasts = true;
-        _environment.transform.DOMoveY(-15, 5).SetEase(Ease.InOutCubic).OnComplete(() => { OnVictory?.Invoke(); });
+        
+        _environment.transform.DOMoveY(-15, 5).SetEase(Ease.InOutCubic).OnComplete(() => {});
         AudioManager.Instance.PlayMusic(_victoryMusic);
+        
     }
 
     private void OnIntroOver(){

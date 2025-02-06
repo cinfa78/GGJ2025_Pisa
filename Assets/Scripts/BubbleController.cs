@@ -71,7 +71,7 @@ public class BubbleController : MonoBehaviour{
         else{
             if (_godMode){
                 if (_crossHairContainer.activeSelf) _crossHairContainer.SetActive(false);
-                transform.position = Vector3.Lerp(transform.position, Vector3.zero, .1f * Time.deltaTime);
+                transform.position = Vector3.Lerp(transform.position, Vector3.zero, .5f * Time.deltaTime);
             }
         }
 

@@ -1,5 +1,4 @@
 Lucifer  
-Satan  
 Beelzebub  
 Leviathan  
 Asmodeus  
@@ -67,6 +66,5 @@ Malach
 Vual  
 Gamigin  
 Ornias  
-Alastor  
-Choronzon  
-Amy
+Alastor
+Choronzon
