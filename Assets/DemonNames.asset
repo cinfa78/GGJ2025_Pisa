@@ -13,77 +13,284 @@ MonoBehaviour:
   m_Name: DemonNames
   m_EditorClassIdentifier: 
   data:
-  - name: abbadon
-    sprite: {fileID: 21300000, guid: ea791604f7d71c64ba9be3a6524e20d1, type: 3}
-    wingsColor: {r: 0.25882354, g: 0.5411765, b: 0.20000002, a: 1}
+  - name: abaddon
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: agares
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: alastor
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: alloces
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: amdusias
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: amy
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: andras
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: andrealphus
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: asmodeus
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: astaroth
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: azazel
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: baal
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: bael
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: balam
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: baphomet
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: barbatos
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: bathin
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: beelzebub
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: belial
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: berith
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: botis
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: buer
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: caim
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: choronzon
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: crocell
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: dantalion
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: decarabia
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: forneus
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: furcas
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: furfur
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: gaap
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: gamigin
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: gemory
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: glasya-labolas
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: gremory
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: gusion
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: haagenti
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: halphas
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: ipos
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: leviathan
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: lilith
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: lucifer
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: malach
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: malphas
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: mammon
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: marbas
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: marchosias
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: moloch
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: morax
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: naamah
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: ornias
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: orobas
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: ose
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: paimon
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: phenex
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: purson
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: rahab
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: raum
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: ronove
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: sabnock
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: samael
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: seere
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: shax
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: stolas
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: valefar
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: vassago
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: vepar
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: vine
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: vual
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
+  - name: zagan
+    sprite: {fileID: 0}
+    wingsColor: {r: 0, g: 1, b: 0, a: 1}
   names:
-  - lucifer
-  - beelzebub
-  - leviathan
-  - asmodeus
-  - belial
-  - mammon
-  - lilith
   - abaddon
+  - agares
+  - alastor
+  - alloces
+  - amdusias
+  - amy
+  - andras
+  - andrealphus
+  - asmodeus
+  - astaroth
   - azazel
   - baal
-  - moloch
-  - astaroth
-  - samael
-  - rahab
-  - naamah
+  - bael
+  - balam
   - baphomet
-  - andras
-  - orobas
-  - valefar
-  - gremory
-  - vine
-  - malphas
-  - marchosias
-  - phenex
-  - forneus
-  - dantalion
   - barbatos
-  - gusion
-  - agares
-  - marbas
-  - amy
-  - buer
-  - vassago
   - bathin
+  - beelzebub
+  - belial
+  - berith
+  - botis
+  - buer
+  - caim
+  - choronzon
+  - crocell
+  - dantalion
+  - decarabia
+  - forneus
+  - furcas
+  - furfur
+  - gaap
+  - gamigin
+  - gemory
   - glasya-labolas
+  - gremory
+  - gusion
+  - haagenti
+  - halphas
+  - ipos
+  - leviathan
+  - lilith
+  - lucifer
+  - malach
+  - malphas
+  - mammon
+  - marbas
+  - marchosias
+  - moloch
+  - morax
+  - naamah
+  - ornias
+  - orobas
+  - ose
+  - paimon
+  - phenex
+  - purson
+  - rahab
+  - raum
+  - ronove
+  - sabnock
+  - samael
   - seere
   - shax
-  - zagan
   - stolas
-  - paimon
-  - gaap
-  - balam
-  - amdusias
-  - ose
-  - ronove
-  - furfur
+  - valefar
+  - vassago
   - vepar
-  - halphas
-  - caim
-  - alloces
-  - sabnock
-  - andrealphus
-  - raum
-  - furcas
-  - ipos
-  - botis
-  - bael
-  - berith
-  - morax
-  - crocell
-  - purson
-  - gemory
-  - decarabia
-  - haagenti
-  - malach
+  - vine
   - vual
-  - gamigin
-  - ornias
-  - alastor
-  - choronzon
+  - zagan
