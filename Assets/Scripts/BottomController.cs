@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 
-public class DevilBottomController : DevilEnemyController{
+public class BottomController : EnemyController{
     //[SerializeField] private float _movementSpeed = 10;
     [SerializeField] private GameObject _spikePrefab;
     [SerializeField] private float _shotFrequency;

@@ -2,7 +2,7 @@ using System.Collections;
 using NaughtyAttributes;
 using UnityEngine;
 
-public class DevilController : DevilEnemyController{
+public class DevilController : EnemyController{
     private SpriteRenderer _baseSpriteRenderer;
     [SerializeField] private Sprite _deadDevilSprite;
     [Header("Shots")] public bool _canShoot;
@@ -10,7 +10,7 @@ public class DevilController : DevilEnemyController{
     [SerializeField] private GameObject _bubbleShotPrefab;
     [SerializeField] private Sprite _shootingDevilSprite;
 
-    [SerializeField, ReadOnly] private bool _hasTarget;
+
     private float _shotTimer;
 
     protected override void Awake(){
@@ -29,33 +29,30 @@ public class DevilController : DevilEnemyController{
         _hasTarget = _playerTransform != null;
     }
 
-    private void Update(){
-        if (_isAlive && _hasTarget){
-            _rigidbody.velocity = (_playerTransform.position - transform.position).normalized * (_movementSpeed * Time.deltaTime);
-            _spriteContainer.transform.localScale = !(_playerTransform.position.x > transform.position.x) ? Vector3.one : new Vector3(-1, 1, 1);
-            if (_canShoot){
-                _shotTimer += Time.deltaTime;
-                if (_shotTimer >= _shotInterval){
-                    _shotTimer = 0;
-                    Shoot();
-                }
-            }
-        }
+    protected override void Update(){
+        base.Update();
+        _shotTimer += Time.deltaTime;
     }
 
-    private void Shoot(){
-        var newShot = Instantiate(_bubbleShotPrefab, transform.position, Quaternion.identity);
-        newShot.GetComponent<ShotController>().direction =
-            (_playerTransform.position.x > transform.position.x) ? Vector3.right : Vector3.left;
+
+    protected override void Shoot(){
+        if (_canShoot && _shotTimer >= _shotInterval){
+            _shotTimer = 0;
+            var newShot = Instantiate(_bubbleShotPrefab, transform.position, Quaternion.identity);
+            newShot.GetComponent<ShotController>().direction = (_playerTransform.position.x > transform.position.x) ? Vector3.right : Vector3.left;
+        }
     }
 
     private void OnCollisionEnter(Collision other){
-        if (_isAlive){
-            if (other.gameObject.layer == _grenadeLayer){
-                _isAlive = false;
-                DoDeath();
-            }
+        if (_isAlive && other.gameObject.layer == _grenadeLayer){
+            _isAlive = false;
+            DoDeath();
         }
+    }
+
+    public override void InstantKill(){
+        base.InstantKill();
+        DoDeath();
     }
 
     private void DoDeath(){
@@ -63,10 +60,5 @@ public class DevilController : DevilEnemyController{
         DeathPhysics();
         AudioManager.Instance.PlaySfx(_deathSfx);
         Destroy(gameObject, 3f);
-    }
-
-    public override void InstantKill(){
-        base.InstantKill();
-        DoDeath();
     }
 }

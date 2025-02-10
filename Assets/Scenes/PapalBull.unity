@@ -1753,10 +1753,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c05b8f8e459b86844aa75eb4d5ba7890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  devils:
+  sideDevils:
+  - {fileID: 2503832364937522073, guid: 079613aab1351f842998c4c5ec31a59e, type: 3}
   - {fileID: 1311847919723483792, guid: 23b1c81e8b5ac8040bc93a1493001f90, type: 3}
   - {fileID: 2503832364937522073, guid: 21b00e3f8b62647489fa5435e5715dc4, type: 3}
-  - {fileID: 2503832364937522073, guid: e689f544eff7d2648a20e87fbce93fa0, type: 3}
   sideSpawnPoints:
   - {fileID: 1408580708}
   - {fileID: 757493415}
@@ -1765,6 +1765,8 @@ MonoBehaviour:
   - {fileID: 322806300}
   - {fileID: 675766208}
   - {fileID: 1013592671}
+  bottomDevils:
+  - {fileID: 2503832364937522073, guid: e689f544eff7d2648a20e87fbce93fa0, type: 3}
   bottomSpawnPoints:
   - {fileID: 1471805994}
   - {fileID: 1402378797}
@@ -9981,6 +9983,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PopePlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801293072216656180, guid: 998f22920f324f54ab96374b6a3ef9e7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8801293072216656180, guid: 998f22920f324f54ab96374b6a3ef9e7,
         type: 3}

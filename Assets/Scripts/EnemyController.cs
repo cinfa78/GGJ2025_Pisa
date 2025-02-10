@@ -1,11 +1,12 @@
 ﻿using System;
+using NaughtyAttributes;
 using UnityEngine;
 
 public interface IKillable{
     public void InstantKill();
 }
 
-public class DevilEnemyController : MonoBehaviour, IKillable{
+public class EnemyController : MonoBehaviour, IKillable{
     [SerializeField] protected GameObject _spriteContainer;
     [Space] [SerializeField] protected float _movementSpeed;
     [SerializeField] protected Collider[] _colliders;
@@ -16,8 +17,9 @@ public class DevilEnemyController : MonoBehaviour, IKillable{
     protected Transform _playerTransform;
     protected bool _isAlive;
     protected int _grenadeLayer;
-    public static event Action<DevilEnemyController> DevilSpawned;
-    public static event Action<DevilEnemyController> DevilKilled;
+    [SerializeField, ReadOnly] protected bool _hasTarget;
+    public static event Action<EnemyController> EnemySpawned;
+    public static event Action<EnemyController> EnemyKilled;
 
     protected virtual void Awake(){
         _grenadeLayer = LayerMask.NameToLayer("Grenade");
@@ -25,12 +27,23 @@ public class DevilEnemyController : MonoBehaviour, IKillable{
 
     protected virtual void OnEnable(){
         _isAlive = true;
-        DevilSpawned?.Invoke(this);
+        EnemySpawned?.Invoke(this);
         _rigidbody = GetComponent<Rigidbody>();
     }
 
     protected virtual void OnDisable(){
-        DevilKilled?.Invoke(this);
+        EnemyKilled?.Invoke(this);
+    }
+
+    protected virtual void Update(){
+        if (_isAlive && _hasTarget){
+            _rigidbody.velocity = (_playerTransform.position - transform.position).normalized * (_movementSpeed * Time.deltaTime);
+            _spriteContainer.transform.localScale = !(_playerTransform.position.x > transform.position.x) ? Vector3.one : new Vector3(-1, 1, 1);
+            Shoot();
+        }
+    }
+
+    protected virtual void Shoot(){
     }
 
     protected void DeathPhysics(){

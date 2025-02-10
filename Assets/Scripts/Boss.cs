@@ -3,7 +3,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class DevilBoss : DevilEnemyController{
+public class Boss : EnemyController{
     [SerializeField] private Transform[] _spikeNozzles;
     [SerializeField] private GameObject _spikeBulletPrefab;
     private int _spikesToShoot;

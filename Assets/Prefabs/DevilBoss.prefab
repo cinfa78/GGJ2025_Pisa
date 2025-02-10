@@ -394,11 +394,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354a3edce8f7fca4ab8b6b98738b988b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteContainer: {fileID: 1259783203150840996}
   _movementSpeed: 1
   _colliders:
   - {fileID: 5825058790982044539}
   - {fileID: 556559487518976382}
+  _spikeCollider: {fileID: 556559487518976382}
   _deathSfx: {fileID: 8300000, guid: c610397e39584b648b2c4e9b6e2f6dec, type: 3}
+  _hasTarget: 0
   _spikeNozzles:
   - {fileID: 2674922801254382070}
   - {fileID: 160738832852124965}

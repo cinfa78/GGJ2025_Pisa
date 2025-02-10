@@ -58,30 +58,30 @@ public class GameController : MonoBehaviour{
         IntroController.OnIntroOver += OnIntroOver;
         _introController = FindObjectOfType<IntroController>();
 
-        DevilEnemyController.DevilSpawned += OnDevilSpawned;
-        DevilEnemyController.DevilKilled += OnDevilKilled;
-        DevilBoss.OnBossDeath += Victory;
+        EnemyController.EnemySpawned += OnEnemySpawned;
+        EnemyController.EnemyKilled += OnEnemyKilled;
+        Boss.OnBossDeath += Victory;
 
         BubbleController.OnPlayerdeath += OnPlayerDeath;
 
         Cursor.visible = false;
     }
 
-    private void OnDevilKilled(IKillable killable){
+    private void OnEnemyKilled(IKillable killable){
         _devils.Remove(killable);
         devilsKilled++;
     }
 
-    private void OnDevilSpawned(IKillable killable){
+    private void OnEnemySpawned(IKillable killable){
         _devils.Add(killable);
     }
 
     private void OnDestroy(){
         IntroController.OnIntroOver -= OnIntroOver;
 
-        DevilEnemyController.DevilSpawned -= OnDevilSpawned;
-        DevilEnemyController.DevilKilled -= OnDevilKilled;
-        DevilBoss.OnBossDeath -= Victory;
+        EnemyController.EnemySpawned -= OnEnemySpawned;
+        EnemyController.EnemyKilled -= OnEnemyKilled;
+        Boss.OnBossDeath -= Victory;
 
         BubbleController.OnPlayerdeath -= OnPlayerDeath;
     }
@@ -121,7 +121,7 @@ public class GameController : MonoBehaviour{
         if (_bubbleController.IsAlive){
             gameState = GameState.INGAME;
             OnGameStart?.Invoke();
-            _spawnerController.SpawnEnemy((int)EnemyType.Spike);
+            _spawnerController.SpawnEnemy();
             AudioManager.Instance.PlayMusic(music);
         }
     }

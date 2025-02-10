@@ -9,6 +9,7 @@ using UnityEditor;
 
 using NaughtyAttributes;
 using UnityEngine;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 [CreateAssetMenu(menuName = "Demon Names", fileName = "DemonNames")]
@@ -38,6 +39,20 @@ public class DemonListSo : ScriptableObject{
         data.Sort((a, b) => String.Compare(a.name, b.name, StringComparison.Ordinal));
     }
 
+
+    public List<string> GetNames(int amount){
+        var tempNames = new List<string>(names);
+        var result = new List<string>();
+        for (int i = 0; i < Mathf.Min(amount, tempNames.Count); i++){
+            int randPosition = Random.Range(0, tempNames.Count);
+            result.Add(tempNames[randPosition]);
+            tempNames.RemoveAt(randPosition);
+        }
+
+        return result;
+    }
+
+#if UNITY_EDITOR
 
     public void CopyNamesToData(){
         //data = new List<DemonData>();
@@ -79,6 +94,7 @@ public class DemonListSo : ScriptableObject{
             if (_spritesDictionary.ContainsKey(data[i].name)){
                 newDemonData.sprite = _spritesDictionary[data[i].name];
                 newDemonData.wingsColor = GetTopColor(_spritesDictionary[data[i].name]);
+                CreatePrefabVariant(newDemonData);
             }
             else{
                 newDemonData.sprite = defaultSprite;
@@ -90,19 +106,6 @@ public class DemonListSo : ScriptableObject{
         }
     }
 
-    public List<string> GetNames(int amount){
-        var tempNames = new List<string>(names);
-        var result = new List<string>();
-        for (int i = 0; i < Mathf.Min(amount, tempNames.Count); i++){
-            int randPosition = Random.Range(0, tempNames.Count);
-            result.Add(tempNames[randPosition]);
-            tempNames.RemoveAt(randPosition);
-        }
-
-        return result;
-    }
-
-#if UNITY_EDITOR
     private void LoadSpritesFromFolder(string relativePath = "Assets/Graphics/Demons"){
         _spritesDictionary = new Dictionary<string, Sprite>();
         string fullPath = Path.Combine(Application.dataPath, relativePath.Replace("Assets/", ""));
@@ -164,6 +167,12 @@ public class DemonListSo : ScriptableObject{
         }
 
         return topColor;
+    }
+
+    public void CreatePrefabVariant(DemonData demonData){
+        Object originalPrefab = defaultPrefab;
+        GameObject objSource = PrefabUtility.InstantiatePrefab(originalPrefab) as GameObject;
+        GameObject prefabVariant = PrefabUtility.SaveAsPrefabAsset(objSource, $"Assets/Prefabs/{demonData.name}.asset");
     }
 #endif
 }

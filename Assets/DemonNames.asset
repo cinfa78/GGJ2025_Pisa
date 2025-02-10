@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
   defaultWingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+  defaultMaterial: {fileID: 2100000, guid: 9857f18fe48ad994f92a2471a5e15631, type: 2}
   defaultWingsPosition: {x: 0.166, y: 0.2, z: 0}
+  defaultPrefab: {fileID: 2503832364937522073, guid: 079613aab1351f842998c4c5ec31a59e,
+    type: 3}
   data:
   - name: abaddon
     sprite: {fileID: 21300000, guid: ea791604f7d71c64ba9be3a6524e20d1, type: 3}
