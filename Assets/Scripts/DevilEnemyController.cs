@@ -6,8 +6,10 @@ public interface IKillable{
 }
 
 public class DevilEnemyController : MonoBehaviour, IKillable{
-    [SerializeField] protected float _movementSpeed;
+    [SerializeField] protected GameObject _spriteContainer;
+    [Space] [SerializeField] protected float _movementSpeed;
     [SerializeField] protected Collider[] _colliders;
+    [SerializeField] protected Collider _spikeCollider;
 
     [Header("Sfx")] [SerializeField] protected AudioClip _deathSfx;
     [Space] protected Rigidbody _rigidbody;

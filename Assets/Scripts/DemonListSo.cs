@@ -1,6 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+
+#if UNITY_EDITOR
+using System.IO;
+using UnityEditor;
+#endif
+
+
 using NaughtyAttributes;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -12,48 +18,152 @@ public class DemonListSo : ScriptableObject{
         public string name;
         [ShowAssetPreview] public Sprite sprite;
         public Color wingsColor;
+        public Vector3 wingsPosition;
     }
 
-    public List<DemonData> data;
-    public List<string> names;
-    private List<string> _tempNames;
+    [Header("Default")] public Sprite defaultSprite;
+    public Color defaultWingsColor;
+    public Material defaultMaterial;
+    public Vector3 defaultWingsPosition = new Vector3(0.166f, 0.2f, 0f);
+    public GameObject defaultPrefab;
+    [Space] public List<DemonData> data;
+    [ReadOnly] public List<string> names;
+
+
+    private Dictionary<string, Sprite> _spritesDictionary = new Dictionary<string, Sprite>();
 
     [Button("Sort")]
     public void SortNamesList(){
         names.Sort();
         data.Sort((a, b) => String.Compare(a.name, b.name, StringComparison.Ordinal));
     }
-    [Button("Copy Data")]
+
+
     public void CopyNamesToData(){
+        //data = new List<DemonData>();
+        LoadSpritesFromFolder();
         SortNamesList();
-        foreach (var name in names){
+        foreach (var n in names){
             int i = 0;
             for (i = 0; i < data.Count; i++){
-                if (data[i].name == name){
+                if (data[i].name == n){
                     break;
                 }
             }
 
             if (i == data.Count){
-                
                 var newDemonData = new DemonData();
-                newDemonData.name = name;
-                newDemonData.wingsColor = Color.green;
+                newDemonData.name = n;
+                newDemonData.wingsPosition = defaultWingsPosition;
+                if (_spritesDictionary.ContainsKey(n)){
+                    newDemonData.sprite = _spritesDictionary[n];
+                    newDemonData.wingsColor = GetTopColor(_spritesDictionary[n]);
+                }
+                else{
+                    newDemonData.sprite = defaultSprite;
+                    newDemonData.wingsColor = defaultWingsColor;
+                }
+
 
                 data.Add(newDemonData);
             }
         }
     }
 
+    [Button("Update Data")]
+    public void UpdateDemonsData(){
+        LoadSpritesFromFolder();
+        SortNamesList();
+        for (int i = 0; i < data.Count; i++){
+            var newDemonData = data[i];
+            if (_spritesDictionary.ContainsKey(data[i].name)){
+                newDemonData.sprite = _spritesDictionary[data[i].name];
+                newDemonData.wingsColor = GetTopColor(_spritesDictionary[data[i].name]);
+            }
+            else{
+                newDemonData.sprite = defaultSprite;
+                newDemonData.wingsColor = defaultWingsColor;
+                newDemonData.wingsPosition = defaultWingsPosition;
+            }
+
+            data[i] = newDemonData;
+        }
+    }
+
     public List<string> GetNames(int amount){
-        _tempNames = new List<string>(names);
+        var tempNames = new List<string>(names);
         var result = new List<string>();
-        for (int i = 0; i < Mathf.Min(amount, _tempNames.Count); i++){
-            int randPosition = Random.Range(0, _tempNames.Count);
-            result.Add(_tempNames[randPosition]);
-            _tempNames.RemoveAt(randPosition);
+        for (int i = 0; i < Mathf.Min(amount, tempNames.Count); i++){
+            int randPosition = Random.Range(0, tempNames.Count);
+            result.Add(tempNames[randPosition]);
+            tempNames.RemoveAt(randPosition);
         }
 
         return result;
     }
+
+#if UNITY_EDITOR
+    private void LoadSpritesFromFolder(string relativePath = "Assets/Graphics/Demons"){
+        _spritesDictionary = new Dictionary<string, Sprite>();
+        string fullPath = Path.Combine(Application.dataPath, relativePath.Replace("Assets/", ""));
+
+        if (!Directory.Exists(fullPath)){
+            Debug.LogError("Directory does not exist: " + fullPath);
+            return;
+        }
+
+        string[] files = Directory.GetFiles(fullPath, "*.png");
+
+        foreach (string file in files){
+            string fileName = Path.GetFileName(file);
+            string assetPath = relativePath + "/" + fileName;
+            TextureImporter importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
+            if (importer != null){
+                importer.textureType = TextureImporterType.Sprite;
+                importer.SaveAndReimport(); // Ensure it's treated as a sprite
+            }
+
+            Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(assetPath);
+            if (sprite != null){
+                _spritesDictionary.Add(sprite.name, sprite);
+            }
+        }
+
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+    }
+
+    private Color GetTopColor(Sprite sprite){
+        var colorDictionary = new Dictionary<Color32, int>();
+        Texture2D texture = sprite.texture;
+
+        Color32[] pixels = texture.GetPixels32();
+        Color32 topColor = new Color32(1, 0, 1, 1);
+        int topColorNumber = 0;
+
+        for (int i = 0; i < pixels.Length; i++){
+            if (pixels[i].a > 0){
+                if (colorDictionary.ContainsKey(pixels[i])){
+                    colorDictionary[pixels[i]]++;
+                    if (colorDictionary[pixels[i]] > topColorNumber){
+                        {
+                            topColorNumber = colorDictionary[pixels[i]];
+                            topColor = pixels[i];
+                        }
+                    }
+                }
+                else{
+                    colorDictionary.Add(pixels[i], 1);
+                    if (topColorNumber == 0){
+                        topColorNumber = 1;
+                        topColor = pixels[i];
+                    }
+                }
+            }
+        }
+
+        return topColor;
+    }
+#endif
 }

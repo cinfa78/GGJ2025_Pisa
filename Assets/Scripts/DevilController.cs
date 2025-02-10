@@ -3,9 +3,7 @@ using NaughtyAttributes;
 using UnityEngine;
 
 public class DevilController : DevilEnemyController{
-    [SerializeField] private GameObject _spriteContainer;
-    [SerializeField] private GameObject _spikeCollider;
-    private SpriteRenderer _spriteRenderer;
+    private SpriteRenderer _baseSpriteRenderer;
     [SerializeField] private Sprite _deadDevilSprite;
     [Header("Shots")] public bool _canShoot;
     [SerializeField] private float _shotInterval;
@@ -17,13 +15,13 @@ public class DevilController : DevilEnemyController{
 
     protected override void Awake(){
         base.Awake();
-        _spriteRenderer = _spriteContainer.GetComponent<SpriteRenderer>();
+        _baseSpriteRenderer = _spriteContainer.GetComponent<SpriteRenderer>();
     }
 
     private IEnumerator Start(){
         if (_canShoot){
-            _spriteRenderer.sprite = _shootingDevilSprite;
-            _spikeCollider.SetActive(false);
+            _baseSpriteRenderer.sprite = _shootingDevilSprite;
+            _spikeCollider.enabled = false;
         }
 
         yield return null;
@@ -61,7 +59,7 @@ public class DevilController : DevilEnemyController{
     }
 
     private void DoDeath(){
-        _spriteRenderer.sprite = _deadDevilSprite;
+        _baseSpriteRenderer.sprite = _deadDevilSprite;
         DeathPhysics();
         AudioManager.Instance.PlaySfx(_deathSfx);
         Destroy(gameObject, 3f);
