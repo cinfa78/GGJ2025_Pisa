@@ -172,7 +172,11 @@ public class DemonListSo : ScriptableObject{
     public void CreatePrefabVariant(DemonData demonData){
         Object originalPrefab = defaultPrefab;
         GameObject objSource = PrefabUtility.InstantiatePrefab(originalPrefab) as GameObject;
-        GameObject prefabVariant = PrefabUtility.SaveAsPrefabAsset(objSource, $"Assets/Prefabs/{demonData.name}.asset");
+        GameObject prefabVariant = PrefabUtility.SaveAsPrefabAsset(objSource, AssetDatabase.GenerateUniqueAssetPath($"Assets/Prefabs/Demons/{demonData.name}.prefab"));
+        prefabVariant.transform.Find("SpriteContainer").GetComponent<SpriteRenderer>().sprite = demonData.sprite;
+        prefabVariant.transform.Find("SpriteContainer/Wings").GetComponent<SpriteRenderer>().color = demonData.wingsColor;
+        PrefabUtility.SavePrefabAsset(prefabVariant);
+        DestroyImmediate(objSource);
     }
 #endif
 }

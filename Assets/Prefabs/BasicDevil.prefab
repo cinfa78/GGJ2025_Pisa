@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5919175444341942580}
   - component: {fileID: 6282986447447012036}
   m_Layer: 8
-  m_Name: Sprite
+  m_Name: SpriteContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 6848177420968358005}
   - component: {fileID: 8063143708440750686}
   m_Layer: 0
-  m_Name: wings_anim_0
+  m_Name: Wings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -271,7 +271,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2063105085, guid: 4755b56a57f9300498da8ad195fd8962, type: 3}
+  m_Sprite: {fileID: -2007940602, guid: d2fe7bcfe892eaa46a146b1ab4296f21, type: 3}
   m_Color: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -296,10 +296,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 6848177420968358005}
   frames:
-  - {fileID: 2063105085, guid: 4755b56a57f9300498da8ad195fd8962, type: 3}
-  - {fileID: 94599738, guid: 4755b56a57f9300498da8ad195fd8962, type: 3}
-  - {fileID: 908219333, guid: 4755b56a57f9300498da8ad195fd8962, type: 3}
-  - {fileID: 1093427710, guid: 4755b56a57f9300498da8ad195fd8962, type: 3}
+  - {fileID: -2007940602, guid: d2fe7bcfe892eaa46a146b1ab4296f21, type: 3}
+  - {fileID: -643866432, guid: d2fe7bcfe892eaa46a146b1ab4296f21, type: 3}
+  - {fileID: 317159345, guid: d2fe7bcfe892eaa46a146b1ab4296f21, type: 3}
+  - {fileID: -72337019, guid: d2fe7bcfe892eaa46a146b1ab4296f21, type: 3}
   fps: 5
 --- !u!1 &5684548867449468747
 GameObject:
