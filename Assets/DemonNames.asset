@@ -72,32 +72,32 @@ MonoBehaviour:
     wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: balam
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 1ad7a61b5f22e7145b7cdf91fc34691f, type: 3}
+    wingsColor: {r: 0.5764706, g: 0.21568628, b: 0.13333334, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: baphomet
     sprite: {fileID: 21300000, guid: 25df7a31992f5924a8c47d47aef05314, type: 3}
     wingsColor: {r: 0.6745098, g: 0.19607843, b: 0.19607843, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: barbatos
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: fd41fc4beade56645b2cf9a9cc9c8308, type: 3}
+    wingsColor: {r: 0.2901961, g: 0.4745098, b: 0.14509805, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: bathin
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 610dbc6ceed288148beb1742390f793b, type: 3}
+    wingsColor: {r: 0.7137255, g: 0.42352942, b: 0.23529412, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: beelzebub
     sprite: {fileID: 21300000, guid: 523dbe00e1dacd64aa7c11e63532a4fd, type: 3}
     wingsColor: {r: 0.1882353, g: 0.015686275, b: 0.015686275, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: belial
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: b57f9cc3d524f8c42996948dd0083872, type: 3}
+    wingsColor: {r: 0.53333336, g: 0.34901962, b: 0.7607843, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: berith
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 76827263baad1bc488e73efe1cca1fac, type: 3}
+    wingsColor: {r: 0.5411765, g: 0.42745098, b: 0.2, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: botis
     sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
