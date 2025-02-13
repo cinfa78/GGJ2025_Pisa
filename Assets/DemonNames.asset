@@ -68,8 +68,8 @@ MonoBehaviour:
     wingsColor: {r: 0.5764706, g: 0.21568628, b: 0.13333334, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: bael
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 05b69fa988348c141b6a780c3bdf9528, type: 3}
+    wingsColor: {r: 0.5764706, g: 0.33333334, b: 0.1764706, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: balam
     sprite: {fileID: 21300000, guid: 1ad7a61b5f22e7145b7cdf91fc34691f, type: 3}
@@ -192,8 +192,8 @@ MonoBehaviour:
     wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: malphas
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 74ff1b2f5a3d05142a8e626fea7fde7b, type: 3}
+    wingsColor: {r: 0.15294118, g: 0.11372549, b: 0.03529412, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: mammon
     sprite: {fileID: 21300000, guid: e45b9b7a1f1e62a46adc4bcfb804d515, type: 3}
@@ -204,8 +204,8 @@ MonoBehaviour:
     wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: marchosias
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 8b784d7712d7f074d99550e2196a060e, type: 3}
+    wingsColor: {r: 0.6784314, g: 0.2901961, b: 0.36078432, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: moloch
     sprite: {fileID: 21300000, guid: 19625d95dd4cca3428810e3631c01b26, type: 3}
@@ -232,28 +232,28 @@ MonoBehaviour:
     wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: paimon
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: e85274606a6622745bf1680b0df4770d, type: 3}
+    wingsColor: {r: 0.40392157, g: 0.627451, b: 0.74509805, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: phenex
     sprite: {fileID: 21300000, guid: d5cdd7318d2108f4ba52a681c51f65a5, type: 3}
     wingsColor: {r: 0.9843137, g: 0.09411765, b: 0.3372549, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: purson
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 9fbbbf4a1bc98224e80f355ce5adb4b1, type: 3}
+    wingsColor: {r: 0.6431373, g: 0.41568628, b: 0.41568628, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: rahab
     sprite: {fileID: 21300000, guid: ad5ccbf1a8472454f895c077a9062500, type: 3}
     wingsColor: {r: 0.3019608, g: 0.45882353, b: 0.5411765, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: raum
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 0c9acd764ca6e7241b70d80ccdf00a5e, type: 3}
+    wingsColor: {r: 0.23921569, g: 0.21960784, b: 0.1764706, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: ronove
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: b57c3af9ed94ed14fbbbf834bc5e7d2e, type: 3}
+    wingsColor: {r: 0.6627451, g: 0.105882354, b: 0.74509805, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: sabnock
     sprite: {fileID: 21300000, guid: 595ab8865fa95a34f9ce7710f72d3b47, type: 3}
@@ -264,36 +264,36 @@ MonoBehaviour:
     wingsColor: {r: 0.7607843, g: 0.42745098, b: 0.42745098, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: seere
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 0cc736c347aa54848aa4760f4fa8ad24, type: 3}
+    wingsColor: {r: 0.50980395, g: 0.3137255, b: 0.07450981, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: shax
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: d2481ee549d059241bd56fad1dfe4108, type: 3}
+    wingsColor: {r: 0.4745098, g: 0.6627451, b: 0.11372549, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: stolas
     sprite: {fileID: 21300000, guid: 3eef91ed4ee3f164c83c14cdbd139c8d, type: 3}
     wingsColor: {r: 0.7607843, g: 0.5372549, b: 0.42745098, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: valefar
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 831be4dc333efea4384e4a91e5c593ee, type: 3}
+    wingsColor: {r: 0.2784314, g: 0.5764706, b: 0.13333334, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: vassago
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 21ed7fadf80a77645ae9bba5ca010b9c, type: 3}
+    wingsColor: {r: 0.84705883, g: 0.08235294, b: 0.26666668, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: vepar
     sprite: {fileID: 21300000, guid: 7ed0e804704cb8b48a6326dc683407b2, type: 3}
     wingsColor: {r: 0.7137255, g: 0.5019608, b: 0.5019608, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: vine
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: b488dc4602ac08f419504650ca5e4118, type: 3}
+    wingsColor: {r: 0.627451, g: 0.79607844, b: 0.19215687, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: vual
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: d421101801843644d833a072314f7d79, type: 3}
+    wingsColor: {r: 0.41568628, g: 0.24705882, b: 0.7607843, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: zagan
     sprite: {fileID: 21300000, guid: b103d7754c485294a9674ef7b06b4c62, type: 3}
