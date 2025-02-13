@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 #if UNITY_EDITOR
 using System.IO;
@@ -94,6 +95,27 @@ public class DemonListSo : ScriptableObject{
             if (_spritesDictionary.ContainsKey(data[i].name)){
                 newDemonData.sprite = _spritesDictionary[data[i].name];
                 newDemonData.wingsColor = GetTopColor(_spritesDictionary[data[i].name]);
+                //CreatePrefabVariant(newDemonData);
+            }
+            else{
+                newDemonData.sprite = defaultSprite;
+                newDemonData.wingsColor = defaultWingsColor;
+                newDemonData.wingsPosition = defaultWingsPosition;
+            }
+
+            data[i] = newDemonData;
+        }
+    }
+
+    [Button("Prefabs")]
+    private void CreatePrefabs(){
+        LoadSpritesFromFolder();
+        SortNamesList();
+        for (int i = 0; i < data.Count; i++){
+            var newDemonData = data[i];
+            if (_spritesDictionary.ContainsKey(data[i].name)){
+                newDemonData.sprite = _spritesDictionary[data[i].name];
+                newDemonData.wingsColor = GetTopColor(_spritesDictionary[data[i].name]);
                 CreatePrefabVariant(newDemonData);
             }
             else{
@@ -117,8 +139,12 @@ public class DemonListSo : ScriptableObject{
 
         string[] files = Directory.GetFiles(fullPath, "*.png");
 
+
         foreach (string file in files){
             string fileName = Path.GetFileName(file);
+            AssetDatabase.Refresh();
+            File.WriteAllText(fileName + ".meta", Regex.Replace(File.ReadAllText(fileName + ".meta"), "isReadable: 0", "isReadable: 1"));
+            AssetDatabase.Refresh();
             string assetPath = relativePath + "/" + fileName;
             TextureImporter importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
             if (importer != null){
