@@ -142,13 +142,21 @@ public class DemonListSo : ScriptableObject{
 
         foreach (string file in files){
             string fileName = Path.GetFileName(file);
-            AssetDatabase.Refresh();
-            File.WriteAllText(fileName + ".meta", Regex.Replace(File.ReadAllText(fileName + ".meta"), "isReadable: 0", "isReadable: 1"));
-            AssetDatabase.Refresh();
+            // string fileNameNoExtension = Path.GetDirectoryName(file) +"/"+ fileName;
+            // AssetDatabase.Refresh();
+            // File.WriteAllText(fileNameNoExtension + ".meta", Regex.Replace(File.ReadAllText(fileNameNoExtension + ".meta"), "isReadable: 0", "isReadable: 1"));
+            // AssetDatabase.Refresh();
             string assetPath = relativePath + "/" + fileName;
             TextureImporter importer = AssetImporter.GetAtPath(assetPath) as TextureImporter;
             if (importer != null){
                 importer.textureType = TextureImporterType.Sprite;
+                importer.spriteImportMode = SpriteImportMode.Single;
+                importer.isReadable = true;
+                importer.filterMode = FilterMode.Point;
+                importer.textureCompression = TextureImporterCompression.Uncompressed;
+                importer.maxTextureSize = 32;
+                importer.spritePixelsPerUnit = 32;
+                importer.wrapMode = TextureWrapMode.Clamp;
                 importer.SaveAndReimport(); // Ensure it's treated as a sprite
             }
 
