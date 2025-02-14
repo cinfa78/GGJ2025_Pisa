@@ -100,36 +100,36 @@ MonoBehaviour:
     wingsColor: {r: 0.5411765, g: 0.42745098, b: 0.2, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: botis
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 0f0211f0508bff54480a4e4ea23b708d, type: 3}
+    wingsColor: {r: 0.23529412, g: 0.4392157, b: 0.06666667, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: buer
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 3363eda105b5ccf4b9fed9fcbc40d66b, type: 3}
+    wingsColor: {r: 0.7137255, g: 0.6431373, b: 0.13333334, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: caim
     sprite: {fileID: 21300000, guid: c0d06be82f6899146a3357be467157d8, type: 3}
     wingsColor: {r: 0.6431373, g: 0.2, b: 0.12156863, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: choronzon
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 3b91dfb7ecff4fc4eb45235ce0da3af1, type: 3}
+    wingsColor: {r: 0.78039217, g: 0.10980392, b: 0.10980392, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: crocell
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: bd52a1fadef1d7c409a5a2bf8b662f80, type: 3}
+    wingsColor: {r: 0.78039217, g: 0.19215687, b: 0.10980392, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: dantalion
     sprite: {fileID: 21300000, guid: a595e011b33ab7b41814d6d5c0848326, type: 3}
     wingsColor: {r: 0.05882353, g: 0.25490198, b: 0.07450981, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: decarabia
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: c8de3cee44d1b3444a9ece3e65eb8e9f, type: 3}
+    wingsColor: {r: 0.23921569, g: 0.02745098, b: 0.02745098, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: forneus
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 9a1ee85cb0b59a943afe00c9e8b53430, type: 3}
+    wingsColor: {r: 0.3019608, g: 0.38431373, b: 0.6117647, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: furcas
     sprite: {fileID: 21300000, guid: c1b58501a1385564f84bcb2fea8076c3, type: 3}
