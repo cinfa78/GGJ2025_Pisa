@@ -35,7 +35,7 @@ public class ElectionManager : MonoBehaviour{
         OnPlayAgain?.Invoke(_fadeOutDuration);
         Sequence sequence = DOTween.Sequence();
         sequence.AppendInterval(_fadeOutDuration);
-        sequence.AppendCallback(() => { SceneManager.LoadScene(1); });
+        sequence.AppendCallback(() => { SceneManager.LoadScene("PapalBull"); });
         sequence.Play();
     }
 

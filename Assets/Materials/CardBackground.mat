@@ -45,7 +45,7 @@ Material:
     - _Pixelization: 48
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Speed: 0.3
+    - _Speed: 0.1
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &2499384623727961626

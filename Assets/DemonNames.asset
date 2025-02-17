@@ -152,8 +152,8 @@ MonoBehaviour:
     wingsColor: {r: 0.2901961, g: 0.8, b: 0.88235295, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: glasya-labolas
-    sprite: {fileID: 21300000, guid: 2858270b6433b3e4e925d7b7cc6c0ed9, type: 3}
-    wingsColor: {r: 0.36862746, g: 0.09019608, b: 0.09019608, a: 1}
+    sprite: {fileID: 21300000, guid: 66ace7e00df678c4daa4e4914986d94a, type: 3}
+    wingsColor: {r: 0.45882353, g: 0.29411766, b: 0.29411766, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: gremory
     sprite: {fileID: 21300000, guid: e38d25bbef38a4b4d8f04af5a2e45711, type: 3}

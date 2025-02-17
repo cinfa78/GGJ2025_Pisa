@@ -24,8 +24,8 @@ public class DevilNamesController : MonoBehaviour{
     }
 
     private void Start(){
-        foreach (var d in _uniqueDemonNames){
-            Debug.Log(d);
-        }
+        // foreach (var d in _uniqueDemonNames){
+        //     Debug.Log(d);
+        // }
     }
 }

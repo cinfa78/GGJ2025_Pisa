@@ -63,12 +63,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: amdusias
       objectReference: {fileID: 0}
+    - target: {fileID: 4191239452147334236, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6282986447447012036, guid: 079613aab1351f842998c4c5ec31a59e,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 9fe831c48e569d2458f4aa36b7f61eca,
         type: 3}
+    - target: {fileID: 6619842285485645622, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619842285485645622, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.129
+      objectReference: {fileID: 0}
     - target: {fileID: 6848177420968358005, guid: 079613aab1351f842998c4c5ec31a59e,
         type: 3}
       propertyPath: m_Color.b

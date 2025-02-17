@@ -9,13 +9,21 @@ public class MenuController : MonoBehaviour{
 
     private void Start(){
         AudioManager.Instance.PlayMusic(_introMusic);
-        _popeLabel.text = $"Pope #{SaveManager.PopeNumber:000}";
+        if(_popeLabel)
+            _popeLabel.text = $"Pope #{SaveManager.PopeNumber:000}";
     }
 
     public void StartGame(){
         if (!_isLoading){
             _isLoading = true;
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("PapalBull");
+        }
+    }
+
+    public void LoadScene(string sceneName){
+        if (!_isLoading){
+            _isLoading = true;
+            SceneManager.LoadScene(sceneName);
         }
     }
 

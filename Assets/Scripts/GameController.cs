@@ -172,14 +172,14 @@ public class GameController : MonoBehaviour{
     public void RestartGame(){
         if (!_isLoading){
             _isLoading = true;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("MainMenu");
         }
     }
 
     public void ElectPope(){
         if (!_isLoading){
             _isLoading = true;
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene("Election");
         }
     }
 
