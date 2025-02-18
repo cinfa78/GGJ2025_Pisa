@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 51138425}
   - component: {fileID: 51138424}
   m_Layer: 0
-  m_Name: sky_clouds (2)
+  m_Name: sjy_background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -455,9 +455,9 @@ Transform:
   m_GameObject: {fileID: 51138423}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.94, z: 3}
-  m_LocalScale: {x: 5.205551, y: 5.205551, z: 5.205551}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 1.02, z: 3}
+  m_LocalScale: {x: 3.6438859, y: 1.8674915, z: 3.6438859}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1507,7 +1507,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.62, y: -4.63, z: 2}
-  m_LocalScale: {x: 5.205551, y: 5.205551, z: 5.205551}
+  m_LocalScale: {x: 4.285314, y: 4.285314, z: 4.285314}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
