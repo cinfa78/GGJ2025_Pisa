@@ -1,10 +1,8 @@
-using System;
 using System.Collections;
 using DG.Tweening;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class UiCardManager : MonoBehaviour{
@@ -25,7 +23,8 @@ public class UiCardManager : MonoBehaviour{
     private float _defaultZRotation;
     private bool _busy;
     private Coroutine _shakingOnUnlocked;
-
+    private int _sinOffset;
+    
     public DemonListSo.DemonData DemonData{
         get => demonData;
         set{
@@ -41,6 +40,8 @@ public class UiCardManager : MonoBehaviour{
     private void Awake(){
         transform.localRotation = Quaternion.Euler(0, 180, 0);
         _defaultZRotation = transform.localRotation.z;
+        _sinOffset = Mathf.Abs(System.Guid.NewGuid().GetHashCode()/1000000);
+        Debug.Log(_sinOffset);
     }
 
     private void OnEnable(){
@@ -48,6 +49,7 @@ public class UiCardManager : MonoBehaviour{
             _toUnlock = false;
             _chainsAnimator.gameObject.SetActive(false);
             _lockAnimator.gameObject.SetActive(false);
+            Flip(false);
         }
         else{
             _toUnlock = true;
@@ -106,15 +108,17 @@ public class UiCardManager : MonoBehaviour{
     }
 
     [Button("Flip")]
-    private void Flip(){
-        AudioManager.Instance.PlaySfx(_cardFlipSfx);
+    private void Flip(bool playSound = true){
+        _busy = true;
+        if (playSound)
+            AudioManager.Instance.PlaySfx(_cardFlipSfx);
         _isShowing = !_isShowing;
         transform.DOKill();
         if (_isShowing){
-            transform.DORotate(Vector3.up * 0, Random.Range(.5f, 1f));
+            transform.DORotate(Vector3.up * 0, Random.Range(.5f, 1f)).OnComplete(() => _busy = false);
         }
         else{
-            transform.DORotate(Vector3.up * 180, Random.Range(.5f, 1f));
+            transform.DORotate(Vector3.up * 180, Random.Range(.5f, 1f)).OnComplete(() => _busy = false);
         }
     }
 
@@ -123,7 +127,7 @@ public class UiCardManager : MonoBehaviour{
         float timer = 0f;
         float startY = transform.localRotation.y;
         while (timer < .5f){
-            transform.localRotation = Quaternion.Euler(0f, 180, Mathf.Sin(Time.time * 30f) * 5);
+            transform.localRotation = Quaternion.Euler(0f, 180, Mathf.Sin((_sinOffset+Time.time) * 30f) * 5);
             timer += Time.deltaTime;
             yield return null;
         }
@@ -133,7 +137,7 @@ public class UiCardManager : MonoBehaviour{
 
     private IEnumerator ShakingOnUnlocked(){
         while (true){
-            transform.localRotation = Quaternion.Euler(0f, 180, Mathf.Sin(Time.time * 30f) * 3);
+            transform.localRotation = Quaternion.Euler(0f, 180, Mathf.Sin((_sinOffset+Time.time) * 30f) * 3);
             yield return null;
         }
     }

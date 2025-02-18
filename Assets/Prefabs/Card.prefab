@@ -503,6 +503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 6528954526123562317}
   frames:
+  - {fileID: 1922851235, guid: 124962ca15cd17e4fb4dd4e00a399802, type: 3}
   - {fileID: 1148207308, guid: 124962ca15cd17e4fb4dd4e00a399802, type: 3}
   fps: 12
   _playing: 0
