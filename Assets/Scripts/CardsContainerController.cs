@@ -37,7 +37,6 @@ public class CardsContainerController : MonoBehaviour{
     }
 
     private void Start(){
-        
         GenerateCards();
     }
 
@@ -54,8 +53,11 @@ public class CardsContainerController : MonoBehaviour{
                 var newCard = Instantiate(_cardPrefab, transform.position + new Vector3(-_size.x / 2, +_size.y / 2, 0) + Vector3.right * (xStep * j + xStep / 2) + Vector3.down * (yStep * i + yStep / 2), Quaternion.identity, transform);
                 newCard.name = "Card_" + _demonList.data[card].name;
                 yield return null;
-                newCard.GetComponent<UiCardManager>().DemonData = _demonList.data[card];
-                _cards.Add(newCard.GetComponent<UiCardManager>());
+                var newCardManager = newCard.GetComponent<UiCardManager>();
+                newCardManager.DemonData = _demonList.data[card];
+                if (SaveManager.Instance.GetSavedData.Contains(_demonList.data[card].name))
+                    newCardManager.UnlockCard();
+                _cards.Add(newCardManager);
                 yield return null;
                 card++;
                 if (card == _demonList.data.Count){

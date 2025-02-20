@@ -10,10 +10,19 @@ using Random = UnityEngine.Random;
 public class SaveData{
     public string[] KilledDemonsData;
     public int PopeNumber;
+    public string[] PopeNames;
 
     public SaveData(string[] killedDemons, int popeNumber){
         KilledDemonsData = killedDemons;
         PopeNumber = popeNumber;
+    }
+
+    public bool Contains(string searchedDemon){
+        for (int i = 0; i < KilledDemonsData.Length; i++){
+            if (KilledDemonsData[i] == searchedDemon) return true;
+        }
+
+        return false;
     }
 }
 
@@ -23,6 +32,8 @@ public class SaveManager : MonoBehaviour{
     public static int PopeNumber => PlayerPrefs.GetInt("popes", 1);
     public static event Action<int> OnNewPope;
     private SaveData _saveData;
+    public SaveData GetSavedData => _saveData;
+    private bool _initialized = false;
 
     private void Awake(){
         if (Instance != null){
@@ -77,6 +88,8 @@ public class SaveManager : MonoBehaviour{
         else{
             ResetSaveData();
         }
+
+        _initialized = true;
     }
 
     [Button("Reset SaveData")]
@@ -105,7 +118,26 @@ public class SaveManager : MonoBehaviour{
         return _saveData.PopeNumber;
     }
 
-    public static List<string> GetDemonNames(int amount = 3){
+    public void AddKilledDemons(List<string> killedDemons){
+        var newKilledDemonsList = new List<string>(_saveData.KilledDemonsData);
+        newKilledDemonsList.AddRange(killedDemons);
+        _saveData.KilledDemonsData = newKilledDemonsList.ToArray();
+        SaveData();
+    }
+
+    public void AddDeadPope(){
+        _saveData.PopeNumber++;
+        SaveData();
+    }
+
+    public void AddPopeName(string popeName){
+        var popeNames = new List<string>(_saveData.PopeNames);
+        popeNames.Add(popeName);
+        _saveData.PopeNames = popeNames.ToArray();
+        SaveData();
+    }
+
+    public static List<string> GetRandomDemonNames(int amount = 3){
         var uniqueDemonNames = new List<string>();
         TextAsset mytxtData = (TextAsset)Resources.Load("demon_names");
         var text = mytxtData.text;
@@ -122,8 +154,6 @@ public class SaveManager : MonoBehaviour{
             uniqueDemonNames.Add(_d.Key);
         }
 
-        //Debug.Log($"Demons found: {uniqueDemonNames.Count} looking for {amount} demons");
-
         var result = new List<string>();
         for (int i = 0; i < Mathf.Min(amount, uniqueDemonNames.Count); i++){
             int dn = Random.Range(0, uniqueDemonNames.Count);
@@ -133,5 +163,17 @@ public class SaveManager : MonoBehaviour{
         }
 
         return result;
+    }
+
+    static string IntToRoman(int number){
+        string[] thousands ={ "", "M", "MM", "MMM" };
+        string[] hundreds ={ "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
+        string[] tens ={ "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
+        string[] ones ={ "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" };
+
+        return thousands[number / 1000] +
+               hundreds[(number % 1000) / 100] +
+               tens[(number % 100) / 10] +
+               ones[number % 10];
     }
 }

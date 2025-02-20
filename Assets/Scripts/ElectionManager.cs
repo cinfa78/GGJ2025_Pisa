@@ -14,7 +14,32 @@ public class ElectionManager : MonoBehaviour{
     private bool _loading;
     public static event Action OnPanStart;
     public static event Action<float> OnPlayAgain;
-
+    private string[] _popeNames = new string[]
+    {
+        "Alexander",
+        "Bonifacius",
+        "Celestinus",
+        "Clementius",
+        "Eugenius",
+        "Gregorius",
+        "Hadrianus",
+        "Innocentius",
+        "Laurentius",
+        "Leo",
+        "Leoninus",
+        "Marcus",
+        "Maximilianus",
+        "Nicolaus",
+        "Paulus",
+        "Petrus",
+        "Pius",
+        "Raphael",
+        "Silvester",
+        "Sextus",
+        "Stefanus",
+        "Theodorus",
+        "Urbanus"
+    };
     private void Awake(){
         _camera = Camera.main;
         _camera.transform.position = new Vector3(_camera.transform.position.x, _cameraStartY, _camera.transform.position.z);

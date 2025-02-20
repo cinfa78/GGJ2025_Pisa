@@ -41,7 +41,6 @@ public class UiCardManager : MonoBehaviour{
         transform.localRotation = Quaternion.Euler(0, 180, 0);
         _defaultZRotation = transform.localRotation.z;
         _sinOffset = Mathf.Abs(System.Guid.NewGuid().GetHashCode()/1000000);
-        Debug.Log(_sinOffset);
     }
 
     private void OnEnable(){

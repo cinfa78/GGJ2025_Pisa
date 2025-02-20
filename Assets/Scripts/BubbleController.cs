@@ -115,6 +115,7 @@ public class BubbleController : MonoBehaviour{
     }
 
     private void PopBubble(){
+        SaveManager.Instance.AddDeadPope();
         AudioManager.Instance.PlaySfx(_bubblePopSound);
         _bubble.SetActive(false);
         _canMove = false;
