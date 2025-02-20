@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6654381081495955784
+--- !u!1001 &4084742711217557564
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -63,22 +63,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: gremory
       objectReference: {fileID: 0}
+    - target: {fileID: 3937312347535513998, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.88235295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937312347535513998, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.5137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937312347535513998, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.2901961
+      objectReference: {fileID: 0}
     - target: {fileID: 6282986447447012036, guid: 079613aab1351f842998c4c5ec31a59e,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: e38d25bbef38a4b4d8f04af5a2e45711,
         type: 3}
-    - target: {fileID: 6619842285485645622, guid: 079613aab1351f842998c4c5ec31a59e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.035
-      objectReference: {fileID: 0}
-    - target: {fileID: 6619842285485645622, guid: 079613aab1351f842998c4c5ec31a59e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.02
-      objectReference: {fileID: 0}
     - target: {fileID: 6848177420968358005, guid: 079613aab1351f842998c4c5ec31a59e,
         type: 3}
       propertyPath: m_Color.b

@@ -290,6 +290,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6431695937c942746b50d0b98261c252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _popeStatistics:
+    movementSpeed: 5
+    incrementPerShot: 0.1
+    angleIncrement: 60
   _movementSpeed: 5
   _popeSpriterenderer: {fileID: 2354737730362444254}
   _fallingPopeSprite: {fileID: 21300000, guid: 45af5d0442e27f14d870dd13a3734143, type: 3}

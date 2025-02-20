@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &322341103212442788
+--- !u!1001 &2816170998396001714
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -63,22 +63,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: seere
       objectReference: {fileID: 0}
+    - target: {fileID: 3572369319227440985, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.038
+      objectReference: {fileID: 0}
+    - target: {fileID: 3572369319227440985, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.065
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937312347535513998, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.07450981
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937312347535513998, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.3137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937312347535513998, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.50980395
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937312347535513998, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6282986447447012036, guid: 079613aab1351f842998c4c5ec31a59e,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0cc736c347aa54848aa4760f4fa8ad24,
         type: 3}
-    - target: {fileID: 6619842285485645622, guid: 079613aab1351f842998c4c5ec31a59e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.011
-      objectReference: {fileID: 0}
-    - target: {fileID: 6619842285485645622, guid: 079613aab1351f842998c4c5ec31a59e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.102
-      objectReference: {fileID: 0}
     - target: {fileID: 6848177420968358005, guid: 079613aab1351f842998c4c5ec31a59e,
         type: 3}
       propertyPath: m_Color.b

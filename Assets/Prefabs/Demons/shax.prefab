@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2604598008609218474
+--- !u!1001 &5982897768604386244
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -63,22 +63,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: shax
       objectReference: {fileID: 0}
+    - target: {fileID: 3572369319227440985, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.102
+      objectReference: {fileID: 0}
+    - target: {fileID: 3572369319227440985, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.017
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937312347535513998, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.11372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937312347535513998, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.6627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937312347535513998, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.4745098
+      objectReference: {fileID: 0}
     - target: {fileID: 6282986447447012036, guid: 079613aab1351f842998c4c5ec31a59e,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: d2481ee549d059241bd56fad1dfe4108,
         type: 3}
-    - target: {fileID: 6619842285485645622, guid: 079613aab1351f842998c4c5ec31a59e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.015
-      objectReference: {fileID: 0}
-    - target: {fileID: 6619842285485645622, guid: 079613aab1351f842998c4c5ec31a59e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.049
-      objectReference: {fileID: 0}
     - target: {fileID: 6848177420968358005, guid: 079613aab1351f842998c4c5ec31a59e,
         type: 3}
       propertyPath: m_Color.b

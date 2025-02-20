@@ -208,7 +208,8 @@ public class DemonListSo : ScriptableObject{
         GameObject objSource = PrefabUtility.InstantiatePrefab(originalPrefab) as GameObject;
         GameObject prefabVariant = PrefabUtility.SaveAsPrefabAsset(objSource, AssetDatabase.GenerateUniqueAssetPath($"Assets/Prefabs/Demons/{demonData.name}.prefab"));
         prefabVariant.transform.Find("SpriteContainer").GetComponent<SpriteRenderer>().sprite = demonData.sprite;
-        prefabVariant.transform.Find("SpriteContainer/Wings").GetComponent<SpriteRenderer>().color = demonData.wingsColor;
+        prefabVariant.transform.Find("SpriteContainer/WingsContainer/WingBack").GetComponent<SpriteRenderer>().color = demonData.wingsColor;
+        prefabVariant.transform.Find("SpriteContainer/WingsContainer/WingFront").GetComponent<SpriteRenderer>().color = demonData.wingsColor;
         PrefabUtility.SavePrefabAsset(prefabVariant);
         DestroyImmediate(objSource);
     }

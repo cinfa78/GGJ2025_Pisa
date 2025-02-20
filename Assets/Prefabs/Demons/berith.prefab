@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2864577506438576731
+--- !u!1001 &1984614708214839159
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -63,6 +63,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: berith
       objectReference: {fileID: 0}
+    - target: {fileID: 3572369319227440985, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.166
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937312347535513998, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937312347535513998, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.42745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 3937312347535513998, guid: 079613aab1351f842998c4c5ec31a59e,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.5411765
+      objectReference: {fileID: 0}
     - target: {fileID: 6282986447447012036, guid: 079613aab1351f842998c4c5ec31a59e,
         type: 3}
       propertyPath: m_Sprite
@@ -72,12 +92,12 @@ PrefabInstance:
     - target: {fileID: 6619842285485645622, guid: 079613aab1351f842998c4c5ec31a59e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.107
+      value: -0.091
       objectReference: {fileID: 0}
     - target: {fileID: 6619842285485645622, guid: 079613aab1351f842998c4c5ec31a59e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.003
+      value: -0.073
       objectReference: {fileID: 0}
     - target: {fileID: 6848177420968358005, guid: 079613aab1351f842998c4c5ec31a59e,
         type: 3}

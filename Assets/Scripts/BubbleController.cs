@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 public class BubbleController : MonoBehaviour{
+    [SerializeField] private PopeStatistics _popeStatistics;
     [SerializeField] private float _movementSpeed;
 
     [Header("Graphics")] [SerializeField] private SpriteRenderer _popeSpriterenderer;
@@ -19,7 +20,7 @@ public class BubbleController : MonoBehaviour{
     [Header("Shot")] [SerializeField] private GameObject _holyHandGrenade;
     [SerializeField] private GameObject _crossHairContainer;
     [SerializeField] private Vector2 _minMaxAngle;
-    [SerializeField] private float _angleIncrement = 2;
+    [SerializeField] private float _angleIncrement = 60;
 
     [Header("Sfx")] [SerializeField] private AudioClip _bubblePopSound;
     [SerializeField] private AudioClip _deathSound;
