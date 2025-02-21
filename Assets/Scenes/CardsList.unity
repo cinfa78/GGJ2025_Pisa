@@ -642,10 +642,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda965e0c00e52d4b8596475f6dbe594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _size: {x: 11, y: 4.3}
+  _size: {x: 11, y: 4.5}
   _demonList: {fileID: 11400000, guid: 16615903f9c5d71459d514a63ea4bab6, type: 2}
   _cardPrefab: {fileID: 6925912649285128609, guid: dea58b16651950246aad80da04e9c3dd,
     type: 3}
+  _cardsPerColumn: 15
+  _cardsPerRow: 5
 --- !u!4 &409098746
 Transform:
   m_ObjectHideFlags: 0
@@ -1279,6 +1281,117 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553558077}
   m_CullTransparentMesh: 1
+--- !u!1 &1599651621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1599651624}
+  - component: {fileID: 1599651623}
+  - component: {fileID: 1599651622}
+  m_Layer: 0
+  m_Name: Book
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1599651622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599651621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abbdb6febbf5eba4bb5de96e7b3c8929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1599651623}
+  _direction: 1
+  frames:
+  - {fileID: 76357630, guid: 6486aeca351ed0f45a7a48b36604b7ac, type: 3}
+  - {fileID: -1279051618, guid: 6486aeca351ed0f45a7a48b36604b7ac, type: 3}
+  - {fileID: 165972874, guid: 6486aeca351ed0f45a7a48b36604b7ac, type: 3}
+  - {fileID: -1931040646, guid: 6486aeca351ed0f45a7a48b36604b7ac, type: 3}
+  - {fileID: 1809979201, guid: 6486aeca351ed0f45a7a48b36604b7ac, type: 3}
+  - {fileID: 703356098, guid: 6486aeca351ed0f45a7a48b36604b7ac, type: 3}
+  - {fileID: -1095051060, guid: 6486aeca351ed0f45a7a48b36604b7ac, type: 3}
+  - {fileID: -317318176, guid: 6486aeca351ed0f45a7a48b36604b7ac, type: 3}
+  fps: 8
+  _playing: 0
+  _loop: 0
+--- !u!212 &1599651623
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599651621}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8d67f9f159a94e04f89220b3250f7412, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 76357630, guid: 6486aeca351ed0f45a7a48b36604b7ac, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1599651624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599651621}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.25, y: -1.25, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1623608471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,7 +1588,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1617,3 +1730,4 @@ SceneRoots:
   - {fileID: 1393063823}
   - {fileID: 1507994852}
   - {fileID: 689816475}
+  - {fileID: 1599651624}

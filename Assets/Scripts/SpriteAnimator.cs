@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 
 public class SpriteAnimator : MonoBehaviour{
     public SpriteRenderer spriteRenderer;
+    [SerializeField] private int _direction = 1;
     [FormerlySerializedAs("sprites")] public Sprite[] frames;
     public float fps;
     private float _timer;
@@ -22,8 +23,10 @@ public class SpriteAnimator : MonoBehaviour{
     }
 
     private void Start(){
-        _frame = 0;
-        spriteRenderer.sprite = frames[_frame];
+        if (_direction == 1)
+            spriteRenderer.sprite = frames[_frame];
+        else
+            spriteRenderer.sprite = frames[frames.Length - 1];
     }
 
     [Button("Toggle")]
@@ -35,7 +38,7 @@ public class SpriteAnimator : MonoBehaviour{
         _timer += Time.deltaTime;
         if (_playing && _timer >= 1f / fps){
             _timer = 0;
-            _frame = (_frame + 1) % frames.Length;
+            _frame = (frames.Length+(_frame + _direction)) % frames.Length;
             if (_loop || _frame != 0){
                 spriteRenderer.sprite = frames[_frame];
             }
