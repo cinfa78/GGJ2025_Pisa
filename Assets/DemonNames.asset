@@ -147,10 +147,6 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: f78c1248d13929943892692cfd52ba3b, type: 3}
     wingsColor: {r: 0.5254902, g: 0.1764706, b: 0.0627451, a: 1}
     wingsPosition: {x: 0.166, y: 0.2, z: 0}
-  - name: gemory
-    sprite: {fileID: 21300000, guid: b18243ec2ec12da4499123b5fc0e7ba6, type: 3}
-    wingsColor: {r: 0.2901961, g: 0.8, b: 0.88235295, a: 1}
-    wingsPosition: {x: 0.166, y: 0.2, z: 0}
   - name: glasya-labolas
     sprite: {fileID: 21300000, guid: 66ace7e00df678c4daa4e4914986d94a, type: 3}
     wingsColor: {r: 0.45882353, g: 0.29411766, b: 0.29411766, a: 1}

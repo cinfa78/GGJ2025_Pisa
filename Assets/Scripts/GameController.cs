@@ -22,9 +22,12 @@ public class GameController : MonoBehaviour{
     private EnemySpawnerController _spawnerController;
     [SerializeField] private float _enemyFrequency = 1;
     [SerializeField] private float _enemyFrequencyIncrement;
+
     [SerializeField] private GameObject _environment;
+
     //public float victoryAnimationTime = 5f;
     public float totalGameTime;
+
     public static int devilsKilled;
     // public CanvasGroup victoryCanvasGroup;
     // [FormerlySerializedAs("deferatCanvasGroup")] public CanvasGroup defeatCanvasGroup;
@@ -92,7 +95,7 @@ public class GameController : MonoBehaviour{
         BubbleController.OnPlayerdeath -= OnPlayerDeath;
         Destroy(_spawnerController.gameObject);
         gameState = GameState.GAMEOVER;
-        
+
         OnGameOver?.Invoke();
     }
 
@@ -110,10 +113,9 @@ public class GameController : MonoBehaviour{
             k.InstantKill();
         }
 
-        
-        _environment.transform.DOMoveY(-15, 5).SetEase(Ease.InOutCubic).OnComplete(() => {});
+
+        _environment.transform.DOMoveY(-15, 5).SetEase(Ease.InOutCubic).OnComplete(() => { });
         AudioManager.Instance.PlayMusic(_victoryMusic);
-        
     }
 
     private void OnIntroOver(){
@@ -154,13 +156,13 @@ public class GameController : MonoBehaviour{
                 break;
             case GameState.GAMEOVER:
                 if (Input.GetButtonDown("Cancel")){
-                    ElectPope();
+                    SceneLoader.Election();
                 }
 
                 break;
             case GameState.VICTORY:
                 if (Input.GetButtonDown("Cancel")){
-                    RestartGame();
+                    SceneLoader.MainMenu();
                 }
 
                 break;
@@ -169,21 +171,4 @@ public class GameController : MonoBehaviour{
         }
     }
 
-    public void RestartGame(){
-        if (!_isLoading){
-            _isLoading = true;
-            SceneManager.LoadScene("MainMenu");
-        }
-    }
-
-    public void ElectPope(){
-        if (!_isLoading){
-            _isLoading = true;
-            SceneManager.LoadScene("Election");
-        }
-    }
-
-    public void QuitGame(){
-        Application.Quit();
-    }
 }

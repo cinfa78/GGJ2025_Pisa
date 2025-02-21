@@ -2,7 +2,6 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class ElectionManager : MonoBehaviour{
     [SerializeField] private Camera _camera;
@@ -14,8 +13,8 @@ public class ElectionManager : MonoBehaviour{
     private bool _loading;
     public static event Action OnPanStart;
     public static event Action<float> OnPlayAgain;
-    private string[] _popeNames = new string[]
-    {
+
+    private string[] _popeNames = new string[]{
         "Alexander",
         "Bonifacius",
         "Celestinus",
@@ -40,6 +39,7 @@ public class ElectionManager : MonoBehaviour{
         "Theodorus",
         "Urbanus"
     };
+
     private void Awake(){
         _camera = Camera.main;
         _camera.transform.position = new Vector3(_camera.transform.position.x, _cameraStartY, _camera.transform.position.z);
@@ -60,7 +60,7 @@ public class ElectionManager : MonoBehaviour{
         OnPlayAgain?.Invoke(_fadeOutDuration);
         Sequence sequence = DOTween.Sequence();
         sequence.AppendInterval(_fadeOutDuration);
-        sequence.AppendCallback(() => { SceneManager.LoadScene("PapalBull"); });
+        sequence.AppendCallback(() => { SceneLoader.Game(); });
         sequence.Play();
     }
 

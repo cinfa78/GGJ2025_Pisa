@@ -34,6 +34,7 @@ public class SaveManager : MonoBehaviour{
     private SaveData _saveData;
     public SaveData GetSavedData => _saveData;
     private bool _initialized = false;
+    public static List<string> freshlyUnlockedDemons = new List<string>();
 
     private void Awake(){
         if (Instance != null){
@@ -123,11 +124,16 @@ public class SaveManager : MonoBehaviour{
         newKilledDemonsList.AddRange(killedDemons);
         _saveData.KilledDemonsData = newKilledDemonsList.ToArray();
         SaveData();
+        freshlyUnlockedDemons = new List<string>(killedDemons);
     }
 
     public void AddDeadPope(){
         _saveData.PopeNumber++;
         SaveData();
+    }
+
+    public void JustUnlockedDemon(string demonName){
+        freshlyUnlockedDemons.Remove(demonName);
     }
 
     public void AddPopeName(string popeName){

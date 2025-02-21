@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour{
     [SerializeField] private AudioClip _introMusic;
@@ -9,25 +8,7 @@ public class MenuController : MonoBehaviour{
 
     private void Start(){
         AudioManager.Instance.PlayMusic(_introMusic);
-        if(_popeLabel)
+        if (_popeLabel)
             _popeLabel.text = $"Pope #{SaveManager.Instance.GetPopeNumber():000}";
-    }
-
-    public void StartGame(){
-        if (!_isLoading){
-            _isLoading = true;
-            SceneManager.LoadScene("PapalBull");
-        }
-    }
-
-    public void LoadScene(string sceneName){
-        if (!_isLoading){
-            _isLoading = true;
-            SceneManager.LoadScene(sceneName);
-        }
-    }
-
-    public void QuitGame(){
-        Application.Quit();
     }
 }

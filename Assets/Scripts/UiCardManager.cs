@@ -24,7 +24,7 @@ public class UiCardManager : MonoBehaviour{
     private bool _busy;
     private Coroutine _shakingOnUnlocked;
     private int _sinOffset;
-    
+
     public DemonListSo.DemonData DemonData{
         get => demonData;
         set{
@@ -40,21 +40,26 @@ public class UiCardManager : MonoBehaviour{
     private void Awake(){
         transform.localRotation = Quaternion.Euler(0, 180, 0);
         _defaultZRotation = transform.localRotation.z;
-        _sinOffset = Mathf.Abs(System.Guid.NewGuid().GetHashCode()/1000000);
+        _sinOffset = Mathf.Abs(System.Guid.NewGuid().GetHashCode() / 1000000);
     }
 
     private void OnEnable(){
         if (!_locked){
-            _toUnlock = false;
-            _chainsAnimator.gameObject.SetActive(false);
-            _lockAnimator.gameObject.SetActive(false);
-            Flip(false);
+            ShowCard();
         }
         else{
             _toUnlock = true;
             _chainsAnimator.OnLoopOver += OnChainAnimationOver;
             _lockAnimator.OnLoopOver += OnLockOpen;
         }
+    }
+
+    public void ShowCard(){
+        _locked = false;
+        _toUnlock = false;
+        _chainsAnimator.gameObject.SetActive(false);
+        _lockAnimator.gameObject.SetActive(false);
+        Flip(false);
     }
 
     private void OnLockOpen(){
@@ -91,6 +96,7 @@ public class UiCardManager : MonoBehaviour{
                 if (_toUnlock){
                     _busy = true;
                     StopCoroutine(_shakingOnUnlocked);
+                    SaveManager.Instance.JustUnlockedDemon(demonData.name);
                     transform.localRotation = Quaternion.Euler(0f, 180, 0);
                     _lockAnimator.Toggle();
                     AudioManager.Instance.PlaySfx(_lockOpenSfx);
@@ -126,7 +132,7 @@ public class UiCardManager : MonoBehaviour{
         float timer = 0f;
         float startY = transform.localRotation.y;
         while (timer < .5f){
-            transform.localRotation = Quaternion.Euler(0f, 180, Mathf.Sin((_sinOffset+Time.time) * 30f) * 5);
+            transform.localRotation = Quaternion.Euler(0f, 180, Mathf.Sin((_sinOffset + Time.time) * 30f) * 5);
             timer += Time.deltaTime;
             yield return null;
         }
@@ -136,7 +142,7 @@ public class UiCardManager : MonoBehaviour{
 
     private IEnumerator ShakingOnUnlocked(){
         while (true){
-            transform.localRotation = Quaternion.Euler(0f, 180, Mathf.Sin((_sinOffset+Time.time) * 30f) * 3);
+            transform.localRotation = Quaternion.Euler(0f, 180, Mathf.Sin((_sinOffset + Time.time) * 30f) * 3);
             yield return null;
         }
     }

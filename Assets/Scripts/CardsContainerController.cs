@@ -55,8 +55,12 @@ public class CardsContainerController : MonoBehaviour{
                 yield return null;
                 var newCardManager = newCard.GetComponent<UiCardManager>();
                 newCardManager.DemonData = _demonList.data[card];
-                if (SaveManager.Instance.GetSavedData.Contains(_demonList.data[card].name))
+                if (SaveManager.freshlyUnlockedDemons.Contains(_demonList.data[card].name)){
                     newCardManager.UnlockCard();
+                }else if (SaveManager.Instance.GetSavedData.Contains(_demonList.data[card].name)){
+                    newCardManager.ShowCard();
+                }
+                    
                 _cards.Add(newCardManager);
                 yield return null;
                 card++;
