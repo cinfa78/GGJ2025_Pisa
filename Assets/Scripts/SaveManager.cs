@@ -12,9 +12,10 @@ public class SaveData{
     public int PopeNumber;
     public string[] PopeNames;
 
-    public SaveData(string[] killedDemons, int popeNumber){
+    public SaveData(string[] killedDemons, string[] popeNames, int popeNumber){
         KilledDemonsData = killedDemons;
         PopeNumber = popeNumber;
+        PopeNames = popeNames;
     }
 
     public bool Contains(string searchedDemon){
@@ -23,6 +24,19 @@ public class SaveData{
         }
 
         return false;
+    }
+
+    public override string ToString(){
+        string result = "";
+        result += $"Pope Number: {PopeNumber}\n";
+        if (PopeNames != null){
+            result += "Popes:\n";
+            for (var i = 0; i < PopeNames.Length; i++){
+                result += $"PopeNames[i]\n";
+            }
+        }
+
+        return result;
     }
 }
 
@@ -45,37 +59,37 @@ public class SaveManager : MonoBehaviour{
             DontDestroyOnLoad(gameObject);
         }
 
-        LoadData();
+        Load();
     }
 
-    public static void IncrementPope(){
-        int nextPope = PlayerPrefs.GetInt("popes", 1) + 1;
-        PlayerPrefs.SetInt("popes", nextPope);
-        OnNewPope?.Invoke(nextPope);
+    // public static void IncrementPope(){
+    //     int nextPope = PlayerPrefs.GetInt("popes", 1) + 1;
+    //     PlayerPrefs.SetInt("popes", nextPope);
+    //     OnNewPope?.Invoke(nextPope);
+    //
+    //
+    //     string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+    //     Debug.Log("Documents Path: " + documentsPath);
+    //
+    //     // Example: Reading files in the Documents folder
+    //     if (Directory.Exists(documentsPath)){
+    //         string[] files = Directory.GetFiles(documentsPath);
+    //         foreach (string file in files){
+    //             Debug.Log("File: " + file);
+    //         }
+    //     }
+    // }
 
-
-        string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        Debug.Log("Documents Path: " + documentsPath);
-
-        // Example: Reading files in the Documents folder
-        if (Directory.Exists(documentsPath)){
-            string[] files = Directory.GetFiles(documentsPath);
-            foreach (string file in files){
-                Debug.Log("File: " + file);
-            }
-        }
-    }
-
-    public void SaveData(){
+    public void Save(){
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/saveData.dat";
         FileStream stream = new FileStream(path, FileMode.Create);
-        SaveData data = new SaveData(_saveData.KilledDemonsData, _saveData.PopeNumber);
+        SaveData data = new SaveData(_saveData.KilledDemonsData, _saveData.PopeNames, _saveData.PopeNumber);
         formatter.Serialize(stream, data);
         stream.Close();
     }
 
-    public void LoadData(){
+    public void Load(){
         Debug.Log($"Loading data");
         string path = Application.persistentDataPath + "/saveData.dat";
 
@@ -96,8 +110,8 @@ public class SaveManager : MonoBehaviour{
     [Button("Reset SaveData")]
     private void ResetSaveData(){
         Debug.Log($"Created new data");
-        _saveData = new SaveData(new string[0], 1);
-        SaveData();
+        _saveData = new SaveData(Array.Empty<string>(), Array.Empty<string>(), 1);
+        Save();
     }
 
     [Button("Print Save Data")]
@@ -109,11 +123,12 @@ public class SaveManager : MonoBehaviour{
 
         Debug.Log($"Total Demons: {_saveData.KilledDemonsData.Length}");
         Debug.Log($"Popes: {_saveData.PopeNumber}");
+        Debug.Log(_saveData);
     }
 
     public int GetPopeNumber(){
         if (_saveData == null){
-            LoadData();
+            Load();
         }
 
         return _saveData.PopeNumber;
@@ -123,13 +138,13 @@ public class SaveManager : MonoBehaviour{
         var newKilledDemonsList = new List<string>(_saveData.KilledDemonsData);
         newKilledDemonsList.AddRange(killedDemons);
         _saveData.KilledDemonsData = newKilledDemonsList.ToArray();
-        SaveData();
+        Save();
         freshlyUnlockedDemons = new List<string>(killedDemons);
     }
 
     public void AddDeadPope(){
         _saveData.PopeNumber++;
-        SaveData();
+        Save();
     }
 
     public void JustUnlockedDemon(string demonName){
@@ -137,10 +152,24 @@ public class SaveManager : MonoBehaviour{
     }
 
     public void AddPopeName(string popeName){
+        if (_saveData.PopeNames == null) _saveData.PopeNames = Array.Empty<string>();
         var popeNames = new List<string>(_saveData.PopeNames);
         popeNames.Add(popeName);
         _saveData.PopeNames = popeNames.ToArray();
-        SaveData();
+        Save();
+    }
+
+    public string GetPopeNumber(string newPopeName){
+        int i = 0;
+        if (_saveData.PopeNames != null){
+            foreach (var name in _saveData.PopeNames){
+                if (name == newPopeName){
+                    i++;
+                }
+            }
+        }
+
+        return IntToRoman(i + 1);
     }
 
     public static List<string> GetRandomDemonNames(int amount = 3){

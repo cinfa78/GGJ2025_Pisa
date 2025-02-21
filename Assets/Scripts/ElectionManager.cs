@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +10,7 @@ public class ElectionManager : MonoBehaviour{
     [SerializeField] private float _cameraTargetY;
     [SerializeField] private float _panDuration = 5;
     [SerializeField] private float _fadeOutDuration = 2;
+    [SerializeField] private TMP_Text _popeNameLabel;
     public UnityEvent _onPanComplete;
     private bool _loading;
     public static event Action OnPanStart;
@@ -40,18 +42,29 @@ public class ElectionManager : MonoBehaviour{
         "Urbanus"
     };
 
+    private bool _nameUpdated;
     private void Awake(){
         _camera = Camera.main;
         _camera.transform.position = new Vector3(_camera.transform.position.x, _cameraStartY, _camera.transform.position.z);
+        _popeNameLabel.enabled = false;
     }
 
     private void Start(){
         OnPanStart?.Invoke();
         _camera.transform.DOMoveY(_cameraTargetY, _panDuration).SetEase(Ease.InOutQuad).OnComplete(() => { _onPanComplete.Invoke(); });
+        UpdateSavedName();
     }
 
-    private void OnDestroy(){
-        SaveManager.IncrementPope();
+    public void ShowPopeName(){
+        _popeNameLabel.enabled = true;
+    }
+
+    private void UpdateSavedName(){
+        _nameUpdated = true;
+        string newName = _popeNames[UnityEngine.Random.Range(0, _popeNames.Length)];
+        _popeNameLabel.text = newName + " " + SaveManager.Instance.GetPopeNumber(newName);
+        SaveManager.Instance.AddPopeName(newName);
+        SaveManager.Instance.Save();
     }
 
     public void PlayAgain(){

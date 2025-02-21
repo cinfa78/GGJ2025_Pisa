@@ -1323,7 +1323,7 @@ MonoBehaviour:
   - {fileID: -1095051060, guid: 6486aeca351ed0f45a7a48b36604b7ac, type: 3}
   - {fileID: -317318176, guid: 6486aeca351ed0f45a7a48b36604b7ac, type: 3}
   fps: 8
-  _playing: 0
+  _playing: 1
   _loop: 0
 --- !u!212 &1599651623
 SpriteRenderer:
