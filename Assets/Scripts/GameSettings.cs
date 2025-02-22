@@ -10,11 +10,3 @@ public class GameSettings : ScriptableObject{
     public Vector2 minMaxUpperAngle;
 }
 
-[Serializable]
-public class PopeStatistics{
-    public float movementSpeed = 5;
-    public float incrementPerShot = 0.1f;
-    [Header("Shot")]
-    public float angleIncrement = 60;
-    public Vector2 minMaxAngle = new Vector2(-45, 90);
-}

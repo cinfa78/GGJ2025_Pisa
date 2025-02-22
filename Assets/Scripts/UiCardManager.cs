@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class UiCardManager : MonoBehaviour{
     [SerializeField] private TMP_Text _nameLabel;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private SpriteRenderer _cardBackspriteRenderer;
     [SerializeField] private DemonListSo.DemonData demonData;
     [SerializeField] private SpriteAnimator _chainsAnimator;
     [SerializeField] private SpriteAnimator _lockAnimator;
@@ -41,6 +42,7 @@ public class UiCardManager : MonoBehaviour{
         transform.localRotation = Quaternion.Euler(0, 180, 0);
         _defaultZRotation = transform.localRotation.z;
         _sinOffset = Mathf.Abs(System.Guid.NewGuid().GetHashCode() / 1000000);
+        _cardBackspriteRenderer.material.SetFloat("_EmissiveAmount", 0);
     }
 
     private void OnEnable(){
@@ -95,6 +97,7 @@ public class UiCardManager : MonoBehaviour{
             if (!_locked){
                 if (_toUnlock){
                     _busy = true;
+                    _cardBackspriteRenderer.material.SetFloat("_EmissiveAmount", 0);
                     StopCoroutine(_shakingOnUnlocked);
                     SaveManager.Instance.JustUnlockedDemon(demonData.name);
                     transform.localRotation = Quaternion.Euler(0f, 180, 0);
@@ -141,6 +144,8 @@ public class UiCardManager : MonoBehaviour{
     }
 
     private IEnumerator ShakingOnUnlocked(){
+        _cardBackspriteRenderer.material.SetFloat("_EmissiveAmount", 1);
+        _cardBackspriteRenderer.material.SetFloat("_PulsateSpeed", 6.66f);
         while (true){
             transform.localRotation = Quaternion.Euler(0f, 180, Mathf.Sin((_sinOffset + Time.time) * 30f) * 3);
             yield return null;

@@ -4,21 +4,56 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using NaughtyAttributes;
 using UnityEngine;
-using Random = UnityEngine.Random;
+
+[Serializable]
+public class PopeStatistics{
+    public float MovementSpeed = 5;
+    public float IncrementPerShot = 0.1f;
+    public float AngleIncrement = 60;
+    public float MinAngle = -45;
+    public float MaxAngle = 90;
+
+    public PopeStatistics(float movementSpeed, float incrementPerShot, float angleIncrement, Vector2 minMaxAngle){
+        MovementSpeed = movementSpeed;
+        IncrementPerShot = incrementPerShot;
+        AngleIncrement = angleIncrement;
+        MinAngle = minMaxAngle.x;
+        MaxAngle = minMaxAngle.y;
+    }
+
+    public PopeStatistics(){
+        MovementSpeed = 5;
+        IncrementPerShot = 0.1f;
+        AngleIncrement = 60;
+        MinAngle = -45;
+        MaxAngle = 90;
+    }
+
+    public override string ToString(){
+        string output = "<color=#FF7700>Pope Statistics:</color>\n";
+        output += "\tMovement Speed: " + MovementSpeed + "\n";
+        output += "\tIncrement Per Shot: " + IncrementPerShot + "\n";
+        output += "\tAngle Increment: " + AngleIncrement + "\n";
+        output += "\tMinMax Angle: " + MinAngle + "-" + MaxAngle + "\n";
+        return output;
+    }
+}
 
 [Serializable]
 public class SaveData{
     public string[] KilledDemonsData;
     public int PopeNumber;
+    public PopeStatistics PopeStatistics;
     public string[] PopeNames;
 
     public SaveData(string[] killedDemons, string[] popeNames, int popeNumber){
         KilledDemonsData = killedDemons;
         PopeNumber = popeNumber;
         PopeNames = popeNames;
+        PopeStatistics = new PopeStatistics();
     }
 
-    public bool Contains(string searchedDemon){
+    public bool ContainsDemon(string searchedDemon){
         for (int i = 0; i < KilledDemonsData.Length; i++){
             if (KilledDemonsData[i] == searchedDemon) return true;
         }
@@ -38,8 +73,9 @@ public class SaveData{
         }
 
         result += $"<color=#00FFFF>Pope Number:</color> {PopeNumber}\n";
+        result += PopeStatistics + "\n";
         if (PopeNames != null && PopeNames.Length > 0){
-            result += "Popes:\n";
+            result += "Popes History:\n";
             for (var i = 0; i < PopeNames.Length; i++){
                 result += $"\t{PopeNames[i]}\n";
             }

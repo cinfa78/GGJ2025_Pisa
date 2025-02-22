@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class BubbleController : MonoBehaviour{
     [SerializeField] private PopeStatistics _popeStatistics;
-    [SerializeField] private float _movementSpeed;
+    //[SerializeField] private float _movementSpeed;
 
     [Header("Graphics")] [SerializeField] private SpriteRenderer _popeSpriterenderer;
     [SerializeField] private Sprite _fallingPopeSprite;
@@ -13,14 +12,17 @@ public class BubbleController : MonoBehaviour{
 
     [Header("Bubble")] [SerializeField] private GameObject _bubble;
     [SerializeField] private float _bubbleRadius;
+
     [SerializeField] private float _maxBubbleSize = 5;
-    [SerializeField] private float _incrementPerGrenade = .1f;
+
+    //[SerializeField] private float _incrementPerGrenade = .1f;
     [SerializeField] private float _incrementPerEnemyShot = .1f;
 
     [Header("Shot")] [SerializeField] private GameObject _holyHandGrenade;
+
     [SerializeField] private GameObject _crossHairContainer;
-    [SerializeField] private Vector2 _minMaxAngle;
-    [SerializeField] private float _angleIncrement = 60;
+    //[SerializeField] private Vector2 _minMaxAngle;
+    //[SerializeField] private float _angleIncrement = 60;
 
     [Header("Sfx")] [SerializeField] private AudioClip _bubblePopSound;
     [SerializeField] private AudioClip _deathSound;
@@ -42,6 +44,7 @@ public class BubbleController : MonoBehaviour{
     private void Awake(){
         _rigidbody = GetComponent<Rigidbody>();
         _crossHairContainer.SetActive(false);
+        _popeStatistics = new PopeStatistics();
     }
 
     private void Update(){
@@ -54,8 +57,8 @@ public class BubbleController : MonoBehaviour{
             }
 
             if (Input.GetButton("Fire1")){
-                _shootAngle += Time.deltaTime * _angleIncrement;
-                if (_shootAngle > _minMaxAngle.y) _shootAngle = _minMaxAngle.y;
+                _shootAngle += Time.deltaTime * _popeStatistics.AngleIncrement;
+                if (_shootAngle > _popeStatistics.MaxAngle) _shootAngle = _popeStatistics.MaxAngle;
                 _crossHairContainer.transform.localRotation = Quaternion.Euler(0, 0, _shootAngle);
                 _crossHairContainer.transform.localRotation = Quaternion.Euler(0, 0, _shootAngle);
             }
@@ -85,13 +88,13 @@ public class BubbleController : MonoBehaviour{
         newGrenade.name = "Grenade";
         newGrenade.GetComponent<GrenadeController>().ApplyDirection(Quaternion.Euler(0, 0, z: _shootAngle) * Vector3.right);
         if (_bubble.transform.localScale.x < _maxBubbleSize)
-            _bubble.transform.localScale += Vector3.one * _incrementPerGrenade;
-        _shootAngle = _minMaxAngle.x;
+            _bubble.transform.localScale += Vector3.one * _popeStatistics.IncrementPerShot;
+        _shootAngle = _popeStatistics.MinAngle;
     }
 
     private void FixedUpdate(){
         if (_canMove)
-            _rigidbody.MovePosition(transform.position + Vector3.up * (_targetVertical * _movementSpeed * Time.fixedDeltaTime) + Vector3.right * (_targetHorizontal * Time.fixedDeltaTime * _movementSpeed));
+            _rigidbody.MovePosition(transform.position + Vector3.up * (_targetVertical * _popeStatistics.MovementSpeed * Time.fixedDeltaTime) + Vector3.right * (_targetHorizontal * Time.fixedDeltaTime * _popeStatistics.MovementSpeed));
     }
 
     private void OnCollisionEnter(Collision other){

@@ -1661,7 +1661,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f2254249a47846458634e234aac96b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _camera: {fileID: 0}
   _cameraStartY: 10.5
   _cameraTargetY: 1
   _panDuration: 5

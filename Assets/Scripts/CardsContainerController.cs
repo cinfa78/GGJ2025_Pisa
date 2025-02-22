@@ -61,7 +61,7 @@ public class CardsContainerController : MonoBehaviour{
                 if (SaveManager.freshlyUnlockedDemons.Contains(_demonList.data[card].name)){
                     newCardManager.UnlockCard();
                 }
-                else if (SaveManager.Instance.GetSavedData.Contains(_demonList.data[card].name)){
+                else if (SaveManager.Instance.GetSavedData.ContainsDemon(_demonList.data[card].name)){
                     newCardManager.ShowCard();
                 }
 

@@ -262,7 +262,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1bf4e66b5b59a34468c2f58050eb0c46, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -392,6 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 6162969116368217424}
+  _direction: 1
   frames:
   - {fileID: -1947906485, guid: f7c4aae12d46efc44a707e9ecd7dfe0e, type: 3}
   - {fileID: 847683715, guid: f7c4aae12d46efc44a707e9ecd7dfe0e, type: 3}
@@ -502,6 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 6528954526123562317}
+  _direction: 1
   frames:
   - {fileID: 1922851235, guid: 124962ca15cd17e4fb4dd4e00a399802, type: 3}
   - {fileID: 1148207308, guid: 124962ca15cd17e4fb4dd4e00a399802, type: 3}
@@ -708,6 +710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameLabel: {fileID: 398030057614687929}
   _spriteRenderer: {fileID: 3001055626755313817}
+  _cardBackspriteRenderer: {fileID: 1114513706900879274}
   demonData:
     name: pio
     sprite: {fileID: 21300000, guid: 8b784d7712d7f074d99550e2196a060e, type: 3}

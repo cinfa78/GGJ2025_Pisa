@@ -30,7 +30,7 @@ public class EnemySpawnerController : MonoBehaviour{
     private void Start(){
         Debug.Log(SaveManager.Instance);
         foreach (var sideDevil in sideDevils){
-            if (!SaveManager.Instance.GetSavedData.Contains(sideDevil.gameObject.name)){
+            if (!SaveManager.Instance.GetSavedData.ContainsDemon(sideDevil.gameObject.name)){
                 _availableSideDevils.Add(sideDevil);
             }
         }
