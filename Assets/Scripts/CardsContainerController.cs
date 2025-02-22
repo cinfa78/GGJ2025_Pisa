@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
@@ -9,9 +10,11 @@ public class CardsContainerController : MonoBehaviour{
     [SerializeField] private GameObject _cardPrefab;
     [SerializeField, ReadOnly] private int _cardsPerColumn;
     [SerializeField, ReadOnly] private int _cardsPerRow;
+    [Space] [SerializeField] private SpriteAnimator _bookSpriteAnimator;
     private float _xStep;
     private float _yStep;
     private List<UiCardManager> _cards = new();
+    public event Action OnCardsDisplayed;
 
     private void OnDrawGizmos(){
         Gizmos.color = Color.yellow;
@@ -74,5 +77,8 @@ public class CardsContainerController : MonoBehaviour{
                 break;
             }
         }
+
+        OnCardsDisplayed?.Invoke();
+        _bookSpriteAnimator.Toggle();
     }
 }

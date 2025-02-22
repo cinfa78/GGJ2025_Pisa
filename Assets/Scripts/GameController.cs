@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using DG.Tweening;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public enum GameState{
     IDLE = 0,
@@ -132,6 +130,9 @@ public class GameController : MonoBehaviour{
         return _bubbleController.transform;
     }
 
+    public void ForceUpdatePopeName(){
+        ElectionManager.UpdateSavedName();
+    }
     private void Update(){
         switch (gameState){
             case GameState.IDLE:

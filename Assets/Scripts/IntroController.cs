@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class IntroController : MonoBehaviour{
@@ -12,6 +13,10 @@ public class IntroController : MonoBehaviour{
         for (int i = 0; i < slides.Length; i++){
             slides[i].alpha = 0;
         }
+    }
+
+    private void OnEnable(){
+        slides[0].GetComponent<TMP_Text>().text += SaveManager.Instance.GetLastPopeName();
     }
 
     private void OnDestroy(){

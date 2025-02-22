@@ -648,6 +648,7 @@ MonoBehaviour:
     type: 3}
   _cardsPerColumn: 15
   _cardsPerRow: 5
+  _bookSpriteAnimator: {fileID: 1599651622}
 --- !u!4 &409098746
 Transform:
   m_ObjectHideFlags: 0
@@ -1323,7 +1324,7 @@ MonoBehaviour:
   - {fileID: -1095051060, guid: 6486aeca351ed0f45a7a48b36604b7ac, type: 3}
   - {fileID: -317318176, guid: 6486aeca351ed0f45a7a48b36604b7ac, type: 3}
   fps: 8
-  _playing: 1
+  _playing: 0
   _loop: 0
 --- !u!212 &1599651623
 SpriteRenderer:
@@ -1727,7 +1728,7 @@ SceneRoots:
   - {fileID: 1701028624}
   - {fileID: 1623608475}
   - {fileID: 409098746}
-  - {fileID: 1393063823}
-  - {fileID: 1507994852}
-  - {fileID: 689816475}
   - {fileID: 1599651624}
+  - {fileID: 1393063823}
+  - {fileID: 689816475}
+  - {fileID: 1507994852}

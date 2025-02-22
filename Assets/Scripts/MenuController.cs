@@ -9,6 +9,6 @@ public class MenuController : MonoBehaviour{
     private void Start(){
         AudioManager.Instance.PlayMusic(_introMusic);
         if (_popeLabel)
-            _popeLabel.text = $"Pope #{SaveManager.Instance.GetPopeNumber():000}";
+            _popeLabel.text = $"{SaveManager.Instance.GetLastPopeName()}";
     }
 }

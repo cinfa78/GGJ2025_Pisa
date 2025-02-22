@@ -5,18 +5,19 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class ElectionManager : MonoBehaviour{
-    [SerializeField] private Camera _camera;
     [SerializeField] private float _cameraStartY;
     [SerializeField] private float _cameraTargetY;
     [SerializeField] private float _panDuration = 5;
     [SerializeField] private float _fadeOutDuration = 2;
     [SerializeField] private TMP_Text _popeNameLabel;
     public UnityEvent _onPanComplete;
+    private Camera _camera;
+    private bool _nameUpdated;
     private bool _loading;
     public static event Action OnPanStart;
     public static event Action<float> OnPlayAgain;
 
-    private string[] _popeNames = new string[]{
+    private static string[] _popeNames = new string[]{
         "Alexander",
         "Bonifacius",
         "Celestinus",
@@ -42,7 +43,8 @@ public class ElectionManager : MonoBehaviour{
         "Urbanus"
     };
 
-    private bool _nameUpdated;
+    private static string newName;
+
     private void Awake(){
         _camera = Camera.main;
         _camera.transform.position = new Vector3(_camera.transform.position.x, _cameraStartY, _camera.transform.position.z);
@@ -52,18 +54,19 @@ public class ElectionManager : MonoBehaviour{
     private void Start(){
         OnPanStart?.Invoke();
         _camera.transform.DOMoveY(_cameraTargetY, _panDuration).SetEase(Ease.InOutQuad).OnComplete(() => { _onPanComplete.Invoke(); });
+        //aggiorno subito il nome del papa
         UpdateSavedName();
+        _popeNameLabel.text = newName;
     }
 
     public void ShowPopeName(){
         _popeNameLabel.enabled = true;
     }
 
-    private void UpdateSavedName(){
-        _nameUpdated = true;
-        string newName = _popeNames[UnityEngine.Random.Range(0, _popeNames.Length)];
-        _popeNameLabel.text = newName + " " + SaveManager.Instance.GetPopeNumber(newName);
+    public static void UpdateSavedName(){
+        newName = _popeNames[UnityEngine.Random.Range(0, _popeNames.Length)];
         SaveManager.Instance.AddPopeName(newName);
+        newName = newName + " " + SaveManager.Instance.GetPopeNumber(newName);
         SaveManager.Instance.Save();
     }
 
@@ -79,7 +82,7 @@ public class ElectionManager : MonoBehaviour{
 
     private void Update(){
         if (Input.GetButtonDown("Cancel")){
-            PlayAgain();
+            SceneLoader.MainMenu();
         }
     }
 }
