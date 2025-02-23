@@ -5,6 +5,9 @@ using UnityEngine;
 public class DevilController : EnemyController{
     private SpriteRenderer _baseSpriteRenderer;
     [SerializeField] private Sprite _deadDevilSprite;
+    [SerializeField] private GameObject _wingsContainer;
+    [SerializeField] private SpriteRenderer _wingSpriteRenderer;
+    [SerializeField] private SpriteRenderer[] _deadSprites;
     [Header("Shots")] public bool _canShoot;
     [SerializeField] private float _shotInterval;
     [SerializeField] private GameObject _bubbleShotPrefab;
@@ -16,6 +19,10 @@ public class DevilController : EnemyController{
     protected override void Awake(){
         base.Awake();
         _baseSpriteRenderer = _spriteContainer.GetComponent<SpriteRenderer>();
+        for (int i = 0; i < _deadSprites.Length; i++){
+            _deadSprites[i].color = _wingSpriteRenderer.color;
+            _deadSprites[i].enabled = false;
+        }
     }
 
     private IEnumerator Start(){
@@ -56,7 +63,13 @@ public class DevilController : EnemyController{
     }
 
     private void DoDeath(){
-        _baseSpriteRenderer.sprite = _deadDevilSprite;
+        //_baseSpriteRenderer.sprite = _deadDevilSprite;
+        _baseSpriteRenderer.gameObject.SetActive(false);
+        _wingsContainer.SetActive(false);
+        for (int i = 0; i < _deadSprites.Length; i++){
+            _deadSprites[i].enabled = true;
+        }
+
         DeathPhysics();
         AudioManager.Instance.PlaySfx(_deathSfx);
         Destroy(gameObject, 3f);

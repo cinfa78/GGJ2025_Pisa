@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71fc35a74338e4e449a7e8db7cb55809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameSettings: {fileID: 11400000, guid: 9a33fe063eae0e6489b7fe09ada13c10, type: 2}
   demonListSo: {fileID: 11400000, guid: 16615903f9c5d71459d514a63ea4bab6, type: 2}

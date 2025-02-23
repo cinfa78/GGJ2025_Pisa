@@ -41,10 +41,22 @@ public class BubbleController : MonoBehaviour{
 
     public static event Action OnPlayerdeath;
 
+    private void OnDrawGizmos(){
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, _popeStatistics.MinAngle) * Vector3.right);
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, _popeStatistics.MaxAngle) * Vector3.right);
+    }
+
     private void Awake(){
         _rigidbody = GetComponent<Rigidbody>();
         _crossHairContainer.SetActive(false);
-        _popeStatistics = new PopeStatistics();
+        //_popeStatistics = new PopeStatistics();
+        _popeStatistics = SaveManager.Instance.GetSavedData.PopeStatistics;
+    }
+
+    private void Start(){
+        //load pope statistics
+        _popeStatistics = SaveManager.Instance.GetSavedData.PopeStatistics;
     }
 
     private void Update(){
@@ -118,7 +130,7 @@ public class BubbleController : MonoBehaviour{
     }
 
     private void PopBubble(){
-        SaveManager.Instance.AddDeadPope();
+        //SaveManager.Instance.AddDeadPope();
         AudioManager.Instance.PlaySfx(_bubblePopSound);
         _bubble.SetActive(false);
         _canMove = false;

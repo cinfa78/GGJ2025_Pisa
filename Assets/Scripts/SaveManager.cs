@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using NaughtyAttributes;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class PopeStatistics{
@@ -46,11 +47,11 @@ public class SaveData{
     public PopeStatistics PopeStatistics;
     public string[] PopeNames;
 
-    public SaveData(string[] killedDemons, string[] popeNames, int popeNumber){
+    public SaveData(string[] killedDemons, string[] popeNames, int popeNumber, PopeStatistics popeStatistics){
         KilledDemonsData = killedDemons;
         PopeNumber = popeNumber;
         PopeNames = popeNames;
-        PopeStatistics = new PopeStatistics();
+        PopeStatistics = popeStatistics;
     }
 
     public bool ContainsDemon(string searchedDemon){
@@ -86,9 +87,10 @@ public class SaveData{
 }
 
 public class SaveManager : MonoBehaviour{
+    private const string FILENAME = "SalutisData.amen";
     public static SaveManager Instance;
+    public GameSettings GameSettings;
     public DemonListSo demonListSo;
-    public static int PopeNumber => PlayerPrefs.GetInt("popes", 1);
     public static event Action<int> OnNewPope;
     private SaveData _saveData;
     public SaveData GetSavedData => _saveData;
@@ -96,6 +98,32 @@ public class SaveManager : MonoBehaviour{
     public static List<string> freshlyUnlockedDemons = new List<string>();
 
     public int GetPopeNumber() => _saveData.PopeNumber;
+
+    private static string[] _popeNames = new string[]{
+        "Alexander",
+        "Bonifacius",
+        "Celestinus",
+        "Clementius",
+        "Eugenius",
+        "Gregorius",
+        "Hadrianus",
+        "Innocentius",
+        "Laurentius",
+        "Leo",
+        "Leoninus",
+        "Marcus",
+        "Maximilianus",
+        "Nicolaus",
+        "Paulus",
+        "Petrus",
+        "Pius",
+        "Raphael",
+        "Silvester",
+        "Sextus",
+        "Stefanus",
+        "Theodorus",
+        "Urbanus"
+    };
 
     private void Awake(){
         if (Instance != null){
@@ -111,23 +139,23 @@ public class SaveManager : MonoBehaviour{
 
     public void Save(){
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/saveData.dat";
+        string path = Application.persistentDataPath + "/" + FILENAME;
         FileStream stream = new FileStream(path, FileMode.Create);
-        SaveData data = new SaveData(_saveData.KilledDemonsData, _saveData.PopeNames, _saveData.PopeNumber);
+        SaveData data = new SaveData(_saveData.KilledDemonsData, _saveData.PopeNames, _saveData.PopeNumber, _saveData.PopeStatistics);
         formatter.Serialize(stream, data);
         stream.Close();
     }
 
     public void Load(){
         Debug.Log($"Loading data");
-        string path = Application.persistentDataPath + "/saveData.dat";
+        string path = Application.persistentDataPath + "/" + FILENAME;
 
         if (File.Exists(path)){
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
             _saveData = (SaveData)formatter.Deserialize(stream);
             stream.Close();
-            Debug.Log($"Data Loaded\n{_saveData}");
+            Debug.Log($"Data Loaded");
         }
         else{
             ResetSaveData();
@@ -139,7 +167,7 @@ public class SaveManager : MonoBehaviour{
     [Button("Reset SaveData")]
     private void ResetSaveData(){
         Debug.Log($"Created new data");
-        _saveData = new SaveData(Array.Empty<string>(), Array.Empty<string>(), 0);
+        _saveData = new SaveData(Array.Empty<string>(), Array.Empty<string>(), 0, popeStatistics: new PopeStatistics());
         GetLastPopeName();
         Save();
     }
@@ -158,21 +186,32 @@ public class SaveManager : MonoBehaviour{
         freshlyUnlockedDemons = new List<string>(killedDemons);
     }
 
-    public void AddDeadPope(){
-        _saveData.PopeNumber++;
-        Save();
-    }
-
     public void JustUnlockedDemon(string demonName){
         freshlyUnlockedDemons.Remove(demonName);
     }
 
-    public void AddPopeName(string popeName){
-        if (_saveData.PopeNames == null) _saveData.PopeNames = Array.Empty<string>();
+    public string GenerateNewPope(string forcedName){
+        var popeName = forcedName;
+        if (forcedName == null){
+            popeName = _popeNames[UnityEngine.Random.Range(0, _popeNames.Length)];
+        }
+
+        var output = popeName + " " + GetPopeNumber(popeName);
+        //if (_saveData.PopeNames == null) _saveData.PopeNames = Array.Empty<string>();
         var popeNames = new List<string>(_saveData.PopeNames);
         popeNames.Add(popeName);
         _saveData.PopeNames = popeNames.ToArray();
+        _saveData.PopeNumber++;
+
+        //generare caratteristiche papa
+        _saveData.PopeStatistics.MovementSpeed = Random.Range(GameSettings.minMaxSpeed.x, GameSettings.minMaxSpeed.y);
+        _saveData.PopeStatistics.IncrementPerShot = Random.Range(GameSettings.minMaxBubbleGrowth.x, GameSettings.minMaxBubbleGrowth.y);
+        _saveData.PopeStatistics.MinAngle = Random.Range(GameSettings.minMaxLowerAngle.x, GameSettings.minMaxLowerAngle.y);
+        _saveData.PopeStatistics.MaxAngle = Random.Range(GameSettings.minMaxUpperAngle.x, GameSettings.minMaxUpperAngle.y);
+        _saveData.PopeStatistics.AngleIncrement = Random.Range(GameSettings.minMaxAngleIncrement.x, GameSettings.minMaxAngleIncrement.y);
+
         Save();
+        return output;
     }
 
     public string GetPopeNumber(string newPopeName, bool getCurrent = false){
@@ -190,10 +229,8 @@ public class SaveManager : MonoBehaviour{
 
     public string GetLastPopeName(){
         if (_saveData.PopeNames.Length == 0){
-            AddPopeName("Petrus");
-            _saveData.PopeNumber++;
-            Save();
-            return "Petrus" + " " + GetPopeNumber("Petrus", true);
+            Debug.Log($"Creating first pope Petrus I");
+            return GenerateNewPope("Petrus");
         }
 
         string popeName = _saveData.PopeNames[_saveData.PopeNumber - 1];

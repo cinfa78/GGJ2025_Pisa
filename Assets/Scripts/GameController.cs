@@ -131,7 +131,7 @@ public class GameController : MonoBehaviour{
     }
 
     public void ForceUpdatePopeName(){
-        ElectionManager.UpdateSavedName();
+        SaveManager.Instance.GenerateNewPope(null);
     }
     private void Update(){
         switch (gameState){

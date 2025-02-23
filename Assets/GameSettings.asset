@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   minMaxSpeed: {x: 3, y: 7}
-  minMaxChargeSpeed: {x: 40, y: 80}
+  minMaxAngleIncrement: {x: 40, y: 80}
   minMaxBubbleGrowth: {x: 0.05, y: 0.3}
-  minMaxLowerAngle: {x: -90, y: 0}
-  minMaxUpperAngle: {x: 0, y: 90}
+  minMaxLowerAngle: {x: -90, y: -45}
+  minMaxUpperAngle: {x: 45, y: 90}
