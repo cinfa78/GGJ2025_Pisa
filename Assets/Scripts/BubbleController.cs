@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BubbleController : MonoBehaviour{
     [SerializeField] private PopeStatistics _popeStatistics;
-    //[SerializeField] private float _movementSpeed;
 
     [Header("Graphics")] [SerializeField] private SpriteRenderer _popeSpriterenderer;
     [SerializeField] private Sprite _fallingPopeSprite;
@@ -15,14 +14,11 @@ public class BubbleController : MonoBehaviour{
 
     [SerializeField] private float _maxBubbleSize = 5;
 
-    //[SerializeField] private float _incrementPerGrenade = .1f;
     [SerializeField] private float _incrementPerEnemyShot = .1f;
 
     [Header("Shot")] [SerializeField] private GameObject _holyHandGrenade;
 
     [SerializeField] private GameObject _crossHairContainer;
-    //[SerializeField] private Vector2 _minMaxAngle;
-    //[SerializeField] private float _angleIncrement = 60;
 
     [Header("Sfx")] [SerializeField] private AudioClip _bubblePopSound;
     [SerializeField] private AudioClip _deathSound;
@@ -35,6 +31,7 @@ public class BubbleController : MonoBehaviour{
     private bool _canMove = true;
     private AudioSource _chargeAudioSource;
     private float _shootAngle = -45f;
+    private int _uniqueCode;
 
     public bool IsAlive => _canMove;
     public bool _godMode;
@@ -50,13 +47,11 @@ public class BubbleController : MonoBehaviour{
     private void Awake(){
         _rigidbody = GetComponent<Rigidbody>();
         _crossHairContainer.SetActive(false);
-        //_popeStatistics = new PopeStatistics();
-        _popeStatistics = SaveManager.Instance.GetSavedData.PopeStatistics;
     }
 
     private void Start(){
-        //load pope statistics
         _popeStatistics = SaveManager.Instance.GetSavedData.PopeStatistics;
+        _uniqueCode = SaveManager.GetDeterministicHashCode(_popeStatistics.Name);
     }
 
     private void Update(){
@@ -98,7 +93,9 @@ public class BubbleController : MonoBehaviour{
     private void FireGrenade(){
         var newGrenade = Instantiate(_holyHandGrenade, transform.position, Quaternion.identity);
         newGrenade.name = "Grenade";
-        newGrenade.GetComponent<GrenadeController>().ApplyDirection(Quaternion.Euler(0, 0, z: _shootAngle) * Vector3.right);
+        var gc = newGrenade.GetComponent<GrenadeController>();
+        gc.ApplyDirection(Quaternion.Euler(0, 0, z: _shootAngle) * Vector3.right);
+        gc.SetupSprite(_uniqueCode);
         if (_bubble.transform.localScale.x < _maxBubbleSize)
             _bubble.transform.localScale += Vector3.one * _popeStatistics.IncrementPerShot;
         _shootAngle = _popeStatistics.MinAngle;

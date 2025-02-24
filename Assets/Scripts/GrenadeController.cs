@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class GrenadeController : MonoBehaviour{
     [SerializeField] private Vector3 _intitialDirection = Vector3.right;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private float _initialVelocity;
+    [SerializeField] private SphereCollider _collider;
     [SerializeField] private GameObject _splashVfx;
+    [SerializeField] private Sprite[] _grenadeSprites;
     [Header("Sfx")] [SerializeField] private AudioClip _launchSfx;
     [SerializeField] private AudioClip _splashSfx;
     [SerializeField] private AudioClip _spikeHitSfx;
@@ -16,8 +19,16 @@ public class GrenadeController : MonoBehaviour{
         _layerDevil = LayerMask.NameToLayer("Devil");
         _layerSpikes = LayerMask.NameToLayer("Spikes");
         _rigidbody = GetComponent<Rigidbody>();
+        _collider = GetComponent<SphereCollider>();
         _intitialDirection.Normalize();
         Destroy(gameObject, 3);
+    }
+
+    public void SetupSprite(int id){
+        Debug.Log(id);
+        int i = id % _grenadeSprites.Length;
+        _spriteRenderer.sprite = _grenadeSprites[i];
+        _collider.radius -= (i + 1) * 0.1f;
     }
 
     public void ApplyDirection(Vector3 startDirection){

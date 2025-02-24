@@ -2,19 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
+using System.Text;
 using NaughtyAttributes;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 [Serializable]
 public class PopeStatistics{
+    public string Name = "Petrus";
     public float MovementSpeed = 5;
     public float IncrementPerShot = 0.1f;
     public float AngleIncrement = 60;
     public float MinAngle = -45;
     public float MaxAngle = 90;
 
-    public PopeStatistics(float movementSpeed, float incrementPerShot, float angleIncrement, Vector2 minMaxAngle){
+    public PopeStatistics(string name, float movementSpeed, float incrementPerShot, float angleIncrement, Vector2 minMaxAngle){
+        Name = name;
         MovementSpeed = movementSpeed;
         IncrementPerShot = incrementPerShot;
         AngleIncrement = angleIncrement;
@@ -23,6 +27,7 @@ public class PopeStatistics{
     }
 
     public PopeStatistics(){
+        Name = "Petrus";
         MovementSpeed = 5;
         IncrementPerShot = 0.1f;
         AngleIncrement = 60;
@@ -30,8 +35,17 @@ public class PopeStatistics{
         MaxAngle = 90;
     }
 
+    public PopeStatistics(PopeStatistics popeStatistics){
+        Name = popeStatistics.Name;
+        MovementSpeed = popeStatistics.MovementSpeed;
+        IncrementPerShot = popeStatistics.IncrementPerShot;
+        AngleIncrement = popeStatistics.AngleIncrement;
+        MinAngle = popeStatistics.MinAngle;
+        MaxAngle = popeStatistics.MaxAngle;
+    }
+
     public override string ToString(){
-        string output = "<color=#FF7700>Pope Statistics:</color>\n";
+        string output = $"<color=#FF7700>Pope {Name} Statistics:</color>\n";
         output += "\tMovement Speed: " + MovementSpeed + "\n";
         output += "\tIncrement Per Shot: " + IncrementPerShot + "\n";
         output += "\tAngle Increment: " + AngleIncrement + "\n";
@@ -51,7 +65,7 @@ public class SaveData{
         KilledDemonsData = killedDemons;
         PopeNumber = popeNumber;
         PopeNames = popeNames;
-        PopeStatistics = popeStatistics;
+        PopeStatistics = new PopeStatistics(popeStatistics);
     }
 
     public bool ContainsDemon(string searchedDemon){
@@ -168,7 +182,8 @@ public class SaveManager : MonoBehaviour{
     private void ResetSaveData(){
         Debug.Log($"Created new data");
         _saveData = new SaveData(Array.Empty<string>(), Array.Empty<string>(), 0, popeStatistics: new PopeStatistics());
-        GetLastPopeName();
+        var popeName = GetLastPopeName();
+        _saveData.PopeStatistics.Name = popeName;
         Save();
     }
 
@@ -204,6 +219,7 @@ public class SaveManager : MonoBehaviour{
         _saveData.PopeNumber++;
 
         //generare caratteristiche papa
+        _saveData.PopeStatistics.Name = popeName;
         _saveData.PopeStatistics.MovementSpeed = Random.Range(GameSettings.minMaxSpeed.x, GameSettings.minMaxSpeed.y);
         _saveData.PopeStatistics.IncrementPerShot = Random.Range(GameSettings.minMaxBubbleGrowth.x, GameSettings.minMaxBubbleGrowth.y);
         _saveData.PopeStatistics.MinAngle = Random.Range(GameSettings.minMaxLowerAngle.x, GameSettings.minMaxLowerAngle.y);
@@ -237,7 +253,7 @@ public class SaveManager : MonoBehaviour{
         return popeName + " " + GetPopeNumber(popeName, true);
     }
 
-    static string IntToRoman(int number){
+    public static string IntToRoman(int number){
         string[] thousands ={ "", "M", "MM", "MMM" };
         string[] hundreds ={ "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" };
         string[] tens ={ "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" };
@@ -247,5 +263,13 @@ public class SaveManager : MonoBehaviour{
                hundreds[(number % 1000) / 100] +
                tens[(number % 100) / 10] +
                ones[number % 10];
+    }
+
+    public static int GetDeterministicHashCode(string input){
+        //Debug.Log(input);
+        using (SHA256 sha256 = SHA256.Create()){
+            byte[] hash = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+            return Math.Abs(BitConverter.ToInt32(hash, 0));
+        }
     }
 }
