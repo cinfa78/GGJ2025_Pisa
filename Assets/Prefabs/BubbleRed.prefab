@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 260f2a52d3e81fd49971fb6820f28ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 4189395594956828484}
   direction: {x: -1, y: 0, z: 0}
   _shotSpeed: 5
   _shotSfx: {fileID: 8300000, guid: 9bdb244a3ff6c5e439401ab66fc2f753, type: 3}

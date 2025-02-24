@@ -21,7 +21,7 @@ public class Boss : EnemyController{
     [SerializeField] private float _targetX;
     private bool _hasPlayerTransform;
 
-    private void Update(){
+    protected override void Update(){
         if (_isAlive){
             if (!_hasPlayerTransform){
                 _playerTransform = GameController.Instance.GetPlayerTransform();
@@ -41,7 +41,7 @@ public class Boss : EnemyController{
         }
     }
 
-    private void Shoot(){
+    protected override void Shoot(){
         var rnd = Random.Range(0, 1f);
         if (rnd < 0.5f){
             for (int i = 0; i < _spikesToShoot; i++){
