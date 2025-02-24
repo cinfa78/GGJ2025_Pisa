@@ -25,7 +25,6 @@ public class GrenadeController : MonoBehaviour{
     }
 
     public void SetupSprite(int id){
-        Debug.Log(id);
         int i = id % _grenadeSprites.Length;
         _spriteRenderer.sprite = _grenadeSprites[i];
         _collider.radius -= (i + 1) * 0.1f;
