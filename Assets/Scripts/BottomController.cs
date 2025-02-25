@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-
 
 public class BottomController : EnemyController{
     //[SerializeField] private float _movementSpeed = 10;
@@ -18,7 +16,7 @@ public class BottomController : EnemyController{
         _defaultYPosition = transform.position.y;
     }
 
-    private void Update(){
+    protected override void Update(){
         if (_isAlive){
             if (!_hasPlayerTransform){
                 _playerTransform = GameController.Instance.GetPlayerTransform();
@@ -47,7 +45,7 @@ public class BottomController : EnemyController{
         }
     }
 
-    private void Shoot(){
+    protected override void Shoot(){
         Instantiate(_spikePrefab, transform.position, Quaternion.identity);
     }
 

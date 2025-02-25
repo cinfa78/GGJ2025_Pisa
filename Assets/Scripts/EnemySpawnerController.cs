@@ -65,13 +65,14 @@ public class EnemySpawnerController : MonoBehaviour{
 
     public void SpawnBoss(){
         var newBoss = Instantiate(boss, bossSpawnPoint.position, Quaternion.identity);
+        newBoss.Setup(SaveManager.Instance.GetSavedData.KilledBosses);
         Boss.OnBossDeath += OnBossDeath;
     }
 
     private void OnBossDeath(){
         Boss.OnBossDeath -= OnBossDeath;
         //salvo i demoni uccisi
-        SaveManager.Instance.AddKilledDemons(_spawnedDevils);
+        SaveManager.Instance.AddKilledDemonsAndBoss(_spawnedDevils);
     }
 
     private void OnDestroy(){

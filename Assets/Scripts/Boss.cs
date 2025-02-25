@@ -21,6 +21,10 @@ public class Boss : EnemyController{
     [SerializeField] private float _targetX;
     private bool _hasPlayerTransform;
 
+    public void Setup(int currentBoss){
+        _health += currentBoss/2;
+    }
+
     protected override void Update(){
         if (_isAlive){
             if (!_hasPlayerTransform){
@@ -80,20 +84,15 @@ public class Boss : EnemyController{
         }
     }
 
+    [Button("Kill")]
+    public override void InstantKill(){
+        base.InstantKill();
+        DoDeath();
+    }
+
     private void DoDeath(){
         DeathPhysics();
         _rigidbody.AddForce(Vector3.up * 3f, ForceMode.Impulse);
         AudioManager.Instance.PlaySfx(_deathSfx);
-    }
-
-    [Button("Kill")]
-    public void Kill(){
-        _isAlive = false;
-        DoDeath();
-    }
-
-    public override void InstantKill(){
-        base.InstantKill();
-        DoDeath();
     }
 }

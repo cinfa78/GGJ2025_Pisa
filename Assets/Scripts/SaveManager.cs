@@ -56,12 +56,14 @@ public class PopeStatistics{
 
 [Serializable]
 public class SaveData{
+    public int KilledBosses;
     public string[] KilledDemonsData;
     public int PopeNumber;
     public PopeStatistics PopeStatistics;
     public string[] PopeNames;
 
-    public SaveData(string[] killedDemons, string[] popeNames, int popeNumber, PopeStatistics popeStatistics){
+    public SaveData(int killedBosses, string[] killedDemons, string[] popeNames, int popeNumber, PopeStatistics popeStatistics){
+        KilledBosses = killedBosses;
         KilledDemonsData = killedDemons;
         PopeNumber = popeNumber;
         PopeNames = popeNames;
@@ -77,15 +79,7 @@ public class SaveData{
     }
 
     public override string ToString(){
-        string result = "";
-
-        result += $"<color=#ff0000>Demons Killed:</color> {KilledDemonsData.Length}\n";
-        if (KilledDemonsData != null && KilledDemonsData.Length > 0){
-            result += "Demons:\n";
-            for (var i = 0; i < KilledDemonsData.Length; i++){
-                result += $"\t{KilledDemonsData[i]}\n";
-            }
-        }
+        string result = "Current Save Data\n";
 
         result += $"<color=#00FFFF>Pope Number:</color> {PopeNumber}\n";
         result += PopeStatistics + "\n";
@@ -96,6 +90,16 @@ public class SaveData{
             }
         }
 
+        result += $"<color=#FF0000>Bosses Killed:</color> {KilledBosses}\n";
+        result += $"<color=#FF3333>Demons Killed:</color> {KilledDemonsData.Length}\n";
+        if (KilledDemonsData != null && KilledDemonsData.Length > 0){
+            result += "Demons:\n";
+            for (var i = 0; i < KilledDemonsData.Length; i++){
+                result += $"\t{KilledDemonsData[i]}\n";
+            }
+        }
+
+
         return result;
     }
 }
@@ -105,10 +109,12 @@ public class SaveManager : MonoBehaviour{
     public static SaveManager Instance;
     public GameSettings GameSettings;
     public DemonListSo demonListSo;
-    public static event Action<int> OnNewPope;
+    public static event Action<PopeStatistics> OnNewPope;
     private SaveData _saveData;
+
     public SaveData GetSavedData => _saveData;
-    private bool _initialized = false;
+
+    //private bool _initialized = false;
     public static List<string> freshlyUnlockedDemons = new List<string>();
 
     public int GetPopeNumber() => _saveData.PopeNumber;
@@ -155,13 +161,13 @@ public class SaveManager : MonoBehaviour{
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/" + FILENAME;
         FileStream stream = new FileStream(path, FileMode.Create);
-        SaveData data = new SaveData(_saveData.KilledDemonsData, _saveData.PopeNames, _saveData.PopeNumber, _saveData.PopeStatistics);
+        SaveData data = new SaveData(_saveData.KilledBosses, _saveData.KilledDemonsData, _saveData.PopeNames, _saveData.PopeNumber, _saveData.PopeStatistics);
         formatter.Serialize(stream, data);
         stream.Close();
     }
 
     public void Load(){
-        Debug.Log($"Loading data");
+        Debug.Log($"<color=#AAAA11>Loading data...</color>");
         string path = Application.persistentDataPath + "/" + FILENAME;
 
         if (File.Exists(path)){
@@ -169,19 +175,20 @@ public class SaveManager : MonoBehaviour{
             FileStream stream = new FileStream(path, FileMode.Open);
             _saveData = (SaveData)formatter.Deserialize(stream);
             stream.Close();
-            Debug.Log($"Data Loaded");
+            Debug.Log($"<color=#11FF11>Data Loaded</color>:");
+            Debug.Log(_saveData);
         }
         else{
             ResetSaveData();
         }
 
-        _initialized = true;
+        //_initialized = true;
     }
 
     [Button("Reset SaveData")]
     private void ResetSaveData(){
         Debug.Log($"Created new data");
-        _saveData = new SaveData(Array.Empty<string>(), Array.Empty<string>(), 0, popeStatistics: new PopeStatistics());
+        _saveData = new SaveData(0, Array.Empty<string>(), Array.Empty<string>(), 0, popeStatistics: new PopeStatistics());
         var popeName = GetLastPopeName();
         _saveData.PopeStatistics.Name = popeName;
         Save();
@@ -193,10 +200,11 @@ public class SaveManager : MonoBehaviour{
     }
 
 
-    public void AddKilledDemons(List<string> killedDemons){
+    public void AddKilledDemonsAndBoss(List<string> killedDemons){
         var newKilledDemonsList = new List<string>(_saveData.KilledDemonsData);
         newKilledDemonsList.AddRange(killedDemons);
         _saveData.KilledDemonsData = newKilledDemonsList.ToArray();
+        _saveData.KilledBosses++;
         Save();
         freshlyUnlockedDemons = new List<string>(killedDemons);
     }
@@ -212,7 +220,6 @@ public class SaveManager : MonoBehaviour{
         }
 
         var output = popeName + " " + GetPopeNumber(popeName);
-        //if (_saveData.PopeNames == null) _saveData.PopeNames = Array.Empty<string>();
         var popeNames = new List<string>(_saveData.PopeNames);
         popeNames.Add(popeName);
         _saveData.PopeNames = popeNames.ToArray();
@@ -225,7 +232,7 @@ public class SaveManager : MonoBehaviour{
         _saveData.PopeStatistics.MinAngle = Random.Range(GameSettings.minMaxLowerAngle.x, GameSettings.minMaxLowerAngle.y);
         _saveData.PopeStatistics.MaxAngle = Random.Range(GameSettings.minMaxUpperAngle.x, GameSettings.minMaxUpperAngle.y);
         _saveData.PopeStatistics.AngleIncrement = Random.Range(GameSettings.minMaxAngleIncrement.x, GameSettings.minMaxAngleIncrement.y);
-
+        OnNewPope?.Invoke(_saveData.PopeStatistics);
         Save();
         return output;
     }

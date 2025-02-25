@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 3703696463820202699}
   - component: {fileID: 5538565850253417702}
   m_Layer: 8
-  m_Name: BasicDevil
+  m_Name: DevilBasic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
