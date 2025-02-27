@@ -13,7 +13,7 @@ public class Boss : EnemyController{
     [SerializeField] private Transform[] _bubbleNozzle;
     [SerializeField] private GameObject _bubbleBulletPrefab;
     private int _bubblesToShoot;
-    [SerializeField] private int _health;
+    //[SerializeField] private int _health;
 
     [SerializeField] private AudioClip _bossHurtSfx;
     public static event Action OnBossDeath;

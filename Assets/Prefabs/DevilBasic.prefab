@@ -385,7 +385,9 @@ MonoBehaviour:
   - {fileID: 5825058790982044539}
   - {fileID: 556559487518976382}
   _spikeCollider: {fileID: 556559487518976382}
+  _health: 1.5
   _deathSfx: {fileID: 8300000, guid: f2427bd3a0e36cc41a180cc644d665eb, type: 3}
+  _hurtSfx: {fileID: 11400000, guid: 68960251a20e69445a6925d2bcd91ee9, type: 2}
   _hasTarget: 0
   _deadDevilSprite: {fileID: 21300000, guid: 5d7f7817dd112454aa46a7ba2778997b, type: 3}
   _wingsContainer: {fileID: 8568172797346903882}

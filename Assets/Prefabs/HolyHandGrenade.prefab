@@ -113,6 +113,8 @@ MonoBehaviour:
   _intitialDirection: {x: 1, y: 0, z: 0}
   _spriteRenderer: {fileID: 8348414769440179640}
   _initialVelocity: 7
+  _damage: 1
+  _collider: {fileID: 8984525728719224396}
   _splashVfx: {fileID: 6286608514288227229}
   _grenadeSprites:
   - {fileID: 21300000, guid: b0c13bc9858b650428e79fb994e25a94, type: 3}

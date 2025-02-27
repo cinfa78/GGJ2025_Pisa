@@ -5334,6 +5334,10 @@ MonoBehaviour:
   - {fileID: 8737633634301579032}
   - {fileID: 8714776688330606405}
   - {fileID: 5451709288505974443}
+  _bubbleMaterials:
+  - {fileID: 2100000, guid: a7109edd6844ed9439b5c206d180d04e, type: 2}
+  - {fileID: 2100000, guid: d9152fc7d8c8c2e42a89904b28333359, type: 2}
+  _graceTime: 3
   _bubbleRadius: 1
   _maxBubbleSize: 5
   _incrementPerEnemyShot: 0.1
@@ -5345,6 +5349,7 @@ MonoBehaviour:
   _deathSound: {fileID: 8300000, guid: 9e3650af2508ede45b2826cd7dcc99e2, type: 3}
   _chargeShotSound: {fileID: 8300000, guid: 28024397bfef7bf468b972459de31a3d, type: 3}
   _godMode: 0
+  _endingMode: 0
 --- !u!54 &3158773045956625982
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ public class GrenadeController : MonoBehaviour{
     [SerializeField] private Vector3 _intitialDirection = Vector3.right;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private float _initialVelocity;
+    [SerializeField] private float _damage = 1f;
+    public float GetDamage => _damage;
     [SerializeField] private SphereCollider _collider;
     [SerializeField] private GameObject _splashVfx;
     [SerializeField] private Sprite[] _grenadeSprites;

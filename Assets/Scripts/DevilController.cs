@@ -1,5 +1,4 @@
 using System.Collections;
-using NaughtyAttributes;
 using UnityEngine;
 
 public class DevilController : EnemyController{
@@ -8,6 +7,7 @@ public class DevilController : EnemyController{
     [SerializeField] private GameObject _wingsContainer;
     [SerializeField] private SpriteRenderer _wingSpriteRenderer;
     [SerializeField] private SpriteRenderer[] _deadSprites;
+
     [Header("Shots")] public bool _canShoot;
     [SerializeField] private float _shotInterval;
     [SerializeField] private GameObject _bubbleShotPrefab;
@@ -52,8 +52,16 @@ public class DevilController : EnemyController{
 
     private void OnCollisionEnter(Collision other){
         if (_isAlive && other.gameObject.layer == _grenadeLayer){
-            _isAlive = false;
-            DoDeath();
+            _health -= other.gameObject.GetComponent<GrenadeController>().GetDamage;
+            Debug.Log(other.gameObject.GetComponent<GrenadeController>().GetDamage);
+            Debug.Log(_health);
+            if (_health <= 0){
+                _isAlive = false;
+                DoDeath();
+            }
+            else{
+                AudioManager.Instance.PlaySfx(_hurtSfx.GetRandomClip());
+            }
         }
     }
 

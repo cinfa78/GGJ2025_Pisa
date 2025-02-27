@@ -105,6 +105,7 @@ public class GameController : MonoBehaviour{
         BubbleController.OnPlayerdeath -= OnPlayerDeath;
         Destroy(_spawnerController.gameObject);
         _bubbleController._godMode = true;
+        _bubbleController._endingMode = true;
         _bubbleController.SetMovement(false);
         for (int i = _devils.Count - 1; i >= 0; i--){
             IKillable k = _devils[i];

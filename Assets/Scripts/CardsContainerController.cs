@@ -36,6 +36,10 @@ public class CardsContainerController : MonoBehaviour{
         GenerateCards();
     }
 
+    private void OnDestroy(){
+        SaveManager.Instance.Save();
+    }
+
     [Button("Generate Cards")]
     private void GenerateCards(){
         Debug.Log($"Generating cards: {_demonList.data.Count}");

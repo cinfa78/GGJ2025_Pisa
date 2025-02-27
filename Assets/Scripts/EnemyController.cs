@@ -11,8 +11,9 @@ public class EnemyController : MonoBehaviour, IKillable{
     [Space] [SerializeField] protected float _movementSpeed;
     [SerializeField] protected Collider[] _colliders;
     [SerializeField] protected Collider _spikeCollider;
-
+    [SerializeField] protected float _health;
     [Header("Sfx")] [SerializeField] protected AudioClip _deathSfx;
+    [SerializeField] protected AudioClipRandom _hurtSfx;
     [Space] protected Rigidbody _rigidbody;
     protected Transform _playerTransform;
     protected bool _isAlive;

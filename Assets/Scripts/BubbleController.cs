@@ -13,7 +13,8 @@ public class BubbleController : MonoBehaviour{
 
     [Header("Bubble")] [SerializeField] private GameObject _bubbleContainer;
     [SerializeField] private GameObject[] _bubbles;
-
+    [SerializeField] private Material[] _bubbleMaterials;
+    [SerializeField] private float _graceTime;
 
     private int _health;
     [SerializeField] private float _bubbleRadius;
@@ -42,6 +43,7 @@ public class BubbleController : MonoBehaviour{
 
     public bool IsAlive => _canMove;
     public bool _godMode;
+    public bool _endingMode;
 
     public static event Action OnPlayerdeath;
 
@@ -89,7 +91,7 @@ public class BubbleController : MonoBehaviour{
             }
         }
         else{
-            if (_godMode){
+            if (_endingMode){
                 if (_crossHairContainer.activeSelf) _crossHairContainer.SetActive(false);
                 transform.position = Vector3.Lerp(transform.position, Vector3.zero, .5f * Time.deltaTime);
             }
@@ -122,25 +124,24 @@ public class BubbleController : MonoBehaviour{
     }
 
     private void OnCollisionEnter(Collision other){
-        if (_canMove){
-            if (!_godMode){
-                if (other.gameObject.layer == _spikeLayer){
-                    PopBubble(_health);
-                    _health--;
-                    if (_health < 0){
-                        PopLastBubble();
-                    }
-
-                    var sc = other.gameObject.GetComponent<ShotController>();
-                    if (sc)
-                        sc.DeactivateShot();
+        if (!_godMode){
+            if (other.gameObject.layer == _spikeLayer){
+                PopBubble(_health);
+                _health--;
+                if (_health < 0){
+                    PopLastBubble();
                 }
-            }
 
+                var sc = other.gameObject.GetComponent<ShotController>();
+                if (sc)
+                    sc.DeactivateShot();
+            }
+        }
+
+        if (_canMove){
             if (other.gameObject.layer == LayerMask.NameToLayer("Pope")){
                 //gonfio la bolla
                 _bubbleContainer.transform.localScale += Vector3.one * (_incrementPerEnemyShot);
-                //Destroy(other.gameObject);
             }
         }
     }
@@ -153,8 +154,24 @@ public class BubbleController : MonoBehaviour{
         SquashAndStretch();
         AudioManager.Instance.PlaySfx(_bubblePopSound);
         _bubbles[index].SetActive(false);
-        _popVfx.transform.localScale = _bubbleContainer.transform.localScale; 
+        _popVfx.transform.localScale = _bubbleContainer.transform.localScale;
         _popVfx.Play();
+        _godMode = true;
+        if (_health > 0)
+            StartCoroutine(GraceTimeCountdown());
+    }
+
+    private IEnumerator GraceTimeCountdown(){
+        float timer = 0;
+        MeshRenderer bubbleMesh = _bubbles[_health - 1].GetComponent<MeshRenderer>();
+        bubbleMesh.material = _bubbleMaterials[1];
+        while (timer < _graceTime){
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        bubbleMesh.material = _bubbleMaterials[0];
+        _godMode = false;
     }
 
     private void SquashAndStretch(){
