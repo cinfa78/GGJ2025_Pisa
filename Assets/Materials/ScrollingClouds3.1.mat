@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ScrollingClouds3
+  m_Name: ScrollingClouds3.1
   m_Shader: {fileID: -6465566751694194690, guid: bf3c156f50865f246bcd0fd14fa2fbaf,
     type: 3}
   m_Parent: {fileID: 0}
@@ -48,7 +48,7 @@ Material:
     m_Floats:
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Speed: 0.03
+    - _Speed: 0.05
     - _UVJitter: 0.001
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

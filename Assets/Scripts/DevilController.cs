@@ -52,9 +52,7 @@ public class DevilController : EnemyController{
 
     private void OnCollisionEnter(Collision other){
         if (_isAlive && other.gameObject.layer == _grenadeLayer){
-            _health -= other.gameObject.GetComponent<GrenadeController>().GetDamage;
-            Debug.Log(other.gameObject.GetComponent<GrenadeController>().GetDamage);
-            Debug.Log(_health);
+            _health -= other.gameObject.GetComponent<Bullet>().GetDamage;
             if (_health <= 0){
                 _isAlive = false;
                 DoDeath();

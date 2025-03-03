@@ -1,51 +1,52 @@
-using System;
+﻿using System;
 using NaughtyAttributes;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class SpriteAnimator : MonoBehaviour{
-    public SpriteRenderer spriteRenderer;
-    [SerializeField] private int _direction = 1;
-    [FormerlySerializedAs("sprites")] public Sprite[] frames;
-    public float fps;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private SpriteAnimation _spriteAnimation;
     private float _timer;
     private int _frame = 0;
     [SerializeField] private bool _playing = true;
-    [SerializeField] private bool _loop = true;
     public event Action OnLoopOver;
+    private SpriteAnimation.Loop _currentLoop;
 
     private void OnEnable(){
-        if (frames == null){
-            Debug.LogWarning($"{name} SpriteAnimator missing sprites");
-            frames = new Sprite[0];
-            frames[0] = spriteRenderer.sprite;
+        if (_spriteAnimation == null){
+            Debug.LogError($"{name} SpriteAnimator missing sprites");
+        }
+        else{
+            _currentLoop = _spriteAnimation.GetFirstLoop();
+            _spriteRenderer.sprite = _currentLoop.frames[0];
+            _timer = 0;
         }
     }
 
-    private void Start(){
-        if (_direction == 1)
-            spriteRenderer.sprite = frames[_frame];
-        else
-            spriteRenderer.sprite = frames[frames.Length - 1];
-    }
-
-    [Button("Toggle")]
-    public void Toggle(){
-        _playing = !_playing;
+    public void SetLoop(string loopName){
+        _playing = true;
+        _currentLoop = _spriteAnimation.GetLoop(loopName);
+        _frame = 0;
+        _spriteRenderer.sprite = _currentLoop.frames[_frame];
     }
 
     private void Update(){
         _timer += Time.deltaTime;
-        if (_playing && _timer >= 1f / fps){
+        if (_playing && _timer >= 1f / _currentLoop.fps){
             _timer = 0;
-            _frame = (frames.Length+(_frame + _direction)) % frames.Length;
-            if (_loop || _frame != 0){
-                spriteRenderer.sprite = frames[_frame];
+            _frame = (_currentLoop.frames.Length + (_frame + 1)) % _currentLoop.frames.Length;
+            if (_currentLoop.loop || _frame != 0){
+                _spriteRenderer.sprite = _currentLoop.frames[_frame];
             }
             else{
                 OnLoopOver?.Invoke();
                 _playing = false;
             }
         }
+    }
+
+    [Button("Toggle")]
+    public void Toggle(){
+        _timer = 0;
+        _playing = !_playing;
     }
 }

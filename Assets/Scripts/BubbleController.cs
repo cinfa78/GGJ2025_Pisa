@@ -7,8 +7,11 @@ using UnityEngine;
 public class BubbleController : MonoBehaviour{
     [SerializeField] private PopeStatistics _popeStatistics;
 
-    [Header("Graphics")] [SerializeField] private SpriteRenderer _popeSpriterenderer;
-    [SerializeField] private Sprite _fallingPopeSprite;
+    [Header("Graphics")] //[SerializeField] private SpriteRenderer _popeSpriterenderer;
+    [SerializeField]
+    private SpriteAnimator _popeAnimator;
+
+    //[SerializeField] private Sprite _fallingPopeSprite;
     [SerializeField] private GameObject _popeHat;
 
     [Header("Bubble")] [SerializeField] private GameObject _bubbleContainer;
@@ -23,14 +26,17 @@ public class BubbleController : MonoBehaviour{
 
     [SerializeField] private float _incrementPerEnemyShot = .1f;
     [SerializeField] private ParticleSystem _popVfx;
-    [Header("Shot")] [SerializeField] private GameObject _holyHandGrenade;
-
+    [Header("Shot")] [SerializeField] private Bullet _shot;
+    [SerializeField] protected float _shotCoolDown = 0;
+    [SerializeField] private Bullet _holyHandGrenade;
+    [SerializeField] protected float _grenadeCoolDown = 0;
     [SerializeField] private GameObject _crossHairContainer;
 
     [Header("Sfx")] [SerializeField] private AudioClip _bubblePopSound;
     [SerializeField] private AudioClip _deathSound;
     [SerializeField] private AudioClip _chargeShotSound;
-
+    private float _shotCooldownTimer;
+    private float _grenadeCooldownTimer;
     private int _spikeLayer;
     private Rigidbody _rigidbody;
     private float _bubbleDecrementPerSecond = .1f;
@@ -44,7 +50,7 @@ public class BubbleController : MonoBehaviour{
     public bool IsAlive => _canMove;
     public bool _godMode;
     public bool _endingMode;
-
+    private bool _chargingGrenade;
     public static event Action OnPlayerdeath;
 
     private void OnDrawGizmos(){
@@ -58,40 +64,61 @@ public class BubbleController : MonoBehaviour{
         _crossHairContainer.SetActive(false);
         _spikeLayer = LayerMask.NameToLayer("Spikes");
         _health = _bubbles.Length - 1;
+        _shotCooldownTimer = _shotCoolDown;
     }
 
     private void Start(){
         _popeStatistics = SaveManager.Instance.GetSavedData.PopeStatistics;
         _uniqueCode = SaveManager.GetDeterministicHashCode(_popeStatistics.Name);
+        _popeAnimator.SetLoop("idle");
     }
 
     private void Update(){
         _targetHorizontal = Input.GetAxis("Horizontal");
         _targetVertical = Input.GetAxis("Vertical");
+        _shotCooldownTimer -= Time.deltaTime;
+        _grenadeCooldownTimer -= Time.deltaTime;
         if (_canMove){
-            if (Input.GetButtonDown("Fire1")){
-                _crossHairContainer.SetActive(true);
-                _chargeAudioSource = AudioManager.Instance.PlaySfx(_chargeShotSound);
-            }
-
-            if (Input.GetButton("Fire1")){
-                _shootAngle += Time.deltaTime * _popeStatistics.AngleIncrement;
-                if (_shootAngle > _popeStatistics.MaxAngle) _shootAngle = _popeStatistics.MaxAngle;
-                _crossHairContainer.transform.localRotation = Quaternion.Euler(0, 0, _shootAngle);
-                _crossHairContainer.transform.localRotation = Quaternion.Euler(0, 0, _shootAngle);
-            }
-
-            if (Input.GetButtonUp("Fire1")){
-                if (_chargeAudioSource.clip == _chargeShotSound){
-                    _chargeAudioSource.Stop();
+            if (_grenadeCooldownTimer <= 0){
+                if (Input.GetButtonDown("Fire2")){
+                    _popeAnimator.SetLoop("grenade");
+                    _chargingGrenade = true;
+                    _crossHairContainer.SetActive(true);
+                    _chargeAudioSource = AudioManager.Instance.PlaySfx(_chargeShotSound);
                 }
 
-                _crossHairContainer.SetActive(false);
-                FireGrenade();
+                if (Input.GetButton("Fire2")){
+                    _shootAngle += Time.deltaTime * _popeStatistics.AngleIncrement;
+                    if (_shootAngle > _popeStatistics.MaxAngle) _shootAngle = _popeStatistics.MaxAngle;
+                    _crossHairContainer.transform.localRotation = Quaternion.Euler(0, 0, _shootAngle);
+                    _crossHairContainer.transform.localRotation = Quaternion.Euler(0, 0, _shootAngle);
+                }
+
+                if (Input.GetButtonUp("Fire2") && _chargingGrenade){
+                    _chargingGrenade = false;
+                    if (_chargeAudioSource.clip == _chargeShotSound){
+                        _chargeAudioSource.Stop();
+                    }
+
+                    _crossHairContainer.SetActive(false);
+                    _grenadeCooldownTimer = _grenadeCoolDown;
+                    FireGrenade();
+                    _popeAnimator.SetLoop("idle");
+                }
+            }
+
+            if (Input.GetButtonDown("Fire1") && !_chargingGrenade){
+                if (_shotCooldownTimer <= 0){
+                    _popeAnimator.SetLoop("shoot");
+                    _popeAnimator.OnLoopOver += SetIdleAnimation;
+                    _shotCooldownTimer = _shotCoolDown;
+                    Shoot();
+                }
             }
         }
         else{
             if (_endingMode){
+                _popeAnimator.SetLoop("idle");
                 if (_crossHairContainer.activeSelf) _crossHairContainer.SetActive(false);
                 transform.position = Vector3.Lerp(transform.position, Vector3.zero, .5f * Time.deltaTime);
             }
@@ -100,6 +127,13 @@ public class BubbleController : MonoBehaviour{
         if (_bubbleContainer.transform.localScale.x > 1)
             _bubbleContainer.transform.localScale -= Vector3.one * (_bubbleDecrementPerSecond * Time.deltaTime);
     }
+
+    
+    private void SetIdleAnimation(){
+        _popeAnimator.OnLoopOver -= SetIdleAnimation;
+        _popeAnimator.SetLoop("idle");
+    }
+    
 
     private void FireGrenade(){
         var newGrenade = Instantiate(_holyHandGrenade, transform.position, Quaternion.identity);
@@ -110,6 +144,12 @@ public class BubbleController : MonoBehaviour{
         if (_bubbleContainer.transform.localScale.x < _maxBubbleSize)
             _bubbleContainer.transform.localScale += Vector3.one * _popeStatistics.IncrementPerShot;
         _shootAngle = _popeStatistics.MinAngle;
+    }
+
+    private void Shoot(){
+        var newShot = Instantiate(_shot, transform.position + Vector3.right * _bubbleRadius / 2f, Quaternion.identity);
+        newShot.name = "Shot";
+        newShot.ApplyDirection(Vector3.right);
     }
 
     private void FixedUpdate(){
@@ -189,7 +229,11 @@ public class BubbleController : MonoBehaviour{
     private void PopLastBubble(){
         _canMove = false;
         _rigidbody.useGravity = true;
-        _popeSpriterenderer.sprite = _fallingPopeSprite;
+
+        _popeAnimator.SetLoop("dead");
+        ;
+        //_popeSpriterenderer.sprite = _fallingPopeSprite;
+
         _popeHat.transform.SetParent(null);
         _popeHat.SetActive(true);
         _popeHat.GetComponent<Rigidbody>().AddForce(Vector3.up * 5, ForceMode.Impulse);

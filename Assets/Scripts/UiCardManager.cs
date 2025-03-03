@@ -10,8 +10,8 @@ public class UiCardManager : MonoBehaviour{
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private SpriteRenderer _cardBackspriteRenderer;
     [SerializeField] private DemonListSo.DemonData demonData;
-    [SerializeField] private SpriteAnimator _chainsAnimator;
-    [SerializeField] private SpriteAnimator _lockAnimator;
+    [SerializeField] private SimpleSpriteAnimator _chainsAnimator;
+    [SerializeField] private SimpleSpriteAnimator _lockAnimator;
     [SerializeField] private GameObject _lockOpenObject;
     [Header("Sfx")] [SerializeField] private AudioClip _lockOpenSfx;
     [SerializeField] private AudioClip _chainsLockedSfx;

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CardsContainerController : MonoBehaviour{
     [SerializeField] private Vector2 _size;
@@ -10,7 +11,7 @@ public class CardsContainerController : MonoBehaviour{
     [SerializeField] private GameObject _cardPrefab;
     [SerializeField, ReadOnly] private int _cardsPerColumn;
     [SerializeField, ReadOnly] private int _cardsPerRow;
-    [Space] [SerializeField] private SpriteAnimator _bookSpriteAnimator;
+    [FormerlySerializedAs("_bookSpriteAnimator")] [Space] [SerializeField] private SimpleSpriteAnimator bookSimpleSpriteAnimator;
     private float _xStep;
     private float _yStep;
     private List<UiCardManager> _cards = new();
@@ -83,6 +84,6 @@ public class CardsContainerController : MonoBehaviour{
         }
 
         OnCardsDisplayed?.Invoke();
-        _bookSpriteAnimator.Toggle();
+        bookSimpleSpriteAnimator.Toggle();
     }
 }

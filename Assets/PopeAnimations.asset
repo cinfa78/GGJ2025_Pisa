@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16190a554359438f9848011f710eeee2, type: 3}
+  m_Name: PopeAnimations
+  m_EditorClassIdentifier: 
+  internalLoops:
+  - name: idle
+    frames:
+    - {fileID: -1848063560, guid: 9667d5a092980884a90a54d2118b8bc1, type: 3}
+    fps: 1
+    loop: 1
+  - name: shoot
+    frames:
+    - {fileID: -1416715516, guid: 9667d5a092980884a90a54d2118b8bc1, type: 3}
+    - {fileID: -1176429517, guid: 9667d5a092980884a90a54d2118b8bc1, type: 3}
+    - {fileID: 1298711649, guid: 9667d5a092980884a90a54d2118b8bc1, type: 3}
+    fps: 8
+    loop: 0
+  - name: grenade
+    frames:
+    - {fileID: -1358802206, guid: 9667d5a092980884a90a54d2118b8bc1, type: 3}
+    - {fileID: -826730989, guid: 9667d5a092980884a90a54d2118b8bc1, type: 3}
+    - {fileID: 1720488675, guid: 9667d5a092980884a90a54d2118b8bc1, type: 3}
+    - {fileID: 1861415871, guid: 9667d5a092980884a90a54d2118b8bc1, type: 3}
+    fps: 3
+    loop: 0
+  - name: dead
+    frames:
+    - {fileID: 21300000, guid: 45af5d0442e27f14d870dd13a3734143, type: 3}
+    fps: 1
+    loop: 1
